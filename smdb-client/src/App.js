@@ -7,10 +7,14 @@ import AllMusic from "./pages/AllMusic";
 
 function App() {
   return (
-    <div className="app-container">
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/all_music" component={AllMusic} />
-    </div>
+    <>
+      <Navbar />
+
+      <div className="app-container">
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/all_music" component={AllMusic} />
+      </div>
+    </>
   );
 }
 

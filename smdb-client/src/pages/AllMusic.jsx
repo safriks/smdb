@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./allMusic.css";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 export default class AllMusic extends Component {
   constructor() {
@@ -22,6 +23,10 @@ export default class AllMusic extends Component {
   }
 
   render() {
-    return <h1>All Music</h1>;
+    return (
+      <>
+        <h1>All Music</h1>
+      </>
+    );
   }
 }
