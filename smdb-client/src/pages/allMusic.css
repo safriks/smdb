@@ -1,0 +1,25 @@
+.black {
+  background: black;
+  color: white;
+}
+
+.blue {
+  background: blue;
+  color: white;
+}
+
+.search-el {
+  padding: 1vh;
+  border: 0.5px solid blue;
+  border-radius: 5px;
+  margin: 1vh;
+  font-size: 1.2em;
+}
+
+.search-bar {
+  width: 80%;
+}
+
+.search-btn {
+  width: 10%;
+}
