@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5cf6121cd7285708d9f86351"},"first_name":"Jaazeps","last_name":"Viitols","wiki_link":"https://en.wikipedia.org/wiki/J%C4%81zeps_V%C4%ABtols","works":[{"$oid":"5cf610aed7285708d9f8634d"}],"is_person":true}
+{"_id":{"$oid":"5cf613ccd7285708d9f86357"},"first_name":"Emiils","last_name":"Daarzinjsh","wiki_link":"https://en.wikipedia.org/wiki/Em%C4%ABls_D%C4%81rzi%C5%86%C5%A1","works":[{"$oid":"5cf61108d7285708d9f8634e"},{"$oid":"5cf6116ed7285708d9f8634f"}],"is_person":true}

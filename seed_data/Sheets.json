@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5cf610aed7285708d9f8634d"},"title":"Priedes","composer":{"$oid":"5cf6121cd7285708d9f86351"},"year":"1913","video":"aaa"}
+{"_id":{"$oid":"5cf61108d7285708d9f8634e"},"title":"Luuk roze zied","composer":{"$oid":"5cf613ccd7285708d9f86357"},"year":"1927","video":"aaa"}
+{"_id":{"$oid":"5cf6116ed7285708d9f8634f"},"title":"Lai Veetra kraac","composer":{"$oid":"5cf613ccd7285708d9f86357"},"year":"1925","video":"aaa"}
