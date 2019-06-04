@@ -1,8 +1,3 @@
-.black {
-  background: black;
-  color: white;
-}
-
 .blue {
   background: blue;
   color: white;
@@ -22,4 +17,8 @@
 
 .search-btn {
   width: 10%;
+}
+
+.overflow {
+  overflow-y: scroll;
 }

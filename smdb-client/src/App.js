@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./Layout.css";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
@@ -10,10 +10,11 @@ function App() {
     <div className="App">
       <Navbar />
 
-      <div>
+      <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/all_music" component={AllMusic} />
-      </div>
+        <Route exact path="/all_music/:id" component={AllMusic} />
+      </Switch>
     </div>
   );
 }

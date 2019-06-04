@@ -1,0 +1,8 @@
+.black {
+  background: black;
+  height: 400px;
+}
+
+.black h1 {
+  color: white;
+}
