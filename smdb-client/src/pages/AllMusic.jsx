@@ -24,9 +24,19 @@ export default class AllMusic extends Component {
 
   render() {
     return (
-      <>
-        <h1>All Music</h1>
-      </>
+      <div className="columns">
+        <div className="column is-full">
+          <input type="text" />
+          <div className="columns">
+            <div className="column is-one-quarter">
+              <h1>filter column</h1>
+            </div>
+            <div className="column is-half">
+              <h1>all music column</h1>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
