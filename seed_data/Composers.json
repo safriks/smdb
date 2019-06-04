@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5cf6121cd7285708d9f86351"},"first_name":"Jaazeps","last_name":"Viitols","wiki_link":"5cf6126cd7285708d9f86352","works":["."]}
+{"_id":{"$oid":"5cf613ccd7285708d9f86357"},"first_name":"Emiils","last_name":"Daarzinjsh","wiki_link":"www","works":[{"$oid":"5cf61434d7285708d9f86358"},{"$oid":"5cf6143dd7285708d9f86359"}],"is_person":true}
