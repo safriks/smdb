@@ -6,11 +6,15 @@ require("dotenv").config({ path: __dirname + "/../.env"})
 const Music = require("./models/music.js");
 const Composer = require("./models/composer.js");
 
-
 // const cors = require("cors")
 // app.use(cors())
 
-console.log(process.env.MONGODB_URI);
+const allRoute = require("./routes/all.js");
+const searchRoute = require("./routes/search.js");
+
+app.use("/", allRoute);
+app.use("/", searchRoute);
+
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
     if(!err)console.log("connected to sheet music db")
@@ -18,22 +22,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
 })
 
 
-app.get('/all_music', (req, res) => {
-    Music.find({}, (err,result)=>{  // OUT OF ORDER !!!
-        if (err) res.send("error fetching all music. err msg: "+err);
-        if (!err) {
-            res.json(result)
-        };
-    })
-})
-app.get('/all_composers', (req, res) => {
-    Composer.find({}, (err,result)=>{
-        if (err) res.send("error fetching composers. err msg: "+err);
-        if (!err) {
-            res.json(result)
-        };
-    })
-})
 const port = process.env.PORT;
 app.listen(port, ()=> {
     console.log(`s-m-d-b API live! listeneing on port ${port}.....`)

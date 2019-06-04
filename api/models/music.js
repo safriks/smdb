@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const Composer = require("./composer.js");
+
 
 const musicSchema = new mongoose.Schema({
     title:  String,
-    composer: mongoose.Schema.ObjectId,
-    arrangement_author: mongoose.Schema.ObjectId,
+    composer: { type: mongoose.Schema.Types.ObjectId, ref: Composer },
+    arrangement_author: { type: mongoose.Schema.Types.ObjectId, ref: Composer },
     arrangement_type: String,
     year: String,
     genre: Array,
