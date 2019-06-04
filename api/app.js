@@ -11,9 +11,11 @@ const Composer = require("./models/composer.js");
 
 const allRoute = require("./routes/all.js");
 const searchRoute = require("./routes/search.js");
+const uploadRoute = require("./routes/upload.js");
 
 app.use("/", allRoute);
 app.use("/", searchRoute);
+app.use("/", uploadRoute);
 
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
