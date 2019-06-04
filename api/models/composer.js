@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const composerSchema = new mongoose.Schema({
     first_name:  String,
-    lasr_name:  String,
+    last_name:  String,
     wiki_link:  String,
     works: Array,
     arrangements: Array,
