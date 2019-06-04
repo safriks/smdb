@@ -24,19 +24,26 @@ export default class AllMusic extends Component {
 
   render() {
     return (
-      <div className="columns">
-        <div className="column is-full">
-          <input type="text" />
-          <div className="columns">
-            <div className="column is-one-quarter">
-              <h1>filter column</h1>
-            </div>
-            <div className="column is-half">
-              <h1>all music column</h1>
-            </div>
+      <>
+        <div className="columns">
+          <div className="column is-8 is-offset-2">
+            <input
+              className="search-el search-bar"
+              placeholder="Search sheet music!"
+              type="text"
+            />
+            <button className="search-el search-btn">Search</button>
           </div>
         </div>
-      </div>
+        <div className="columns">
+          <div className="column is-2 is-offset-1 black">
+            <h1>filter column</h1>
+          </div>
+          <div className="column is-8 blue">
+            <h1>all music column</h1>
+          </div>
+        </div>
+      </>
     );
   }
 }

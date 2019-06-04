@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Navbar />
 
-      <div className="app-container">
+      <div>
         <Route exact path="/" component={Landing} />
         <Route exact path="/all_music" component={AllMusic} />
       </div>
