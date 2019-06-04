@@ -39,17 +39,28 @@ render() {
 }
 */
 
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
 
 export default function MusicDetails(props) {
-  debugger;
   let selectedMusic = props.selectedMusic[0];
 
   return (
     <div>
-      <p>{selectedMusic.composer}</p>
+      <p>
+        {selectedMusic.composer.first_name} {selectedMusic.composer.last_name}
+      </p>
       <p>{selectedMusic.title}</p>
+      <p>{selectedMusic.year}</p>
+      <ul>
+        {selectedMusic.files.map(file => {
+          return <li>{file}</li>;
+        })}
+      </ul>
+      <ul>
+        {selectedMusic.genre.map(genre => {
+          return <li>{genre}</li>;
+        })}
+      </ul>
     </div>
   );
 }

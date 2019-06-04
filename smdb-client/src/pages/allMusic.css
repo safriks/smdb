@@ -19,6 +19,15 @@
   width: 10%;
 }
 
+.close-btn {
+  width: 5%;
+}
+
 .overflow {
   overflow-y: scroll;
+}
+
+.col {
+  border: 1px solid blue;
+  border-radius: 5px;
 }

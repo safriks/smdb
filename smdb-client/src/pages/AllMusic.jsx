@@ -54,15 +54,8 @@ export default class AllMusic extends Component {
       return (
         <MusicListItem
           key={`sheet ${index + 1}`}
+          {...sheet}
           index={index.toString()}
-          composer={sheet.composer}
-          files={sheet.files}
-          genre={sheet.genre}
-          tags={sheet.tags}
-          title={sheet.title}
-          video={sheet.video}
-          year={sheet.year}
-          id={sheet._id}
         />
       );
     });
@@ -80,16 +73,20 @@ export default class AllMusic extends Component {
               type="text"
             />
             <button className="search-el search-btn">Search</button>
-            {/* {selectedMusic ? <button onClick={this.closeHandler}>close</button> : <></>} */}
+            {selectedMusic ? (
+              <button className="search-el close-btn">X</button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="columns">
           {this.state.sheets.length > 0 && (
             <>
-              <div className="column is-2 is-offset-1 overflow">
+              <div className="column is-2 is-offset-1 overflow col">
                 {selectedMusic ? sheetsJSX : <FilterColumn />}
               </div>
-              <div className="column is-8 overflow">
+              <div className="column is-8 overflow col">
                 {selectedMusic ? (
                   <MusicDetails selectedMusic={this.state.selectedMusic} />
                 ) : (
