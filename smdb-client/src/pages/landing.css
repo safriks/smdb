@@ -1,0 +1,30 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-container {
+  padding: 5vh;
+  margin: 5vh;
+  border: 1px solid black;
+}
+
+.btn-landing {
+  width: 15vw;
+  min-width: 150px;
+  padding: 2vh;
+  height: auto;
+  margin: 2vh;
+}
+
+.btn-blue {
+  background: rgba(33, 161, 247, 0.692);
+  border: solid 1px rgb(16, 157, 250);
+  color: darkblue;
+}
+
+.btn-blue:hover {
+  background: darkblue;
+  color: rgb(16, 157, 250);
+}
