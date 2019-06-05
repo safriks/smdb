@@ -1,24 +1,72 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./Layout.css";
+import axios from "axios";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
 import AllMusic from "./pages/AllMusic";
 import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
+class App extends Component {
+  constructor() {
+    super();
+    this.getCurrentUser = this.getCurrentUser.bind(this);
+  }
+  state = {
+    currentUser: {},
+    err: null
+  };
 
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/all_music" component={AllMusic} />
-        <Route exact path="/all_music/:id" component={AllMusic} />
-        <Route exact path="/sign_up" component={SignUp} />
-      </Switch>
-    </div>
-  );
+  componentDidMount() {
+    this.getCurrentUser();
+  }
+
+  getCurrentUser = () => {
+    axios({
+      url: "http://localhost:3010/get_user",
+      method: "post",
+      withCredentials: true
+    })
+      .then(response => {
+        this.setState(
+          {
+            user: response.data
+          },
+          () => {
+            this.props.history.push("/profile"); // new but not required
+          }
+        );
+      })
+      .catch(err => {
+        this.setState({
+          err: err
+        });
+      });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Navbar />
+
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/all_music" component={AllMusic} />
+          <Route exact path="/all_music/:id" component={AllMusic} />
+          <Route exact path="/sign_up" component={SignUp} />
+          <Route
+            exact
+            path="/log_in"
+            render={props => (
+              <Login {...props} getCurrentUser={this.getCurrentUser} />
+            )}
+            component={Login}
+          />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;

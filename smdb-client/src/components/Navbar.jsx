@@ -10,7 +10,7 @@ export default class Navbar extends Component {
           <div className="navbar-start">
             <div className="navbar-item">
               <div className="buttons">
-                <Link to="/sign_up" className="button is-link">
+                <Link to="/upload" className="button is-link">
                   <strong>Upload sheet music</strong>
                 </Link>
                 <Link to="/" className="button is-link">

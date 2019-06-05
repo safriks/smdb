@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class SignUp extends Component {
-  state = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    confirmpassword: "",
-    err: null
-  };
+  constructor() {
+    super();
+    this.state = {
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+      err: null
+    };
+    this.formRef = React.createRef();
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -20,16 +26,14 @@ export default class SignUp extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
 
+    let signUpForm = this.formRef.current;
+    let formData = new FormData(signUpForm);
+
     axios({
       url: "http://localhost:3010/sign_up",
-      data: {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        email: this.state.email,
-        password: this.state.password,
-        confirmpassword: this.state.confirmpassword
-      },
+      data: formData,
       method: "post",
+      headers: { "Content-Type": "form-data" },
       withCredentials: true
     })
       .then(response => {
