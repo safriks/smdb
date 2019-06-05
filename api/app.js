@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require('path')
 require("dotenv").config({ path: __dirname + "/../.env"})
 
 const Music = require("./models/music.js");
@@ -16,6 +17,7 @@ const uploadRoute = require("./routes/upload.js");
 app.use("/", allRoute);
 app.use("/", searchRoute);
 app.use("/", uploadRoute);
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
