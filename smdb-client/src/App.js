@@ -4,6 +4,7 @@ import "./Layout.css";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
 import AllMusic from "./pages/AllMusic";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route exact path="/all_music" component={AllMusic} />
         <Route exact path="/all_music/:id" component={AllMusic} />
+        <Route exact path="/sign_up" component={SignUp} />
       </Switch>
     </div>
   );

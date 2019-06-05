@@ -7,7 +7,6 @@
 .landing-container {
   padding: 5vh;
   margin: 5vh;
-  border: 1px solid black;
 }
 
 .landing-container h1 {
@@ -23,12 +22,12 @@
 }
 
 .btn-blue {
-  background: rgba(33, 161, 247, 0.692);
-  border: solid 1px rgb(16, 157, 250);
-  color: darkblue;
+  background: white;
+  border: solid 1px rgb(39, 108, 218);
+  color: rgb(39, 108, 218);
 }
 
 .btn-blue:hover {
-  background: darkblue;
-  color: rgb(16, 157, 250);
+  background: rgb(39, 108, 218);
+  color: white;
 }
