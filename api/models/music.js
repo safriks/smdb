@@ -10,6 +10,7 @@ const musicSchema = new mongoose.Schema({
     year: String,
     genre: Array,
     voices: Array,
+    //path: String, // this was a temporary placeholder for the path to a single file
     files: Array, 
     video: Array,
     uploader: mongoose.Schema.ObjectId,
