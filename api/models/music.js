@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Composer = require("./composer.js");
+const User = require("./user.js");
 
 
 const musicSchema = new mongoose.Schema({
@@ -13,7 +14,7 @@ const musicSchema = new mongoose.Schema({
     //path: String, // this was a temporary placeholder for the path to a single file
     files: Array, 
     video: Array,
-    uploader: mongoose.Schema.ObjectId,
+    uploader: { type: mongoose.Schema.Types.ObjectId, ref: User },
     tags: Array
 })
 
