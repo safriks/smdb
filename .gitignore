@@ -1,3 +1,4 @@
 /api/node_modules
 .vscode
 /api/public/library
+.DS_Store
