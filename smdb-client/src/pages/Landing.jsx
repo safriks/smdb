@@ -6,7 +6,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div className="columns is-centered">
-        <div className="column is-half landing-container flex-column col">
+        <div className="column is-half container flex-column col">
           <h1 className="header">Welcome to Oh Sheet Music Database!</h1>
           <Link to="/log_in" className="button btn-landing btn-blue">
             Log in

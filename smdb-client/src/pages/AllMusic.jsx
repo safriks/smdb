@@ -49,6 +49,12 @@ export default class AllMusic extends Component {
     debugger;
   }
 
+  closeHandler = () => {
+    debugger;
+    this.props.match.params.id = "";
+    this.setState({ selectedMusic: null });
+  };
+
   render() {
     let sheetsJSX = this.state.sheets.map((sheet, index) => {
       return (
@@ -84,7 +90,11 @@ export default class AllMusic extends Component {
               <div className="column is-8 overflow col">
                 <div className="columns">
                   <div className="column is-12 overflow dlt-row">
-                    {selectedMusic ? <button className="delete" /> : <></>}
+                    {selectedMusic ? (
+                      <button onClick={this.closeHandler} className="delete" />
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
                 {selectedMusic ? (

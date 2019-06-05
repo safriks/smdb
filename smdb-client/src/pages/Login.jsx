@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    debugger;
+    super(props);
     this.state = {
       email: "",
       password: "",
@@ -15,6 +16,13 @@ export default class Login extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
+
+  componentDidMount() {
+    let pathName = this.props.history.location.pathname;
+    debugger;
+    this.props.isNavBarBlurred(pathName);
+  }
+
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -43,9 +51,10 @@ export default class Login extends Component {
   };
 
   render() {
+    debugger;
     return (
-      <div className="columns">
-        <div className="column is-8 is-offset-2 col">
+      <div className="columns is-centered">
+        <div className="column is-half col container">
           <div>
             <h1 className="header flex-ctd">
               Log in to Oh Sheet Music Database!

@@ -12,9 +12,11 @@ class App extends Component {
   constructor() {
     super();
     this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.isNavBarBlurred = this.isNavBarBlurred.bind(this);
   }
   state = {
     currentUser: {},
+    navBarBlur: true,
     err: null
   };
 
@@ -45,7 +47,17 @@ class App extends Component {
       });
   };
 
+  isNavBarBlurred = pathName => {
+    debugger;
+    if (pathName === "/") {
+      this.setState({ navBarBlur: true });
+    } else {
+      this.setState({ navBarBlur: false });
+    }
+  };
+
   render() {
+    debugger;
     return (
       <div className="App">
         <Navbar />
@@ -59,9 +71,12 @@ class App extends Component {
             exact
             path="/log_in"
             render={props => (
-              <Login {...props} getCurrentUser={this.getCurrentUser} />
+              <Login
+                {...props}
+                getCurrentUser={this.getCurrentUser}
+                isNavBarBlurred={this.isNavBarBlurred}
+              />
             )}
-            component={Login}
           />
         </Switch>
       </div>

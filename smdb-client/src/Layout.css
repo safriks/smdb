@@ -2,11 +2,17 @@
   height: 100vh;
 }
 
+.container {
+  padding: 5vh;
+  margin: 5vh;
+}
+
 .header {
   font-size: 2.5em;
   font-weight: 800;
   margin: 5vh;
   color: #276cda;
+  text-align: center;
 }
 
 .blur {
