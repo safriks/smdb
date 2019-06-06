@@ -12,16 +12,15 @@ export default class Upload extends Component {
       composerList: [],
       err: null
     };
-    // this.formRef = React.createRef();
-    // this.handleInputChange = this.handleInputChange.bind(this);
-    // this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.formRef = React.createRef();
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentDidMount() {
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
     axios.get("http://localhost:3010/composer_list/").then(response => {
-      debugger;
       this.setState({ composerList: response.data });
     });
   }
@@ -39,7 +38,40 @@ export default class Upload extends Component {
     this.setState({ sheetFile: "" });
   };
 
+  handleFormSubmit = e => {
+    debugger;
+    e.preventDefault();
+
+    let uploadForm = this.formRef.current;
+    let formData = new FormData(uploadForm);
+
+    axios({
+      url: "http://localhost:3010/upload",
+      data: formData,
+      method: "post",
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true
+    })
+      .then(response => {
+        this.props.history.push("edit_sheet");
+      })
+      .catch(err => {
+        this.setState({ err: err });
+      });
+  };
+
   render() {
+    let composerOption = this.state.composerList.map((composer, index) => {
+      return (
+        <option
+          key={`composer${index + 1}`}
+          value={`${composer.first_name} ${composer.last_name}`}
+        >
+          {`${composer.first_name} ${composer.last_name}`}
+        </option>
+      );
+    });
+
     return (
       <div className="columns is-centered">
         <div className="column is-half col container">
@@ -48,7 +80,11 @@ export default class Upload extends Component {
           </div>
           <div className="columns">
             <div className="column is-6 is-offset-3">
-              <form className="form" onSubmit={this.handleFormSubmit}>
+              <form
+                ref={this.formRef}
+                className="form"
+                onSubmit={this.handleFormSubmit}
+              >
                 <div className="field">
                   <label>Title</label>
                   <div className="control">
@@ -70,17 +106,7 @@ export default class Upload extends Component {
                         onChange={this.handleInputChange}
                         required
                       >
-                        {this.state.composerList.map(composer => {
-                          return (
-                            <option
-                              value={`${composer.first_name} ${
-                                composer.last_name
-                              }`}
-                            >
-                              {`${composer.first_name} ${composer.last_name}`}
-                            </option>
-                          );
-                        })}
+                        {composerOption}
                       </select>
                     </div>
                   </div>
@@ -103,17 +129,18 @@ export default class Upload extends Component {
                       </span>
                     </label>
                   </div>
-                  <div>
-                    <span className="file-name">{this.state.sheetFile}</span>
-                    {this.state.sheetFile ? (
-                      <button
-                        onClick={this.handleClearFileInput}
-                        className="delete"
-                      />
-                    ) : (
-                      <></>
-                    )}
-                  </div>
+                </div>
+                <div className="field">
+                  <label className="file-label">Selected file</label>
+                  <span className="file-name">{this.state.sheetFile}</span>
+                  {this.state.sheetFile ? (
+                    <button
+                      onClick={this.handleClearFileInput}
+                      className="delete"
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">

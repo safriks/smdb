@@ -8,6 +8,7 @@ import AllMusic from "./pages/AllMusic";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
+import EditSheet from "./pages/EditSheet";
 
 class App extends Component {
   constructor() {
@@ -49,7 +50,6 @@ class App extends Component {
   };
 
   isNavBarBlurred = pathName => {
-    debugger;
     if (pathName === "/") {
       this.setState({ navBarClassName: "navbar blur" });
     } else {
@@ -110,6 +110,13 @@ class App extends Component {
             path="/upload"
             render={props => (
               <Upload {...props} isNavBarBlurred={this.isNavBarBlurred} />
+            )}
+          />
+          <Route
+            exact
+            path="/edit_sheet"
+            render={props => (
+              <EditSheet {...props} isNavBarBlurred={this.isNavBarBlurred} />
             )}
           />
         </Switch>

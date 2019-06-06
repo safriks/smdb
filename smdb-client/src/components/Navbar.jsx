@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       currentUser: this.props.currentUser,
@@ -23,7 +22,6 @@ export default class Navbar extends Component {
   }
 
   render() {
-    debugger;
     return (
       <nav
         className={this.state.navBarClassName}
