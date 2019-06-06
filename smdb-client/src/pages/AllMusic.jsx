@@ -11,8 +11,8 @@ export default class AllMusic extends Component {
     super(props);
     this.state = {
       sheets: [],
-      selectedMusic: null,
-      isLoading: true
+      selectedMusic: null
+      // isLoading: true
     };
   }
 

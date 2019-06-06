@@ -42,6 +42,7 @@ render() {
 import React from "react";
 
 export default function MusicDetails(props) {
+  debugger;
   let selectedMusic = props.selectedMusic[0];
 
   return (
