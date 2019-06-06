@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./signUp.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class SignUp extends Component {
@@ -17,6 +16,11 @@ export default class SignUp extends Component {
     this.formRef = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    let pathName = this.props.history.location.pathname;
+    this.props.isNavBarBlurred(pathName);
   }
 
   //Cancel button takes user back to last page
@@ -59,115 +63,113 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <>
-        <div className="columns is-centered">
-          <div className="column is-half col container">
-            <div>
-              <h1 className="header flex-ctd">
-                Sign up to Oh Sheet Music Database!
-              </h1>
-            </div>
-            <div className="columns">
-              <div className="column is-6 is-offset-3">
-                <form
-                  ref={this.formRef}
-                  onSubmit={this.handleFormSubmit}
-                  className="form"
-                >
-                  <div className="field">
-                    <label>First name</label>
-                    <div className="control has-icons-left">
-                      <input
-                        className="input"
-                        type="text"
-                        name="first_name"
-                        onChange={this.handleInputChange}
-                        required
-                      />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-user" />
-                      </span>
-                    </div>
+      <div className="columns is-centered">
+        <div className="column is-half col container">
+          <div>
+            <h1 className="header flex-ctd">
+              Sign up to Oh Sheet Music Database!
+            </h1>
+          </div>
+          <div className="columns">
+            <div className="column is-6 is-offset-3">
+              <form
+                ref={this.formRef}
+                onSubmit={this.handleFormSubmit}
+                className="form"
+              >
+                <div className="field">
+                  <label>First name</label>
+                  <div className="control has-icons-left">
+                    <input
+                      className="input"
+                      type="text"
+                      name="first_name"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
+                    </span>
                   </div>
-                  <div className="field">
-                    <label>Last name</label>
-                    <div className="control has-icons-left">
-                      <input
-                        className="input"
-                        type="text"
-                        name="last_name"
-                        onChange={this.handleInputChange}
-                        required
-                      />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-user" />
-                      </span>
-                    </div>
+                </div>
+                <div className="field">
+                  <label>Last name</label>
+                  <div className="control has-icons-left">
+                    <input
+                      className="input"
+                      type="text"
+                      name="last_name"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
+                    </span>
                   </div>
-                  <div className="field">
-                    <label>Email</label>
-                    <div className="control has-icons-left">
-                      <input
-                        className="input"
-                        type="email"
-                        name="email"
-                        onChange={this.handleInputChange}
-                        required
-                      />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-envelope" />
-                      </span>
-                    </div>
+                </div>
+                <div className="field">
+                  <label>Email</label>
+                  <div className="control has-icons-left">
+                    <input
+                      className="input"
+                      type="email"
+                      name="email"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-envelope" />
+                    </span>
                   </div>
-                  <div className="field">
-                    <label>Password</label>
-                    <div className="control has-icons-left">
-                      <input
-                        className="input"
-                        type="password"
-                        name="password"
-                        onChange={this.handleInputChange}
-                        required
-                      />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-lock" />
-                      </span>
-                    </div>
+                </div>
+                <div className="field">
+                  <label>Password</label>
+                  <div className="control has-icons-left">
+                    <input
+                      className="input"
+                      type="password"
+                      name="password"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-lock" />
+                    </span>
                   </div>
-                  <div className="field">
-                    <label>Confirm password</label>
-                    <div className="control has-icons-left">
-                      <input
-                        className="input"
-                        type="password"
-                        name="confirmpassword"
-                        onChange={this.handleInputChange}
-                        required
-                      />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-lock" />
-                      </span>
-                    </div>
+                </div>
+                <div className="field">
+                  <label>Confirm password</label>
+                  <div className="control has-icons-left">
+                    <input
+                      className="input"
+                      type="password"
+                      name="confirmpassword"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-lock" />
+                    </span>
                   </div>
-                  <div className="field is-grouped is-grouped-centered">
-                    <p className="control">
-                      <button type="submit" className="button is-primary">
-                        <strong>Sign up</strong>
-                      </button>
-                    </p>
-                    <button
-                      onClick={this.handleCancelClick}
-                      className="button is-light"
-                    >
-                      Cancel
+                </div>
+                <div className="field is-grouped is-grouped-centered">
+                  <p className="control">
+                    <button type="submit" className="button is-primary">
+                      <strong>Sign up</strong>
                     </button>
-                  </div>
-                </form>
-              </div>
+                  </p>
+                  <button
+                    onClick={this.handleCancelClick}
+                    className="button is-light"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

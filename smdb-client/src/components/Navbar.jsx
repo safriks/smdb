@@ -4,23 +4,30 @@ import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
-      currentUser: this.props.currentUser
+      currentUser: this.props.currentUser,
+      navBarClassName: this.props.navBarClassName
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser != this.props.currentUser) {
-      let newCurrentUser = this.nextProps.currentUser;
+    if (nextProps.currentUser !== this.props.currentUser) {
+      let newCurrentUser = nextProps.currentUser;
       this.setState({ currentUser: newCurrentUser });
+    } else if (nextProps.navBarClassName !== this.props.navBarClassName) {
+      let newNavBarClassName = nextProps.navBarClassName;
+      this.setState({ navBarClassName: newNavBarClassName });
     }
   }
 
   render() {
     return (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav
+        className={this.state.navBarClassName}
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-menu is-active">
           <div className="navbar-start">
             <div className="navbar-item">

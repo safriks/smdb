@@ -6,16 +6,19 @@ import FilterColumn from "../components/FilterColumn";
 import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    debugger;
+    super(props);
     this.state = {
       sheets: [],
-      selectedMusic: null,
-      isLoading: true
+      selectedMusic: null
+      // isLoading: true
     };
   }
 
   componentDidMount() {
+    let pathName = this.props.history.location.pathname;
+    this.props.isNavBarBlurred(pathName);
     axios
       .get("http://localhost:3010/all_music/")
       .then(response => {
@@ -49,7 +52,7 @@ export default class AllMusic extends Component {
     debugger;
   }
 
-  closeHandler = () => {
+  handleClose = () => {
     debugger;
     this.props.match.params.id = "";
     this.setState({ selectedMusic: null });
@@ -91,7 +94,7 @@ export default class AllMusic extends Component {
                 <div className="columns">
                   <div className="column is-12 overflow dlt-row">
                     {selectedMusic ? (
-                      <button onClick={this.closeHandler} className="delete" />
+                      <button onClick={this.handleClose} className="delete" />
                     ) : (
                       <></>
                     )}
