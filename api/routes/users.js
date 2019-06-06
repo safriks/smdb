@@ -2,21 +2,23 @@ const express = require("express")
 const router = express.Router();
 var bcrypt = require("bcrypt")
 
-const User = require("../models/music.js");
+const User = require("../models/user.js");
 
-router.post('/signup', function(req, res, next) {
+router.post('/sign_up', function(req, res, next) {
     debugger
-    User.find({username: req.body.username})
+    User.find({email: req.body.email})
       .then((user)=> {
         debugger
-        if(user.length > 0 ) res.status(403).json({message: "Username already taken"})
+        if(user.length > 0 ) res.status(403).json({message: "Email already taken"})
         else {
           bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(req.body.password, salt, function(err, hash) {
                 if(err) res.status(500).json({message: err})
                 else {
                   User.create({
-                    username: req.body.username,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
                     password: hash
                   })
                   .then(()=> {
@@ -41,6 +43,7 @@ router.post('/signup', function(req, res, next) {
             else if(match) {
               delete user.password
               req.session.user = user
+              debugger
               res.status(200).json({message: "Logged in."})
             } else {
               res.status(403).json({message: "Invalid credentials."})
@@ -55,10 +58,13 @@ router.post('/signup', function(req, res, next) {
       })
   });
   
-  router.post("/get-user", (req, res)=> {
+  router.post("/get_user", (req, res)=> {
+    debugger
     if(req.session.user) {
+        debugger
       res.status(200).json(req.session.user)
     } else {
+        debugger
       res.status(403).json({message: "Not logged in"})
     }
   })
