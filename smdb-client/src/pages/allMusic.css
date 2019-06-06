@@ -27,7 +27,7 @@
   overflow-y: scroll;
 }
 
-.col {
-  border: 1px solid blue;
-  border-radius: 5px;
+.dlt-row {
+  display: flex;
+  justify-content: flex-end;
 }

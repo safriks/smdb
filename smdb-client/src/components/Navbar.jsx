@@ -9,7 +9,14 @@ export default class Navbar extends Component {
         <div className="navbar-menu is-active">
           <div className="navbar-start">
             <div className="navbar-item">
-              <h1>Navbar start</h1>
+              <div className="buttons">
+                <Link to="/upload" className="button is-link">
+                  <strong>Upload sheet music</strong>
+                </Link>
+                <Link to="/" className="button is-link">
+                  <i className="fa fa-home" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
           <div className="navbar-end">
