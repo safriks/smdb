@@ -5,6 +5,7 @@ const Music = require("../models/music.js");
 const Composer = require("../models/composer.js");
 const Choir = require("../models/choir.js")
 const User = require("../models/user");
+const values = require("../../smdb-client/src/values")
 
 
 
@@ -66,6 +67,11 @@ router.get('/choir_list', (req, res) => {
             };
         })
 })
+
+router.get('/values', (req, res) => {
+    res.json(values)
+})
+
 
 
 module.exports = router;
