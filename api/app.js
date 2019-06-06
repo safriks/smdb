@@ -21,6 +21,8 @@ const allRoute = require("./routes/all.js");
 const searchRoute = require("./routes/search.js");
 const uploadRoute = require("./routes/upload.js");
 const usersRoute = require("./routes/users.js");
+const choirRoute = require("./routes/choirs.js");
+
 
 
 app.use(express.json());
@@ -43,6 +45,8 @@ app.use("/", allRoute);
 app.use("/", searchRoute);
 app.use("/", uploadRoute);
 app.use("/", usersRoute);
+app.use("/", choirRoute);
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
