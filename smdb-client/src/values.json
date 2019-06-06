@@ -10,5 +10,15 @@
         "epic piece",
         "other genre/unspecified"
     ],
-    "some_orher_key": "some other value"
+    "voices": [
+        "contralto",
+        "alto",
+        "mezzo-soprano",
+        "soprano",
+        "countertenor",
+        "tenor",
+        "baritone",
+        "bass",
+        "special/other"
+    ]
 }
