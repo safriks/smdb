@@ -1,24 +1,24 @@
 {
-    "genres": [
-        "classical",
-        "spiritual",
-        "folk",
-        "contemporary",
-        "modern arrangement of folk song",
-        "chamber music",
-        "symphony",
-        "epic piece",
-        "other genre/unspecified"
-    ],
-    "voices": [
-        "contralto",
-        "alto",
-        "mezzo-soprano",
-        "soprano",
-        "countertenor",
-        "tenor",
-        "baritone",
-        "bass",
-        "special/other"
-    ]
+  "genres": [
+    "Classical",
+    "Spiritual",
+    "Folk",
+    "Contemporary",
+    "Modern arrangement of folk song",
+    "Chamber music",
+    "Symphony",
+    "Epic piece",
+    "Other genre/unspecified"
+  ],
+  "voices": [
+    "Contralto",
+    "Alto",
+    "Mezzo-soprano",
+    "Soprano",
+    "Countertenor",
+    "Tenor",
+    "Baritone",
+    "Bass",
+    "Special/other"
+  ]
 }

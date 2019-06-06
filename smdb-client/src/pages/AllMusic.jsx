@@ -7,11 +7,11 @@ import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       sheets: [],
-      selectedMusic: null
+      selectedMusic: null,
+      searchQuery: ""
       // isLoading: true
     };
   }
@@ -37,25 +37,26 @@ export default class AllMusic extends Component {
       });
   }
 
+  //deprecated -- replace with componentDidUpdate oid
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (nextProps.match.params.id != this.props.match.params.id) {
-      debugger;
       const data = [...this.state.sheets];
 
       //filter selected list item
       const queryId = nextProps.match.params.id;
       const selectedMusic = data.filter(music => music._id === queryId);
-      debugger;
       this.setState({ selectedMusic: selectedMusic });
     }
-    debugger;
   }
 
   handleClose = () => {
-    debugger;
     this.props.match.params.id = "";
     this.setState({ selectedMusic: null });
+  };
+
+  handleSearchInputChange = e => {
+    let searchQuery = e.target.value.toLowerCase();
+    this.setState({ [e.target.name]: searchQuery });
   };
 
   render() {
@@ -80,19 +81,28 @@ export default class AllMusic extends Component {
               className="search-el search-bar"
               placeholder="Search sheet music!"
               type="text"
+              name="searchQuery"
+              onInput={this.handleSearchInputChange}
             />
-            <button className="search-el search-btn">Search</button>
+            {/* <button
+              onClick={this.handleSearchClick}
+              className="search-el search-btn"
+            >
+              Search
+            </button> */}
           </div>
         </div>
         <div className="columns">
           {this.state.sheets.length > 0 && (
             <>
               <div className="column is-2 is-offset-1 overflow col">
+                //Show search results instead of filters in left column
                 {selectedMusic ? sheetsJSX : <FilterColumn />}
               </div>
               <div className="column is-8 overflow col">
                 <div className="columns">
                   <div className="column is-12 overflow dlt-row">
+                    //Add close button if detailed view is displayed
                     {selectedMusic ? (
                       <button onClick={this.handleClose} className="delete" />
                     ) : (
@@ -113,3 +123,30 @@ export default class AllMusic extends Component {
     );
   }
 }
+
+// if (this.searchQuery === 0) {
+//   let sheetsJSX = searchedSheets.map((sheet, index) => {
+//     return (
+//       <MusicListItem
+//         key={`sheet ${index + 1}`}
+//         {...sheet}
+//         index={index.toString()}
+//       />
+//     );
+//   });
+// } else {
+//   let searchedSheets = this.state.sheets.filter(
+//     sheet =>
+//     sheet.title.toLowerCase().includes(this.state.searchQuery) || sheet.composer.first_name.toLowerCase().includes(this.state.searchQuery) || sheet.composer.last_name.toLowerCase().includes(this.state.searchQuery)
+//   )
+
+//   let sheetsJSX = searchedSheets.map((sheet, index) => {
+//     return (
+//       <MusicListItem
+//         key={`sheet ${index + 1}`}
+//         {...sheet}
+//         index={index.toString()}
+//       />
+//     );
+//   });
+// }
