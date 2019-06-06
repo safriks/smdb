@@ -52,7 +52,7 @@ export default class AllMusic extends Component {
     debugger;
   }
 
-  closeHandler = () => {
+  handleClose = () => {
     debugger;
     this.props.match.params.id = "";
     this.setState({ selectedMusic: null });
@@ -94,7 +94,7 @@ export default class AllMusic extends Component {
                 <div className="columns">
                   <div className="column is-12 overflow dlt-row">
                     {selectedMusic ? (
-                      <button onClick={this.closeHandler} className="delete" />
+                      <button onClick={this.handleClose} className="delete" />
                     ) : (
                       <></>
                     )}

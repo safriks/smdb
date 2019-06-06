@@ -7,6 +7,7 @@ import Landing from "./pages/Landing";
 import AllMusic from "./pages/AllMusic";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Upload from "./pages/Upload";
 
 class App extends Component {
   constructor() {
@@ -102,6 +103,13 @@ class App extends Component {
                 getCurrentUser={this.getCurrentUser}
                 isNavBarBlurred={this.isNavBarBlurred}
               />
+            )}
+          />
+          <Route
+            exact
+            path="/upload"
+            render={props => (
+              <Upload {...props} isNavBarBlurred={this.isNavBarBlurred} />
             )}
           />
         </Switch>
