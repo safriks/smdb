@@ -4,7 +4,7 @@ var bcrypt = require("bcrypt")
 
 const User = require("../models/music.js");
 
-router.post('/signup', function(req, res, next) {
+router.post('/sign_up', function(req, res, next) {
     debugger
     User.find({username: req.body.username})
       .then((user)=> {
@@ -41,6 +41,7 @@ router.post('/signup', function(req, res, next) {
             else if(match) {
               delete user.password
               req.session.user = user
+              debugger
               res.status(200).json({message: "Logged in."})
             } else {
               res.status(403).json({message: "Invalid credentials."})
@@ -55,10 +56,13 @@ router.post('/signup', function(req, res, next) {
       })
   });
   
-  router.post("/get-user", (req, res)=> {
+  router.post("/get_user", (req, res)=> {
+    debugger
     if(req.session.user) {
+        debugger
       res.status(200).json(req.session.user)
     } else {
+        debugger
       res.status(403).json({message: "Not logged in"})
     }
   })
