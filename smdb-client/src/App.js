@@ -16,7 +16,7 @@ class App extends Component {
   }
   state = {
     currentUser: {},
-    navBarBlur: true,
+    navBarClassName: "navbar",
     err: null
   };
 
@@ -50,22 +50,49 @@ class App extends Component {
   isNavBarBlurred = pathName => {
     debugger;
     if (pathName === "/") {
-      this.setState({ navBarBlur: true });
+      this.setState({ navBarClassName: "navbar blur" });
     } else {
-      this.setState({ navBarBlur: false });
+      this.setState({ navBarClassName: "navbar" });
     }
   };
 
   render() {
     return (
       <div className="App">
-        <Navbar currentUser={this.state.currentUser} />
+        <Navbar
+          currentUser={this.state.currentUser}
+          navBarClassName={this.state.navBarClassName}
+        />
 
         <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/all_music" component={AllMusic} />
-          <Route exact path="/all_music/:id" component={AllMusic} />
-          <Route exact path="/sign_up" component={SignUp} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Landing {...props} isNavBarBlurred={this.isNavBarBlurred} />
+            )}
+          />
+          <Route
+            exact
+            path="/all_music"
+            render={props => (
+              <AllMusic {...props} isNavBarBlurred={this.isNavBarBlurred} />
+            )}
+          />
+          <Route
+            exact
+            path="/all_music/:id"
+            render={props => (
+              <AllMusic {...props} isNavBarBlurred={this.isNavBarBlurred} />
+            )}
+          />
+          <Route
+            exact
+            path="/sign_up"
+            render={props => (
+              <SignUp {...props} isNavBarBlurred={this.isNavBarBlurred} />
+            )}
+          />
           <Route
             exact
             path="/log_in"

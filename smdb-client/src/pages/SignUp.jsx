@@ -19,6 +19,11 @@ export default class SignUp extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  componentDidMount() {
+    let pathName = this.props.history.location.pathname;
+    this.props.isNavBarBlurred(pathName);
+  }
+
   //Cancel button takes user back to last page
   handleCancelClick = e => {
     this.props.history.goBack();

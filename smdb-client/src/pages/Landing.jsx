@@ -3,6 +3,11 @@ import "./landing.css";
 import { Link } from "react-router-dom";
 
 export default class Landing extends Component {
+  componentDidMount() {
+    let pathName = this.props.history.location.pathname;
+    this.props.isNavBarBlurred(pathName);
+  }
+
   render() {
     return (
       <div className="columns is-centered">

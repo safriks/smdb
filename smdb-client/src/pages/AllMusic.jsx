@@ -6,8 +6,9 @@ import FilterColumn from "../components/FilterColumn";
 import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    debugger;
+    super(props);
     this.state = {
       sheets: [],
       selectedMusic: null,
@@ -16,6 +17,8 @@ export default class AllMusic extends Component {
   }
 
   componentDidMount() {
+    let pathName = this.props.history.location.pathname;
+    this.props.isNavBarBlurred(pathName);
     axios
       .get("http://localhost:3010/all_music/")
       .then(response => {
