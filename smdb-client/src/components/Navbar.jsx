@@ -3,6 +3,21 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
+  constructor(props) {
+    debugger;
+    super(props);
+    this.state = {
+      currentUser: this.props.currentUser
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser != this.props.currentUser) {
+      let newCurrentUser = this.nextProps.currentUser;
+      this.setState({ currentUser: newCurrentUser });
+    }
+  }
+
   render() {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">

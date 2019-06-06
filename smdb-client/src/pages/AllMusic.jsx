@@ -19,12 +19,10 @@ export default class AllMusic extends Component {
     axios
       .get("http://localhost:3010/all_music/")
       .then(response => {
-        debugger;
         let selectedMusic = null;
-        console.log(this.props.match.params.id);
 
         if (this.props.match.params.id) {
-          //filter false
+          //filter selected list item
           const queryId = this.props.match.params.id;
           selectedMusic = response.data.filter(music => music._id === queryId);
         }
@@ -41,6 +39,8 @@ export default class AllMusic extends Component {
     if (nextProps.match.params.id != this.props.match.params.id) {
       debugger;
       const data = [...this.state.sheets];
+
+      //filter selected list item
       const queryId = nextProps.match.params.id;
       const selectedMusic = data.filter(music => music._id === queryId);
       debugger;

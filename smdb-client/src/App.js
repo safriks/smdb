@@ -33,10 +33,10 @@ class App extends Component {
       .then(response => {
         this.setState(
           {
-            user: response.data
+            currentUser: response.data
           },
           () => {
-            this.props.history.push("/profile"); // new but not required
+            this.props.history.push("/all_music");
           }
         );
       })
@@ -57,10 +57,9 @@ class App extends Component {
   };
 
   render() {
-    debugger;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar currentUser={this.state.currentUser} />
 
         <Switch>
           <Route exact path="/" component={Landing} />
