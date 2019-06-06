@@ -23,6 +23,11 @@ export default class Login extends Component {
     this.props.isNavBarBlurred(pathName);
   }
 
+  //Cancel button takes user back to last page
+  handleCancelClick = e => {
+    this.props.history.goBack();
+  };
+
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -103,9 +108,12 @@ export default class Login extends Component {
                       <strong>Login</strong>
                     </button>
                   </p>
-                  <Link to="/" className="button is-light">
+                  <button
+                    onClick={this.handleCancelClick}
+                    className="button is-light"
+                  >
                     Cancel
-                  </Link>
+                  </button>
                 </div>
               </form>
             </div>

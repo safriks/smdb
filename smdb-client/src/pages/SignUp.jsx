@@ -19,11 +19,17 @@ export default class SignUp extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  //Cancel button takes user back to last page
+  handleCancelClick = e => {
+    this.props.history.goBack();
+  };
+
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   handleFormSubmit = e => {
+    debugger;
     e.preventDefault();
 
     let signUpForm = this.formRef.current;
@@ -33,7 +39,7 @@ export default class SignUp extends Component {
       url: "http://localhost:3010/sign_up",
       data: formData,
       method: "post",
-      headers: { "Content-Type": "form-data" },
+      headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true
     })
       .then(response => {
@@ -144,9 +150,12 @@ export default class SignUp extends Component {
                         <strong>Sign up</strong>
                       </button>
                     </p>
-                    <Link to="/" className="button is-light">
+                    <button
+                      onClick={this.handleCancelClick}
+                      className="button is-light"
+                    >
                       Cancel
-                    </Link>
+                    </button>
                   </div>
                 </form>
               </div>
