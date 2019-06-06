@@ -3,6 +3,10 @@ const router = express.Router();
 
 const Music = require("../models/music.js");
 const Composer = require("../models/composer.js");
+const Choir = require("../models/choir.js")
+const User = require("../models/user");
+
+
 
 router.get('/all_music', (req, res) => {
     Music.find({}).
@@ -16,7 +20,6 @@ router.get('/all_music', (req, res) => {
         })
 })
 router.get('/all_composers', (req, res) => {
-
     Composer.find({}).
         populate("works").
         populate("arrangements").
@@ -38,5 +41,31 @@ router.get('/composer_list', (req, res) => {
             };
         })
 })
+
+router.get('/all_choirs', (req, res) => {
+    debugger
+    Choir.find({}).
+        populate("conductor", "singers", User).
+        exec((err,result)=>{
+            debugger
+            if (err) res.send("error fetching choirs. err msg: "+err);
+            if (!err) {
+                res.json(result)
+            };
+        })
+})
+
+router.get('/choir_list', (req, res) => {
+    Choir.find({}).
+        populate({ path: 'conductor', model: User })
+        .exec((err,result)=>{
+            debugger
+            if (err) res.send("error fetching choirs. err msg: "+err);
+            if (!err) {
+                res.json(result)
+            };
+        })
+})
+
 
 module.exports = router;

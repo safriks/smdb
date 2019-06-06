@@ -24,7 +24,7 @@ router.post("/upload", upload.single("sheet_file"), (req,res,next)=>{
        // genre: req.body.genre,
        // voices: req.body.voices,
        // path: `/library/${req.file.filename}`,
-       files: [`/library/${req.file.filename}`],
+       files: `/library/${req.file.filename}`,
        // video: [req.body.video],
        // tags: req.body.tags,
        // uploader: ""

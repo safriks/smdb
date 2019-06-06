@@ -28,9 +28,6 @@ router.post("/create_choir", (req,res,next)=>{
     })
 })
 
-router.get("/create_choir", (req,res,next)=>{
-    debugger
-})
 
 
 module.exports = router;
