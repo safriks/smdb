@@ -2,21 +2,23 @@ const express = require("express")
 const router = express.Router();
 var bcrypt = require("bcrypt")
 
-const User = require("../models/music.js");
+const User = require("../models/user.js");
 
 router.post('/sign_up', function(req, res, next) {
     debugger
-    User.find({username: req.body.username})
+    User.find({email: req.body.email})
       .then((user)=> {
         debugger
-        if(user.length > 0 ) res.status(403).json({message: "Username already taken"})
+        if(user.length > 0 ) res.status(403).json({message: "Email already taken"})
         else {
           bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(req.body.password, salt, function(err, hash) {
                 if(err) res.status(500).json({message: err})
                 else {
                   User.create({
-                    username: req.body.username,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
                     password: hash
                   })
                   .then(()=> {
