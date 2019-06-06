@@ -1,0 +1,14 @@
+{
+    "genres": [
+        "classical",
+        "spiritual",
+        "folk",
+        "contemporary",
+        "modern arrangement of folk song",
+        "chamber music",
+        "symphony",
+        "epic piece",
+        "other genre/unspecified"
+    ],
+    "some_orher_key": "some other value"
+}
