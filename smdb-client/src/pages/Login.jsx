@@ -47,6 +47,7 @@ export default class Login extends Component {
     })
       .then(response => {
         this.props.getCurrentUser();
+        this.props.history.push("/all_music");
       })
       .catch(err => {
         this.setState({
@@ -56,7 +57,6 @@ export default class Login extends Component {
   };
 
   render() {
-    debugger;
     return (
       <div className="columns is-centered">
         <div className="column is-half col container">
