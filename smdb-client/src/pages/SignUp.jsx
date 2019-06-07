@@ -10,6 +10,7 @@ export default class SignUp extends Component {
       email: "",
       password: "",
       confirmpassword: "",
+      passwordError: "",
       err: null
     };
     this.formRef = React.createRef();
@@ -29,6 +30,12 @@ export default class SignUp extends Component {
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handlePasswordConfirmation = e => {
+    if (e.target.value !== this.state.password) {
+      this.setState({ passwordError: "Passwords do not match!" });
+    }
   };
 
   handleFormSubmit = e => {
@@ -143,13 +150,14 @@ export default class SignUp extends Component {
                       className="input"
                       type="password"
                       name="confirmpassword"
-                      onChange={this.handleInputChange}
+                      onChange={this.handlePasswordConfirmation}
                       required
                     />
                     <span className="icon is-small is-left">
                       <i className="fas fa-lock" />
                     </span>
                   </div>
+                  <p>{this.state.passwordError}</p>
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
