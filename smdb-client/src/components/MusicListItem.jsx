@@ -3,6 +3,7 @@ import "./musicListItem.css";
 import { Link } from "react-router-dom";
 
 export default function MusicListItem(props) {
+  debugger;
   return (
     <Link
       to={{
