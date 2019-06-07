@@ -30,7 +30,6 @@ export default class Login extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
     // let loginForm = this.formRef.current;
@@ -47,12 +46,10 @@ export default class Login extends Component {
       withCredentials: true
     })
       .then(response => {
-        debugger;
+        this.props.getCurrentUser();
         this.props.history.push("/all_music");
-        // this.props.getCurrentUser();
       })
       .catch(err => {
-        debugger;
         this.setState({
           err: err
         });
@@ -60,7 +57,6 @@ export default class Login extends Component {
   };
 
   render() {
-    debugger;
     return (
       <div className="columns is-centered">
         <div className="column is-half col container">
