@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./upload.css";
 import axios from "axios";
 
 export default class Upload extends Component {

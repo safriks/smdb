@@ -7,11 +7,11 @@ import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       sheets: [],
-      selectedMusic: null
+      selectedMusic: null,
+      searchQuery: ""
       // isLoading: true
     };
   }
@@ -37,41 +37,66 @@ export default class AllMusic extends Component {
       });
   }
 
+  //deprecated -- replace with componentDidUpdate oid
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (nextProps.match.params.id != this.props.match.params.id) {
-      debugger;
       const data = [...this.state.sheets];
 
       //filter selected list item
       const queryId = nextProps.match.params.id;
       const selectedMusic = data.filter(music => music._id === queryId);
-      debugger;
       this.setState({ selectedMusic: selectedMusic });
     }
-    debugger;
   }
 
   handleClose = () => {
-    debugger;
     this.props.match.params.id = "";
     this.setState({ selectedMusic: null });
   };
 
+  handleSearchInputChange = e => {
+    let searchQuery = e.target.value.toLowerCase();
+    this.setState({ [e.target.name]: searchQuery });
+  };
+
   render() {
-    let sheetsJSX = this.state.sheets.map((sheet, index) => {
-      return (
-        <MusicListItem
-          key={`sheet ${index + 1}`}
-          {...sheet}
-          index={index.toString()}
-        />
+    //Show all sheets if search bar is empty
+    if (this.searchQuery === 0) {
+      var sheetsJSX = this.state.sheets.map((sheet, index) => {
+        return (
+          <MusicListItem
+            key={`sheet ${index + 1}`}
+            {...sheet}
+            index={index.toString()}
+          />
+        );
+      });
+    } else {
+      //Filter all sheets with search query --- ADD FUNCTION THAT MAKES QUERYING BOTH COMPOSER AND TITLE AT SAME TIME (and/or)
+      let searchedSheets = this.state.sheets.filter(
+        sheet =>
+          sheet.title.toLowerCase().includes(this.state.searchQuery) ||
+          sheet.composer.first_name
+            .toLowerCase()
+            .includes(this.state.searchQuery) ||
+          sheet.composer.last_name
+            .toLowerCase()
+            .includes(this.state.searchQuery)
       );
-    });
+
+      var sheetsJSX = searchedSheets.map((sheet, index) => {
+        return (
+          <MusicListItem
+            key={`sheet ${index + 1}`}
+            {...sheet}
+            index={index.toString()}
+          />
+        );
+      });
+    }
 
     const selectedMusic = this.state.selectedMusic;
 
-    debugger;
     return (
       <>
         <div className="columns">
@@ -80,8 +105,15 @@ export default class AllMusic extends Component {
               className="search-el search-bar"
               placeholder="Search sheet music!"
               type="text"
+              name="searchQuery"
+              onInput={this.handleSearchInputChange}
             />
-            <button className="search-el search-btn">Search</button>
+            {/* <button
+              onClick={this.handleSearchClick}
+              className="search-el search-btn"
+            >
+              Search
+            </button> */}
           </div>
         </div>
         <div className="columns">

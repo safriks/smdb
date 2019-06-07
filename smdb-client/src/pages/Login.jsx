@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./login.css";
 import axios from "axios";
 
 export default class Login extends Component {
@@ -18,7 +17,6 @@ export default class Login extends Component {
 
   componentDidMount() {
     let pathName = this.props.history.location.pathname;
-    debugger;
     this.props.isNavBarBlurred(pathName);
   }
 
@@ -34,12 +32,15 @@ export default class Login extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
 
-    let loginForm = this.formRef.current;
-    let formData = new FormData(loginForm);
+    // let loginForm = this.formRef.current;
+    // let formData = new FormData(loginForm);
 
     axios({
       url: "http://localhost:3010/log_in",
-      data: formData,
+      data: {
+        email: this.state.email,
+        password: this.state.password
+      },
       method: "post",
       headers: { "Content-Type": "form-data" },
       withCredentials: true

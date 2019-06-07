@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import uploadSelectValues from "../values.json";
 
 export default class EditSheet extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       title: "",
@@ -14,8 +16,8 @@ export default class EditSheet extends Component {
       video: "",
       sheetFile: "",
       composerList: [],
-      genreList: [],
-      voiceList: [],
+      genreList: uploadSelectValues.genres,
+      voiceList: uploadSelectValues.voices,
       currentUser: this.props.currentUser,
       currentSheet: "",
       err: null
@@ -31,6 +33,37 @@ export default class EditSheet extends Component {
       this.setState({ composerList: response.data });
     });
   }
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+
+    let editForm = this.formRef.current;
+    let formData = new FormData(editForm);
+
+    axios({
+      url: "http://localhost:3010/log_in",
+      data: formData,
+      method: "post",
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true
+    })
+      .then(response => {
+        //redirect from upload to edit with id of just uploaded file
+        // let id = response.data._id
+        //this.props.history.push(`/all_music/:${id}`);
+
+        this.props.history.push("/all_music");
+      })
+      .catch(err => {
+        this.setState({
+          err: err
+        });
+      });
+  };
 
   render() {
     let composerOption = this.state.composerList.map((composer, index) => {
@@ -105,6 +138,9 @@ export default class EditSheet extends Component {
                         onChange={this.handleInputChange}
                         required
                       >
+                        <option value="" selected disabled hidden>
+                          Select genre
+                        </option>
                         {genreOption}
                       </select>
                     </div>
@@ -119,6 +155,9 @@ export default class EditSheet extends Component {
                         onChange={this.handleInputChange}
                         required
                       >
+                        <option value="" selected disabled hidden>
+                          Select voice
+                        </option>
                         {voiceOption}
                       </select>
                     </div>
@@ -153,7 +192,7 @@ export default class EditSheet extends Component {
                   </div>
                 </div>
                 <div className="field">
-                  <label>Viceo url</label>
+                  <label>Video url</label>
                   <div className="control">
                     <input
                       className="input"
