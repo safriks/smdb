@@ -24,7 +24,7 @@ router.post("/upload", upload.single("sheet_file"), (req,res,next)=>{
        // genre: req.body.genre,
        // voices: req.body.voices,
        // path: `/library/${req.file.filename}`,
-       files: `/library/${req.file.filename}`,
+       file: `/library/${req.file.filename}`,
        // video: [req.body.video],
        // tags: req.body.tags,
        // uploader: ""
@@ -37,6 +37,30 @@ router.post("/upload", upload.single("sheet_file"), (req,res,next)=>{
    .catch(err => {
        console.log(`Error` + err)
    })
+})
+
+router.post("/edit_sheet_and_file", upload.single("sheet_file"), (req,res,next)=>{
+  const updatedSheet = {
+       title: req.body.title,
+       composer: req.body.composer, // an objectId
+       arrangement_author: req.body.arrangement_author? req.body.arrangement_author: null, // an objectId
+       year: req.body.year,
+       genre: req.body.genre,
+       voices: req.body.voices,
+       file: `/library/${req.file.filename}`,
+       video: [req.body.video],
+       tags: req.body.tags,
+  }
+  debugger
+  Music.findOneAndUpdate({ _id: { $eq: req.body._id } }, updatedSheet)
+  .then(result => {
+    debugger
+    res.json(result)
+  })
+  .catch(err => {
+    debugger
+    console.log(`Error` + err)
+  })
 })
 
 
