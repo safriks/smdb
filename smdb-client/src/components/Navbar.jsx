@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { deepEqual } from "assert";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -22,6 +24,20 @@ export default class Navbar extends Component {
       this.setState({ navBarClassName: newNavBarClassName });
     }
   }
+
+  handleLogOutClick = e => {
+    axios({
+      url: "http://localhost:3010/log_out",
+      method: "post",
+      withCredentials: true
+    })
+      .then(response => {
+        this.props.logOut();
+      })
+      .catch(err => {
+        this.setState({ err: err });
+      });
+  };
 
   render() {
     return (
@@ -67,7 +83,12 @@ export default class Navbar extends Component {
                   </Link>
                 )}
                 {Object.keys(this.state.currentUser).length > 0 ? (
-                  <button className="button is-danger">Log out</button>
+                  <button
+                    onClick={this.handleLogOutClick}
+                    className="button is-danger"
+                  >
+                    Log out
+                  </button>
                 ) : (
                   <Link to="/log_in" className="button is-light">
                     Log in

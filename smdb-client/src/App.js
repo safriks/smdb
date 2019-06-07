@@ -15,6 +15,7 @@ class App extends Component {
     super();
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.isNavBarBlurred = this.isNavBarBlurred.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
   state = {
     currentUser: {},
@@ -52,12 +53,17 @@ class App extends Component {
     }
   };
 
+  logOut = () => {
+    this.setState({ currentUser: {} });
+  };
+
   render() {
     return (
       <div className="App">
         <Navbar
           currentUser={this.state.currentUser}
           navBarClassName={this.state.navBarClassName}
+          logOut={this.logOut}
         />
 
         <Switch>
