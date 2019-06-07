@@ -67,7 +67,7 @@ export default class Upload extends Component {
       return (
         <option
           key={`composer${index + 1}`}
-          value={`${composer.first_name} ${composer.last_name}`}
+          value={`${composer._id}`}
         >
           {`${composer.first_name} ${composer.last_name}`}
         </option>
