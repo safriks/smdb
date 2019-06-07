@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import EditSheet from "./pages/EditSheet";
+import { Redirect } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -114,7 +115,11 @@ class App extends Component {
             exact
             path="/upload"
             render={props => (
-              <Upload {...props} isNavBarBlurred={this.isNavBarBlurred} />
+              <Upload
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
             )}
           />
           <Route
@@ -124,6 +129,8 @@ class App extends Component {
               <EditSheet {...props} isNavBarBlurred={this.isNavBarBlurred} />
             )}
           />
+          {/*Take user to landing if called route is non-existing */}
+          <Route path="/*" component={Redirect} /> lkj
         </Switch>
       </div>
     );

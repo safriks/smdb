@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class Upload extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       title: "",
       composer: "",
       sheet_file: "",
       composerList: [],
+      currentUser: this.props.currentUser,
       err: null
     };
     this.formRef = React.createRef();
@@ -17,11 +18,16 @@ export default class Upload extends Component {
   }
 
   componentDidMount() {
-    let pathName = this.props.history.location.pathname;
-    this.props.isNavBarBlurred(pathName);
-    axios.get("http://localhost:3010/composer_list/").then(response => {
-      this.setState({ composerList: response.data });
-    });
+    //Check if user is logged in -- else redirect to landing
+    if (!this.isUserLoggedIn()) {
+      this.props.history.push("/");
+    } else {
+      let pathName = this.props.history.location.pathname;
+      this.props.isNavBarBlurred(pathName);
+      axios.get("http://localhost:3010/composer_list/").then(response => {
+        this.setState({ composerList: response.data });
+      });
+    }
   }
 
   //Cancel button takes user back to last page
@@ -55,20 +61,30 @@ export default class Upload extends Component {
         debugger;
         //redirect from upload to edit with id of just uploaded file
         let sheetId = response.data._id;
-        this.props.history.push(`/edit_sheet/:${sheetId}`);
+        this.props.history.push({
+          pathname: `/edit_sheet/:${sheetId}`,
+          state: { current_sheet: response.data }
+        });
       })
       .catch(err => {
         this.setState({ err: err });
       });
   };
 
+  isUserLoggedIn = () => {
+    if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   render() {
     let composerOption = this.state.composerList.map((composer, index) => {
       return (
-        <option
-          key={`composer${index + 1}`}
-          value={`${composer._id}`}
-        >
+
+        <option key={`composer${index + 1}`} value={`${composer._id}`}>
+
           {`${composer.first_name} ${composer.last_name}`}
         </option>
       );
@@ -137,7 +153,6 @@ export default class Upload extends Component {
                   <span className="file-name">{this.state.sheet_file}</span>
 
                   {this.state.sheet_file ? (
-
                     <button
                       onClick={this.handleClearFileInput}
                       className="delete"

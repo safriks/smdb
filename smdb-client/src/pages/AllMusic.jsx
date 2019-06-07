@@ -39,7 +39,7 @@ export default class AllMusic extends Component {
 
   //deprecated -- replace with componentDidUpdate oid
   componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.id != this.props.match.params.id) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
       const data = [...this.state.sheets];
 
       //filter selected list item
@@ -116,15 +116,15 @@ export default class AllMusic extends Component {
             </button> */}
           </div>
         </div>
-        <div className="columns">
+        <div className="columns list-container">
           {this.state.sheets.length > 0 && (
             <>
-              <div className="column is-2 is-offset-1 overflow col">
+              <div className="column is-2 is-offset-1 col">
                 {selectedMusic ? sheetsJSX : <FilterColumn />}
               </div>
-              <div className="column is-8 overflow col">
+              <div className="column is-8 col">
                 <div className="columns">
-                  <div className="column is-12 overflow dlt-row">
+                  <div className="column is-12 dlt-row">
                     {selectedMusic ? (
                       <button onClick={this.handleClose} className="delete" />
                     ) : (
@@ -132,11 +132,15 @@ export default class AllMusic extends Component {
                     )}
                   </div>
                 </div>
-                {selectedMusic ? (
-                  <MusicDetails selectedMusic={this.state.selectedMusic} />
-                ) : (
-                  sheetsJSX
-                )}
+                <div className="columns overflow">
+                  <div className="column is-12">
+                    {selectedMusic ? (
+                      <MusicDetails selectedMusic={this.state.selectedMusic} />
+                    ) : (
+                      sheetsJSX
+                    )}
+                  </div>
+                </div>
               </div>
             </>
           )}
