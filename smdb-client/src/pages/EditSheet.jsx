@@ -7,31 +7,36 @@ export default class EditSheet extends Component {
     debugger;
     super(props);
     this.state = {
-      title: "",
-      year: "",
-      genre: "",
-      voices: "",
-      composer: "",
+      currentSheetId: props.location.state.current_sheet._id,
+      title: props.location.state.current_sheet.title,
+      year: props.location.state.current_sheet.year,
+      genre: props.location.state.current_sheet.genre,
+      voices: props.location.state.current_sheet.voices,
+      composer: props.location.state.current_sheet.composer,
       arrangement_author: "",
-      video: "",
-      sheetFile: "",
+      video: props.location.state.current_sheet.video,
+      file: props.location.state.current_sheet.file,
       composerList: [],
       genreList: uploadSelectValues.genres,
       voiceList: uploadSelectValues.voices,
       currentUser: this.props.currentUser,
-      currentSheet: "",
       err: null
     };
   }
 
   componentDidMount() {
-    let pathName = this.props.history.location.pathname;
-    this.props.isNavBarBlurred(pathName);
-    //Set currentSheet with id that is passed in url
-    // this.setState({ currentSheet: this.props.match.params.id})
-    axios.get("http://localhost:3010/composer_list/").then(response => {
-      this.setState({ composerList: response.data });
-    });
+    debugger;
+    if (!this.isUserLoggedIn()) {
+      this.props.history.push("/");
+    } else {
+      let pathName = this.props.history.location.pathname;
+      this.props.isNavBarBlurred(pathName);
+      //Set currentSheet with id that is passed in url
+      // this.setState({ currentSheet: this.props.match.params.id})
+      axios.get("http://localhost:3010/composer_list/").then(response => {
+        this.setState({ composerList: response.data });
+      });
+    }
   }
 
   handleInputChange = e => {
@@ -63,6 +68,14 @@ export default class EditSheet extends Component {
           err: err
         });
       });
+  };
+
+  isUserLoggedIn = () => {
+    if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   render() {
@@ -114,6 +127,7 @@ export default class EditSheet extends Component {
                       type="text"
                       name="title"
                       onChange={this.handleInputChange}
+                      value={this.state.title}
                       required
                     />
                   </div>
@@ -126,6 +140,7 @@ export default class EditSheet extends Component {
                       type="text"
                       name="year"
                       onChange={this.handleInputChange}
+                      value={this.state.year}
                     />
                   </div>
                 </div>
@@ -138,9 +153,6 @@ export default class EditSheet extends Component {
                         onChange={this.handleInputChange}
                         required
                       >
-                        <option value="" selected disabled hidden>
-                          Select genre
-                        </option>
                         {genreOption}
                       </select>
                     </div>
@@ -155,9 +167,6 @@ export default class EditSheet extends Component {
                         onChange={this.handleInputChange}
                         required
                       >
-                        <option value="" selected disabled hidden>
-                          Select voice
-                        </option>
                         {voiceOption}
                       </select>
                     </div>
@@ -184,6 +193,7 @@ export default class EditSheet extends Component {
                       <select
                         name="arrangement_author"
                         onChange={this.handleInputChange}
+                        value={this.state.arrangement_author}
                         required
                       >
                         {composerOption}
@@ -200,6 +210,7 @@ export default class EditSheet extends Component {
                       name="video"
                       pattern="https://.*"
                       onChange={this.handleInputChange}
+                      value={this.state.video}
                     />
                   </div>
                 </div>
@@ -224,7 +235,7 @@ export default class EditSheet extends Component {
                 </div>
                 <div className="field">
                   <label className="file-label">Selected file</label>
-                  <span className="file-name">{this.state.sheetFile}</span>
+                  <span className="file-name">{this.state.file}</span>
                   {this.state.sheetFile ? (
                     <button
                       onClick={this.handleClearFileInput}
@@ -249,8 +260,8 @@ export default class EditSheet extends Component {
                 </div>
                 <input
                   type="hidden"
-                  name="uploader"
-                  value="{this.state.currentUser._id}"
+                  name="currentSheetId"
+                  value="{this.state.currentSheetId}"
                 />
               </form>
             </div>

@@ -23,8 +23,13 @@
   width: 5%;
 }
 
+.list-container {
+  height: 70%;
+}
+
 .overflow {
   overflow-y: scroll;
+  height: 95%;
 }
 
 .dlt-row {

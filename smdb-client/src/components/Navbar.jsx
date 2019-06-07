@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { deepEqual } from "assert";
 
 export default class Navbar extends Component {
   constructor(props) {
