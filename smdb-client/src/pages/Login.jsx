@@ -30,6 +30,7 @@ export default class Login extends Component {
   };
 
   handleFormSubmit = e => {
+    debugger;
     e.preventDefault();
 
     // let loginForm = this.formRef.current;
