@@ -42,7 +42,7 @@ export default class Login extends Component {
         password: this.state.password
       },
       method: "post",
-      headers: { "Content-Type": "form-data" },
+      // headers: { "Content-Type": "form-data" },
       withCredentials: true
     })
       .then(response => {

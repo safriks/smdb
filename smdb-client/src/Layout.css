@@ -41,3 +41,7 @@
 nav {
   border-bottom: 1px solid #01c4a7;
 }
+
+.error-message {
+  color: red;
+}
