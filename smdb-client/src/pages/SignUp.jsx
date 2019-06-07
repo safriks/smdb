@@ -33,7 +33,11 @@ export default class SignUp extends Component {
   };
 
   handlePasswordConfirmation = e => {
-    if (e.target.value !== this.state.password) {
+    if (e.target.value.length === 0) {
+      this.setState({ passwordError: "" });
+    } else if (e.target.value === this.state.password) {
+      this.setState({ passwordError: "" });
+    } else {
       this.setState({ passwordError: "Passwords do not match!" });
     }
   };
@@ -58,7 +62,7 @@ export default class SignUp extends Component {
       withCredentials: true
     })
       .then(response => {
-        this.props.history.push("/log-in");
+        this.props.history.push("/log_in");
       })
       .catch(err => {
         this.setState({
@@ -157,7 +161,7 @@ export default class SignUp extends Component {
                       <i className="fas fa-lock" />
                     </span>
                   </div>
-                  <p>{this.state.passwordError}</p>
+                  <p className="error-message">{this.state.passwordError}</p>
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
