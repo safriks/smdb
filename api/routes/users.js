@@ -63,7 +63,7 @@ router.post('/sign_up', function(req, res, next) {
     }
   })
   
-  router.post("/logout", (req, res)=> {
+  router.post("/log_out", (req, res)=> {
     if(req.session.user) {
       req.session.destroy()
       res.status(200).json({message: "Logged out"})
