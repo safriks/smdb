@@ -66,10 +66,7 @@ export default class Upload extends Component {
   render() {
     let composerOption = this.state.composerList.map((composer, index) => {
       return (
-        <option
-          key={`composer${index + 1}`}
-          value={`${composer.first_name} ${composer.last_name}`}
-        >
+        <option key={`composer${index + 1}`} value={`${composer._id}`}>
           {`${composer.first_name} ${composer.last_name}`}
         </option>
       );
