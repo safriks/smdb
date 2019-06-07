@@ -2,3 +2,4 @@
 .vscode
 /api/public/library
 .DS_Store
+/public/library

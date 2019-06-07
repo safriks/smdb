@@ -15,12 +15,12 @@ var upload = multer({ storage: storage });
 const Music = require("../models/music.js");
 const Composer = require("../models/composer.js");
 
+
 router.post("/upload", upload.single("sheet_file"), (req, res, next) => {
   debugger;
   const newSheet = new Music({
     title: req.body.title,
     composer: req.body.composer, // an objectId
-    arrangement_author: "", // an objectId
     year: "",
     genre: "",
     voices: "",
@@ -40,5 +40,6 @@ router.post("/upload", upload.single("sheet_file"), (req, res, next) => {
       console.log(`Error` + err);
     });
 });
+
 
 module.exports = router;

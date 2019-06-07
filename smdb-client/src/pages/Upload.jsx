@@ -34,7 +34,7 @@ export default class Upload extends Component {
   };
 
   handleClearFileInput = e => {
-    this.setState({ sheetFile: "" });
+    this.setState({ sheet_file: "" });
   };
 
   handleFormSubmit = e => {
@@ -135,7 +135,9 @@ export default class Upload extends Component {
                 <div className="field">
                   <label className="file-label">Selected file</label>
                   <span className="file-name">{this.state.sheet_file}</span>
-                  {this.state.sheetFile ? (
+
+                  {this.state.sheet_file ? (
+
                     <button
                       onClick={this.handleClearFileInput}
                       className="delete"
