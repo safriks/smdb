@@ -15,6 +15,29 @@ var upload = multer({ storage: storage });
 const Music = require("../models/music.js");
 const Composer = require("../models/composer.js");
 
+router.post("/edit_sheet_and_file", upload.single("sheet_file"), (req,res,next)=>{
+  const updatedSheet = {
+       title: req.body.title,
+       composer: req.body.composer, // an objectId
+       arrangement_author: req.body.arrangement_author? req.body.arrangement_author: null, // an objectId
+       year: req.body.year,
+       genre: req.body.genre,
+       voices: req.body.voices,
+       file: `/library/${req.file.filename}`,
+       video: [req.body.video],
+       tags: req.body.tags,
+  }
+  debugger
+  Music.findOneAndUpdate({ _id: { $eq: req.body._id } }, updatedSheet)
+  .then(result => {
+    debugger
+    res.json(result)
+  })
+  .catch(err => {
+    debugger
+    console.log(`Error` + err)
+  })
+})
 
 router.post("/upload", upload.single("sheet_file"), (req, res, next) => {
   debugger;
@@ -40,6 +63,5 @@ router.post("/upload", upload.single("sheet_file"), (req, res, next) => {
       console.log(`Error` + err);
     });
 });
-
 
 module.exports = router;
