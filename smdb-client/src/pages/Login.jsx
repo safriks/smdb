@@ -30,6 +30,7 @@ export default class Login extends Component {
   };
 
   handleFormSubmit = e => {
+    debugger;
     e.preventDefault();
 
     // let loginForm = this.formRef.current;
@@ -46,9 +47,12 @@ export default class Login extends Component {
       withCredentials: true
     })
       .then(response => {
-        this.props.getCurrentUser();
+        debugger;
+        this.props.history.push("/all_music");
+        // this.props.getCurrentUser();
       })
       .catch(err => {
+        debugger;
         this.setState({
           err: err
         });

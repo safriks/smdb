@@ -27,6 +27,7 @@ class App extends Component {
   }
 
   getCurrentUser = () => {
+    debugger;
     axios({
       url: "http://localhost:3010/get_user",
       method: "post",
@@ -36,10 +37,10 @@ class App extends Component {
         this.setState(
           {
             currentUser: response.data
-          },
-          () => {
-            this.props.history.push("/all_music");
           }
+          // () => {
+          //   this.props.history.push("/all_music");
+          // }
         );
       })
       .catch(err => {
