@@ -34,9 +34,11 @@ router.post('/sign_up', function(req, res, next) {
       })
   });
   
-  router.post('/login', function(req, res, next) {
-    User.findOne({username: req.body.username})
+  router.post('/log_in', function(req, res, next) {
+    debugger
+    User.findOne({email: req.body.email})
       .then((user)=> {
+        debugger
         if(user) {
           bcrypt.compare(req.body.password, user.password, function(err, match){
             if(err) res.status(500).json({message: err}) 
@@ -54,6 +56,7 @@ router.post('/sign_up', function(req, res, next) {
         }
       })
       .catch((err)=> {
+        debugger
         res.status(500).json({message: err}) 
       })
   });
