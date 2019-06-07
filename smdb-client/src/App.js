@@ -119,8 +119,7 @@ class App extends Component {
           />
           <Route
             exact
-            //path="/edit_sheet/:id"
-            path="/edit_sheet"
+            path="/edit_sheet/:id"
             render={props => (
               <EditSheet {...props} isNavBarBlurred={this.isNavBarBlurred} />
             )}

@@ -12,12 +12,22 @@ export default class Landing extends Component {
     this.props.isNavBarBlurred(pathName);
   }
 
+  isUserLoggedIn = () => {
+    if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   render() {
+    var isUserLoggedIn = this.isUserLoggedIn();
+
     return (
       <div className="columns is-centered">
         <div className="column is-half container flex-column col">
           <h1 className="header">Welcome to Oh Sheet Music Database!</h1>
-          {Object.keys(this.state.currentUser).length > 0 ? (
+          {isUserLoggedIn ? (
             <></>
           ) : (
             <>
@@ -30,7 +40,7 @@ export default class Landing extends Component {
             </>
           )}
           <Link to={"/all_music"}>
-            {Object.keys(this.state.currentUser).length > 0 ? (
+            {isUserLoggedIn ? (
               <button className="button btn-landing btn-blue">Browse</button>
             ) : (
               <button className="button btn-landing btn-blue">

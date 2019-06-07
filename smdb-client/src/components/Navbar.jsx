@@ -39,7 +39,17 @@ export default class Navbar extends Component {
       });
   };
 
+  isUserLoggedIn = () => {
+    if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   render() {
+    var isUserLoggedIn = this.isUserLoggedIn();
+
     return (
       <nav
         className={this.state.navBarClassName}
@@ -50,7 +60,7 @@ export default class Navbar extends Component {
           <div className="navbar-start">
             <div className="navbar-item">
               <div className="buttons">
-                {Object.keys(this.state.currentUser).length > 0 ? (
+                {isUserLoggedIn ? (
                   <Link to="/upload" className="button is-link">
                     <strong>Upload sheet music</strong>
                   </Link>
@@ -60,7 +70,7 @@ export default class Navbar extends Component {
                 <Link to="/" className="button is-link ">
                   <i className="fa fa-home" aria-hidden="true" />
                 </Link>
-                {Object.keys(this.state.currentUser).length > 0 ? (
+                {isUserLoggedIn ? (
                   <div className="navbar-item">
                     <h3 className="nav-text">
                       Welcome {this.state.currentUser.first_name}
@@ -75,14 +85,14 @@ export default class Navbar extends Component {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                {Object.keys(this.state.currentUser).length > 0 ? (
+                {isUserLoggedIn ? (
                   <></>
                 ) : (
                   <Link to="/sign_up" className="button is-primary">
                     <strong>Sign up</strong>
                   </Link>
                 )}
-                {Object.keys(this.state.currentUser).length > 0 ? (
+                {isUserLoggedIn ? (
                   <button
                     onClick={this.handleLogOutClick}
                     className="button is-danger"
