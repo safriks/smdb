@@ -7,7 +7,7 @@ export default class Upload extends Component {
     this.state = {
       title: "",
       composer: "",
-      sheetFile: "",
+      sheet_file: "",
       composerList: [],
       err: null
     };
@@ -34,7 +34,7 @@ export default class Upload extends Component {
   };
 
   handleClearFileInput = e => {
-    this.setState({ sheetFile: "" });
+    this.setState({ sheet_file: "" });
   };
 
   handleFormSubmit = e => {
@@ -120,7 +120,7 @@ export default class Upload extends Component {
                       <input
                         type="file"
                         className="file-input"
-                        name="sheetFile"
+                        name="sheet_file"
                         onChange={this.handleInputChange}
                         required
                       />
@@ -135,8 +135,8 @@ export default class Upload extends Component {
                 </div>
                 <div className="field">
                   <label className="file-label">Selected file</label>
-                  <span className="file-name">{this.state.sheetFile}</span>
-                  {this.state.sheetFile ? (
+                  <span className="file-name">{this.state.sheet_file}</span>
+                  {this.state.sheet_file ? (
                     <button
                       onClick={this.handleClearFileInput}
                       className="delete"
