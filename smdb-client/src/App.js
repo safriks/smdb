@@ -65,7 +65,11 @@ class App extends Component {
             exact
             path="/"
             render={props => (
-              <Landing {...props} isNavBarBlurred={this.isNavBarBlurred} />
+              <Landing
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
             )}
           />
           <Route

@@ -45,3 +45,7 @@ nav {
 .error-message {
   color: red;
 }
+
+.nav-text {
+  margin-bottom: 0.5rem;
+}
