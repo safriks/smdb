@@ -27,16 +27,28 @@ class App extends Component {
   }
 
   getCurrentUser = () => {
+<<<<<<< HEAD
     debugger;
+=======
+    debugger
+>>>>>>> d3a23b81a07665267434e87b3da5e4f7d3965677
     axios({
       url: "http://localhost:3010/get_user",
       method: "post",
       withCredentials: true
     })
       .then(response => {
+        debugger
         this.setState(
           {
             currentUser: response.data
+<<<<<<< HEAD
+=======
+          },
+          () => {
+            debugger
+            this.props.history.push("/all_music");
+>>>>>>> d3a23b81a07665267434e87b3da5e4f7d3965677
           }
           // () => {
           //   this.props.history.push("/all_music");
