@@ -7,7 +7,7 @@ export default class Upload extends Component {
     this.state = {
       title: "",
       composer: "",
-      sheetFile: "",
+      sheet_file: "",
       composerList: [],
       err: null
     };
@@ -52,11 +52,10 @@ export default class Upload extends Component {
       withCredentials: true
     })
       .then(response => {
+        debugger;
         //redirect from upload to edit with id of just uploaded file
-        // let id = response.data._id
-        //this.props.history.push(`/edit_sheet/:${id}`);
-
-        this.props.history.push("/edit_sheet");
+        let sheetId = response.data._id;
+        this.props.history.push(`/edit_sheet/:${sheetId}`);
       })
       .catch(err => {
         this.setState({ err: err });
@@ -120,7 +119,7 @@ export default class Upload extends Component {
                       <input
                         type="file"
                         className="file-input"
-                        name="sheetFile"
+                        name="sheet_file"
                         onChange={this.handleInputChange}
                         required
                       />
@@ -135,7 +134,7 @@ export default class Upload extends Component {
                 </div>
                 <div className="field">
                   <label className="file-label">Selected file</label>
-                  <span className="file-name">{this.state.sheetFile}</span>
+                  <span className="file-name">{this.state.sheet_file}</span>
                   {this.state.sheetFile ? (
                     <button
                       onClick={this.handleClearFileInput}
