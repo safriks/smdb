@@ -13,6 +13,7 @@
 
 .search-bar {
   width: 80%;
+  margin-left: 20%;
 }
 
 .search-btn {
@@ -29,7 +30,7 @@
 
 .overflow {
   overflow-y: scroll;
-  height: 95%;
+  height: 100%;
 }
 
 .dlt-row {

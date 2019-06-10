@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import EditSheet from "./pages/EditSheet";
 import { Redirect } from "react-router-dom";
+import Profile from "./pages/Profile";
 
 class App extends Component {
   constructor() {
@@ -83,7 +84,11 @@ class App extends Component {
             exact
             path="/all_music"
             render={props => (
-              <AllMusic {...props} isNavBarBlurred={this.isNavBarBlurred} />
+              <AllMusic
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
             )}
           />
           <Route
@@ -126,11 +131,26 @@ class App extends Component {
             exact
             path="/edit_sheet/:id"
             render={props => (
-              <EditSheet {...props} isNavBarBlurred={this.isNavBarBlurred} />
+              <EditSheet
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/profile"
+            render={props => (
+              <Profile
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
             )}
           />
           {/*Take user to landing if called route is non-existing */}
-          <Route path="/*" component={Redirect} /> lkj
+          <Route path="/*" component={Redirect} />
         </Switch>
       </div>
     );

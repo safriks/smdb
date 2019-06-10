@@ -1,67 +1,52 @@
-//componentDidMount props.query ? this.state = props.query : Api Call
-//componentDidUpdate
+import React, { Component } from "react";
+import "./musicDetails.css";
 
-/* 
-this.state = {
-  music:null,
-  loading:true
-}
-
-componentDidMount() {
-
-  if(this.props.query) {
-    this.setState({music: ...this.props.query, loading:false})
-  }
-  else {
-    axios.get()
+export default class MusicDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedMusic: props.selectedMusic[0],
+      currentUser: props.currentUser,
+      isFavorite: false
+    };
   }
 
-}
-
-
-*/
-
-/* 
-render() {
- 
-  { this.state.loading && <>Loading</> }
-  {this.state.music && 
-      <>
-
-      <Column music={this.state.music} />
-      <p>{this.state.music.name}
-
-    </>
+  //deprecated -- replace with componentDidUpdate oid
+  componentWillReceiveProps(nextProps) {
+    debugger;
+    if (nextProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
+      this.setState({ selectedMusic: nextProps.selectedMusic[0] });
+    }
   }
 
-
-
-}
-*/
-
-import React from "react";
-
-export default function MusicDetails(props) {
-  debugger;
-  let selectedMusic = props.selectedMusic[0];
-
-  return (
-    <div>
-      <p>
-        {selectedMusic.composer.first_name} {selectedMusic.composer.last_name}
-      </p>
-      <p>{selectedMusic.title}</p>
-      <p>{selectedMusic.year}</p>
-      <ul>
-        {selectedMusic.files.map(file => {
-          return <li>{file}</li>;
-        })}
-      </ul>
-      <ul>
-        {selectedMusic.genre.map(genre => {
-          return <li>{genre}</li>;
-        })}
-      </ul>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <div>
+          <button class="flex-ctd fav-btn">
+            <i class="fas fa-heart" />
+          </button>
+        </div>
+        <p>{this.state.selectedMusic.title}</p>
+        <p>{this.state.selectedMusic.year}</p>
+        <p>
+          {this.state.selectedMusic.composer.first_name}{" "}
+          {this.state.selectedMusic.composer.last_name}
+        </p>
+        {/*
+        <p>
+          {this.state.selectedMusic.arrangement_author.first_name}{" "}
+          {this.state.selectedMusic.arrangement_author.last_name}
+        </p>
+        <ul>
+          {this.state.selectedMusic.voices.map(voice => {
+            return <li>{voice}</li>;
+          })}
+        </ul>
+        <p>{this.state.selectedMusic.genre}</p>
+        <a href={this.state.selectedMusic.video}>{this.state.selectedMusic.video}</a>
+        <p>{this.state.selectedMusic.file}</p> */}
+      </div>
+    );
+  }
 }

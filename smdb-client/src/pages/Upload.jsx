@@ -71,6 +71,7 @@ export default class Upload extends Component {
       });
   };
 
+  //Check whether user is logged in
   isUserLoggedIn = () => {
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
@@ -82,9 +83,7 @@ export default class Upload extends Component {
   render() {
     let composerOption = this.state.composerList.map((composer, index) => {
       return (
-
         <option key={`composer${index + 1}`} value={`${composer._id}`}>
-
           {`${composer.first_name} ${composer.last_name}`}
         </option>
       );

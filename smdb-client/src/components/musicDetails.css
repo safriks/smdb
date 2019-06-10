@@ -1,0 +1,13 @@
+.fav-btn {
+  border: 1px solid rgb(156, 5, 5);
+  color: rgb(156, 5, 5);
+  border-radius: 25px;
+  background: #fff;
+  padding: 2vh;
+  margin-bottom: 3vh;
+}
+
+.fav-btn:hover {
+  background: rgb(156, 5, 5);
+  color: #fff;
+}

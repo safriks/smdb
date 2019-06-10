@@ -14,7 +14,6 @@ export default class Navbar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (nextProps.currentUser !== this.props.currentUser) {
       let newCurrentUser = nextProps.currentUser;
       this.setState({ currentUser: newCurrentUser });
@@ -32,12 +31,15 @@ export default class Navbar extends Component {
     })
       .then(response => {
         this.props.logOut();
+        //REDIRECT DOES NOT WORK YET
+        // this.props.history.push("/");
       })
       .catch(err => {
         this.setState({ err: err });
       });
   };
 
+  //Check whether user is logged in
   isUserLoggedIn = () => {
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
@@ -72,7 +74,10 @@ export default class Navbar extends Component {
                 {isUserLoggedIn ? (
                   <div className="navbar-item">
                     <h3 className="nav-text">
-                      Welcome {this.state.currentUser.first_name}
+                      Welcome{" "}
+                      <Link to="profile" className="nav-link">
+                        {this.state.currentUser.first_name}
+                      </Link>
                     </h3>
                   </div>
                 ) : (

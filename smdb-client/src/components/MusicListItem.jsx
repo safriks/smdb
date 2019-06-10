@@ -3,14 +3,13 @@ import "./musicListItem.css";
 import { Link } from "react-router-dom";
 
 export default function MusicListItem(props) {
-  debugger;
   return (
     <Link
       to={{
         pathname: `/all_music/${props._id}`,
         query: {
           composer: props.composer.first_name,
-          files: props.files,
+          file: props.file,
           genre: props.genre,
           tags: props.tags,
           title: props.title,

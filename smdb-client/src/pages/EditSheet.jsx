@@ -15,17 +15,20 @@ export default class EditSheet extends Component {
       composer: props.location.state.current_sheet.composer,
       arrangement_author: "",
       video: props.location.state.current_sheet.video,
-      file: props.location.state.current_sheet.file,
+      oldFile: props.location.state.current_sheet.file,
+      newFile: "",
       composerList: [],
       genreList: uploadSelectValues.genres,
       voiceList: uploadSelectValues.voices,
       currentUser: this.props.currentUser,
       err: null
     };
+    this.formRef = React.createRef();
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentDidMount() {
-    debugger;
     if (!this.isUserLoggedIn()) {
       this.props.history.push("/");
     } else {
@@ -44,24 +47,28 @@ export default class EditSheet extends Component {
   };
 
   handleFormSubmit = e => {
+    debugger;
     e.preventDefault();
+
+    /*
+    CHECK WHETHER FILE IS DIFFERENT FROM FILE THAT WAS ALREADY IN DATABASE 
+    IF DIFFERENT: "/edit_sheet_and_file"
+    ELSE: "/edit_sheet"
+    */
 
     let editForm = this.formRef.current;
     let formData = new FormData(editForm);
 
     axios({
-      url: "http://localhost:3010/log_in",
+      url: "http://localhost:3010/ROUTES ABOVE",
       data: formData,
       method: "post",
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true
     })
       .then(response => {
-        //redirect from upload to edit with id of just uploaded file
-        // let id = response.data._id
-        //this.props.history.push(`/all_music/:${id}`);
-
-        this.props.history.push("/all_music");
+        //redirect from edit to all music with id of just edited file
+        this.props.history.push(`/all_music/${this.state.currentSheetId}`);
       })
       .catch(err => {
         this.setState({
@@ -70,6 +77,7 @@ export default class EditSheet extends Component {
       });
   };
 
+  //Check whether user is logged in
   isUserLoggedIn = () => {
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
@@ -151,6 +159,7 @@ export default class EditSheet extends Component {
                       <select
                         name="genre"
                         onChange={this.handleInputChange}
+                        defaultChecked={this.state.genre}
                         required
                       >
                         {genreOption}
@@ -165,6 +174,7 @@ export default class EditSheet extends Component {
                       <select
                         name="voices"
                         onChange={this.handleInputChange}
+                        defaultChecked={this.state.voices}
                         required
                       >
                         {voiceOption}
@@ -179,6 +189,7 @@ export default class EditSheet extends Component {
                       <select
                         name="composer"
                         onChange={this.handleInputChange}
+                        defaultChecked={this.state.composer}
                         required
                       >
                         {composerOption}
@@ -194,7 +205,7 @@ export default class EditSheet extends Component {
                         name="arrangement_author"
                         onChange={this.handleInputChange}
                         value={this.state.arrangement_author}
-                        required
+                        defaultChecked={this.state.arrangement_author}
                       >
                         {composerOption}
                       </select>
@@ -220,9 +231,8 @@ export default class EditSheet extends Component {
                       <input
                         type="file"
                         className="file-input"
-                        name="sheetFile"
+                        name="newFile"
                         onChange={this.handleInputChange}
-                        required
                       />
                       <span className="file-cta">
                         <span className="file-icon">

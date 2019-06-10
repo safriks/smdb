@@ -11,7 +11,8 @@ export default class AllMusic extends Component {
     this.state = {
       sheets: [],
       selectedMusic: null,
-      searchQuery: ""
+      searchQuery: "",
+      currentUser: props.currentUser
       // isLoading: true
     };
   }
@@ -119,7 +120,7 @@ export default class AllMusic extends Component {
         <div className="columns list-container">
           {this.state.sheets.length > 0 && (
             <>
-              <div className="column is-2 is-offset-1 col">
+              <div className="column is-2 is-offset-1 col overflow">
                 {selectedMusic ? sheetsJSX : <FilterColumn />}
               </div>
               <div className="column is-8 col">
@@ -135,7 +136,10 @@ export default class AllMusic extends Component {
                 <div className="columns overflow">
                   <div className="column is-12">
                     {selectedMusic ? (
-                      <MusicDetails selectedMusic={this.state.selectedMusic} />
+                      <MusicDetails
+                        selectedMusic={this.state.selectedMusic}
+                        currentUser={this.state.currentUser}
+                      />
                     ) : (
                       sheetsJSX
                     )}
