@@ -14,7 +14,7 @@ const musicSchema = new mongoose.Schema({
   file: String,
   video: String,
   uploader: { type: mongoose.Schema.Types.ObjectId, ref: User },
-  tags: Array
+  favs: [{ type: mongoose.Schema.Types.ObjectId, ref: User }]
 });
 
 const Music = mongoose.model("sheet", musicSchema);
