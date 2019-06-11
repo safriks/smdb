@@ -25,7 +25,8 @@ export default class MusicDetails extends Component {
   }
 
   handleFavoriteClick = e => {
-    this.state.isFavorite
+    debugger;
+    this.checkIfFavorite()
       ? axios({
           url: "http://localhost:3010/remove_fav",
           data: {
@@ -35,7 +36,7 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          this.setState({ isFavorite: false });
+          // this.setState({ isFavorite: false });
         })
       : axios({
           url: "http://localhost:3010/add_fav",
@@ -45,9 +46,12 @@ export default class MusicDetails extends Component {
           },
           method: "post",
           withCredentials: true
-        }).then(response => {
-          this.setState({ isFavorite: true });
-        });
+        }).then(response => {});
+    //Update user info in state
+    axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
+      debugger;
+      this.setState({ currentUser: response.data });
+    });
   };
 
   //Check whether user is logged in
@@ -67,8 +71,10 @@ export default class MusicDetails extends Component {
       selectedMusicId
     );
     if (selectedMusicIsFavorite === true) {
+      debugger;
       return true;
     } else {
+      debugger;
       return false;
     }
   };

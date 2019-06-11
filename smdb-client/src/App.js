@@ -32,7 +32,7 @@ class App extends Component {
 
   getCurrentUser = () => {
     axios({
-      url: "http://localhost:3010/get_user",
+      url: `${process.env.REACT_APP_API_URL}/get_user`,
       method: "post",
       withCredentials: true
     })
