@@ -18,6 +18,7 @@ export default class AllMusic extends Component {
   }
 
   componentDidMount() {
+    debugger;
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
     axios
@@ -73,7 +74,7 @@ export default class AllMusic extends Component {
         );
       });
     } else {
-      //Filter all sheets with search query --- ADD FUNCTION THAT MAKES QUERYING BOTH COMPOSER AND TITLE AT SAME TIME (and/or)
+      //Filter all sheets with search query --- ADD FUNCTION THAT MAKES QUERYING BOTH COMPOSER AND TITLE AT SAME TIME
       let searchedSheets = this.state.sheets.filter(
         sheet =>
           sheet.title.toLowerCase().includes(this.state.searchQuery) ||

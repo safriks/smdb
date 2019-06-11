@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./musicDetails.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
@@ -11,22 +13,89 @@ export default class MusicDetails extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.isUserLoggedIn()) {
+      //Check whether selected music sheet is stored in favs of current user
+      let selectedMusicId = this.state.selectedMusic._id;
+      let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
+        selectedMusicId
+      );
+      selectedMusicIsFavorite
+        ? this.setState({ isFavorite: true })
+        : this.setState({ isFavorite: false });
+    }
+  }
+
   //deprecated -- replace with componentDidUpdate oid
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (nextProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
       this.setState({ selectedMusic: nextProps.selectedMusic[0] });
     }
   }
 
+  handleFavoriteClick = e => {
+    this.state.isFavorite
+      ? axios({
+          url: "http://localhost:3010/remove_favorite",
+          data: {
+            sheet: this.state.selectedMusic._id,
+            currentUserId: this.state.currentUser._id
+          },
+          method: "post",
+          withCredentials: true
+        }).then(response => {
+          this.setState({ isFavorite: false });
+        })
+      : axios({
+          url: "http://localhost:3010/add_favorite",
+          data: {
+            sheet: this.state.selectedMusic._id,
+            currentUserId: this.state.currentUser._id
+          },
+          method: "post",
+          withCredentials: true
+        }).then(response => {
+          this.setState({ isFavorite: true });
+        });
+  };
+
+  //Check whether user is logged in
+  isUserLoggedIn = () => {
+    if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   render() {
+    var isUserLoggedIn = this.isUserLoggedIn();
+
+    let favBtnClassName = "flex-ctd fav-btn";
+    this.state.isFavorite
+      ? (favBtnClassName = "flex-ctd fav-btn is-fav")
+      : (favBtnClassName = "flex-ctd fav-btn not-fav");
+
     return (
       <div>
-        <div>
-          <button class="flex-ctd fav-btn">
-            <i class="fas fa-heart" />
-          </button>
-        </div>
+        {isUserLoggedIn ? (
+          <div className="align-ctr">
+            <button
+              onClick={this.handleFavoriteClick}
+              className={favBtnClassName}
+            >
+              <i className="fas fa-heart" />
+            </button>
+            <Link
+              to={`/edit_sheet/${this.state.selectedMusic._id}`}
+              className="nav-link"
+            >
+              Edit
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
         <p>{this.state.selectedMusic.title}</p>
         <p>{this.state.selectedMusic.year}</p>
         <p>

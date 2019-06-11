@@ -7,16 +7,15 @@ export default class EditSheet extends Component {
     debugger;
     super(props);
     this.state = {
-      currentSheetId: props.location.state.current_sheet._id,
-      title: props.location.state.current_sheet.title,
-      year: props.location.state.current_sheet.year,
-      genre: props.location.state.current_sheet.genre,
-      voices: props.location.state.current_sheet.voices,
-      composer: props.location.state.current_sheet.composer,
+      currentSheetId: "",
+      title: "",
+      year: "",
+      genre: "",
+      voices: [],
+      composer: "",
       arrangement_author: "",
-      video: props.location.state.current_sheet.video,
-      oldFile: props.location.state.current_sheet.file,
-      newFile: "",
+      video: "",
+      file: "",
       composerList: [],
       genreList: uploadSelectValues.genres,
       voiceList: uploadSelectValues.voices,
@@ -29,9 +28,47 @@ export default class EditSheet extends Component {
   }
 
   componentDidMount() {
+    debugger;
     if (!this.isUserLoggedIn()) {
       this.props.history.push("/");
     } else {
+      debugger;
+      //Check if there is data in props.location.state (when redirected from upload page)
+      //If not: get data of current sheet from database
+      if (!this.props.location.state) {
+        debugger;
+        axios
+          .get(`http://localhost:3010/id${this.props.match.params.id}`)
+          .then(response => {
+            debugger;
+            let currentSheet = response.data;
+            this.setState({
+              currentSheetId: currentSheet._id,
+              title: currentSheet.title,
+              year: currentSheet.year,
+              genre: currentSheet.genre,
+              voices: currentSheet.voices,
+              composer: currentSheet.composer,
+              arrangement_author: currentSheet.arrangement_author,
+              video: currentSheet.video,
+              file: currentSheet.file
+            });
+          });
+      } else {
+        debugger;
+        this.setState({
+          currentSheetId: this.props.location.state.current_sheet._id,
+          title: this.props.location.state.current_sheet.title,
+          year: this.props.location.state.current_sheet.year,
+          genre: this.props.location.state.current_sheet.genre,
+          voices: this.props.location.state.current_sheet.voices,
+          composer: this.props.location.state.current_sheet.composer,
+          arrangement_author: "",
+          video: this.props.location.state.current_sheet.video,
+          file: this.props.location.state.current_sheet.file
+        });
+      }
+      debugger;
       let pathName = this.props.history.location.pathname;
       this.props.isNavBarBlurred(pathName);
       //Set currentSheet with id that is passed in url
@@ -50,14 +87,10 @@ export default class EditSheet extends Component {
     debugger;
     e.preventDefault();
 
-    /*
-    CHECK WHETHER FILE IS DIFFERENT FROM FILE THAT WAS ALREADY IN DATABASE 
-    IF DIFFERENT: "/edit_sheet_and_file"
-    ELSE: "/edit_sheet"
-    */
-
     let editForm = this.formRef.current;
     let formData = new FormData(editForm);
+
+    //check whether new file is uploaded
 
     axios({
       url: "http://localhost:3010/ROUTES ABOVE",
@@ -136,6 +169,7 @@ export default class EditSheet extends Component {
                       name="title"
                       onChange={this.handleInputChange}
                       value={this.state.title}
+                      placeholder={this.state.title}
                       required
                     />
                   </div>
@@ -149,6 +183,7 @@ export default class EditSheet extends Component {
                       name="year"
                       onChange={this.handleInputChange}
                       value={this.state.year}
+                      placeholder={this.state.year}
                     />
                   </div>
                 </div>
@@ -222,6 +257,7 @@ export default class EditSheet extends Component {
                       pattern="https://.*"
                       onChange={this.handleInputChange}
                       value={this.state.video}
+                      placeholder={this.state.video}
                     />
                   </div>
                 </div>
@@ -231,7 +267,7 @@ export default class EditSheet extends Component {
                       <input
                         type="file"
                         className="file-input"
-                        name="newFile"
+                        name="file"
                         onChange={this.handleInputChange}
                       />
                       <span className="file-cta">
