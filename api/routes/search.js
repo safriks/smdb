@@ -24,7 +24,7 @@ router.get("/id", (req,res)=>{
     // const searchQuery = req.query.q;
     // const regExSearch = new RegExp(`.${searchQuery}.`);
     debugger
-    Music.find({_id : {$eq : req.query.q }})
+    Music.find({_id : {$eq : req.params.id }})
     .populate("composer")
     .populate("arrangement")
     .populate("uploader")
