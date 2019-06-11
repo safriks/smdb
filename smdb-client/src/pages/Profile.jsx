@@ -46,6 +46,14 @@ export default class Profile extends Component {
                 <span className="label-text">Email: </span>
                 {this.state.currentUser.email}
               </p>
+              <p>
+                <span className="label-text">Favorites: </span>
+              </p>
+              <ul className="custom-list">
+                {this.state.currentUser.favs.map(fav => {
+                  return <li>{fav}</li>;
+                })}
+              </ul>
             </div>
           </div>
         </div>
