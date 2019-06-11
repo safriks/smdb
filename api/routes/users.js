@@ -63,6 +63,19 @@ router.post("/get_user", (req, res) => {
   }
 });
 
+router.get("/user_info", (req, res) => {
+  if (req.session.user) {
+    User.findOne({_id: req.session.user._id})
+      .populate("favs")
+      populate("uploads")
+      .then(result=>{
+        res.json(result)
+      })
+  } else {
+    res.status(403).json({ message: "Not logged in" });
+  }
+});
+
 router.post("/log_out", (req, res) => {
   if (req.session.user) {
     req.session.destroy();
