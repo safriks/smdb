@@ -5,12 +5,10 @@ import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       selectedMusic: props.selectedMusic[0],
-      currentUser: props.currentUser,
-      isFavorite: false
+      currentUser: props.currentUser
     };
   }
 
@@ -20,18 +18,6 @@ export default class MusicDetails extends Component {
     }
   }
 
-  //Check whether selected music sheet is stored in favs of current user
-  checkIfFavorite = () => {
-    debugger;
-    let selectedMusicId = this.state.selectedMusic._id;
-    let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
-      selectedMusicId
-    );
-    selectedMusicIsFavorite
-      ? this.setState({ isFavorite: true })
-      : this.setState({ isFavorite: false });
-  };
-
   componentDidUpdate(prevProps) {
     if (prevProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
       this.setState({ selectedMusic: this.props.selectedMusic[0] });
@@ -39,7 +25,6 @@ export default class MusicDetails extends Component {
   }
 
   handleFavoriteClick = e => {
-    debugger;
     this.state.isFavorite
       ? axios({
           url: "http://localhost:3010/remove_fav",
@@ -67,8 +52,21 @@ export default class MusicDetails extends Component {
 
   //Check whether user is logged in
   isUserLoggedIn = () => {
-    debugger;
     if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  //Check whether selected music sheet is stored in favs of current user
+  checkIfFavorite = () => {
+    debugger;
+    let selectedMusicId = this.state.selectedMusic._id;
+    let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
+      selectedMusicId
+    );
+    if (selectedMusicIsFavorite === true) {
       return true;
     } else {
       return false;
@@ -77,10 +75,13 @@ export default class MusicDetails extends Component {
 
   render() {
     var isUserLoggedIn = this.isUserLoggedIn();
+    if (isUserLoggedIn === true) {
+      var isFavorite = this.checkIfFavorite();
+    }
 
     let favBtnClassName = "flex-ctd fav-btn";
     debugger;
-    this.state.isFavorite
+    isFavorite
       ? (favBtnClassName = "flex-ctd fav-btn is-fav")
       : (favBtnClassName = "flex-ctd fav-btn not-fav");
 
