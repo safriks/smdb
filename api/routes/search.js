@@ -20,7 +20,7 @@ router.get("/search", (req,res)=>{
     })
 })
 
-router.get("/id", (req,res)=>{
+router.get("/id/:id", (req,res)=>{
     // const searchQuery = req.query.q;
     // const regExSearch = new RegExp(`.${searchQuery}.`);
     debugger
