@@ -16,16 +16,21 @@ export default class MusicDetails extends Component {
 
   componentDidMount() {
     if (this.isUserLoggedIn()) {
-      //Check whether selected music sheet is stored in favs of current user
-      let selectedMusicId = this.state.selectedMusic._id;
-      let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
-        selectedMusicId
-      );
-      selectedMusicIsFavorite
-        ? this.setState({ isFavorite: true })
-        : this.setState({ isFavorite: false });
+      this.checkIfFavorite();
     }
   }
+
+  //Check whether selected music sheet is stored in favs of current user
+  checkIfFavorite = () => {
+    debugger;
+    let selectedMusicId = this.state.selectedMusic._id;
+    let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
+      selectedMusicId
+    );
+    selectedMusicIsFavorite
+      ? this.setState({ isFavorite: true })
+      : this.setState({ isFavorite: false });
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
@@ -34,12 +39,13 @@ export default class MusicDetails extends Component {
   }
 
   handleFavoriteClick = e => {
+    debugger;
     this.state.isFavorite
       ? axios({
           url: "http://localhost:3010/remove_fav",
           data: {
-            sheetId: this.state.selectedMusic._id,
-            currentUserId: this.state.currentUser._id
+            _id: this.state.selectedMusic._id,
+            user_id: this.state.currentUser._id
           },
           method: "post",
           withCredentials: true
@@ -49,8 +55,8 @@ export default class MusicDetails extends Component {
       : axios({
           url: "http://localhost:3010/add_fav",
           data: {
-            sheetID: this.state.selectedMusic._id,
-            currentUserId: this.state.currentUser._id
+            _id: this.state.selectedMusic._id,
+            user_id: this.state.currentUser._id
           },
           method: "post",
           withCredentials: true

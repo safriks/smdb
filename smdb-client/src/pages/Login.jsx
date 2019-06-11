@@ -3,7 +3,6 @@ import axios from "axios";
 
 export default class Login extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       email: "",
@@ -30,7 +29,6 @@ export default class Login extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
     // let loginForm = this.formRef.current;

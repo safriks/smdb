@@ -14,7 +14,7 @@ export default class EditSheet extends Component {
       composer: "",
       arrangement_author: "",
       video: "",
-      file: "",
+      sheet_file: "",
       composerList: [],
       genreList: uploadSelectValues.genres,
       voiceList: uploadSelectValues.voices,
@@ -27,6 +27,7 @@ export default class EditSheet extends Component {
   }
 
   componentDidMount() {
+    debugger;
     if (!this.isUserLoggedIn()) {
       this.props.history.push("/");
     } else {
@@ -34,9 +35,11 @@ export default class EditSheet extends Component {
       //If not: get data of current sheet from database
       if (!this.props.location.state) {
         axios
-          .get(`http://localhost:3010/id${this.props.match.params.id}`)
+          .get(`http://localhost:3010/id/${this.props.match.params.id}`)
           .then(response => {
-            let currentSheet = response.data;
+            debugger;
+            let currentSheet = response.data[0];
+            debugger;
             this.setState({
               currentSheetId: currentSheet._id,
               title: currentSheet.title,
@@ -50,6 +53,7 @@ export default class EditSheet extends Component {
             });
           });
       } else {
+        debugger;
         this.setState({
           currentSheetId: this.props.location.state.current_sheet._id,
           title: this.props.location.state.current_sheet.title,
@@ -77,6 +81,7 @@ export default class EditSheet extends Component {
   };
 
   handleFormSubmit = e => {
+    debugger;
     e.preventDefault();
 
     let editForm = this.formRef.current;
@@ -84,17 +89,18 @@ export default class EditSheet extends Component {
 
     //check whether new file is uploaded
     const fileInputVal = editForm.querySelector("#file-input").value;
-    const route = fileInputVal ? "edit-sheet-and-file" : "edit-sheet";
+    const route = fileInputVal ? "edit_sheet_and_file" : "edit_sheet";
     axios({
       url: `http://localhost:3010/${route}`,
       data: formData,
       method: "post",
-      headers: { "Content-Type": "multipart/form-data" },
+      // headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true
     })
       .then(response => {
+        debugger;
         //redirect from edit to all music with id of just edited file
-        this.props.history.push(`/all_music/${this.state.currentSheetId}`);
+        this.props.history.push("/all_music");
       })
       .catch(err => {
         this.setState({
@@ -115,10 +121,7 @@ export default class EditSheet extends Component {
   render() {
     let composerOption = this.state.composerList.map((composer, index) => {
       return (
-        <option
-          key={`composer${index + 1}`}
-          value={`${composer.first_name} ${composer.last_name}`}
-        >
+        <option key={`composer${index + 1}`} value={`${composer._id}`}>
           {`${composer.first_name} ${composer.last_name}`}
         </option>
       );
@@ -261,7 +264,7 @@ export default class EditSheet extends Component {
                         id="file-input"
                         type="file"
                         className="file-input"
-                        name="file"
+                        name="sheet_file"
                         onChange={this.handleInputChange}
                       />
                       <span className="file-cta">
@@ -275,8 +278,8 @@ export default class EditSheet extends Component {
                 </div>
                 <div className="field">
                   <label className="file-label">Selected file</label>
-                  <span className="file-name">{this.state.file}</span>
-                  {this.state.sheetFile ? (
+                  <span className="file-name">{this.state.sheet_file}</span>
+                  {this.state.sheet_file ? (
                     <button
                       onClick={this.handleClearFileInput}
                       className="delete"
@@ -300,8 +303,8 @@ export default class EditSheet extends Component {
                 </div>
                 <input
                   type="hidden"
-                  name="currentSheetId"
-                  value="{this.state.currentSheetId}"
+                  name="_id"
+                  value={this.state.currentSheetId}
                 />
               </form>
             </div>
