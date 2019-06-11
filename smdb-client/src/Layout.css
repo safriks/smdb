@@ -55,3 +55,7 @@ nav {
 .nav-text {
   margin-bottom: 0.5rem;
 }
+
+.custom-list {
+  list-style-type: circle;
+}

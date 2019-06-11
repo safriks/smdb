@@ -44,8 +44,8 @@ export default class MusicDetails extends Component {
       ? axios({
           url: "http://localhost:3010/remove_fav",
           data: {
-            _id: this.state.selectedMusic._id,
-            user_id: this.state.currentUser._id
+            sheetId: this.state.selectedMusic._id,
+            currentUserId: this.state.currentUser._id
           },
           method: "post",
           withCredentials: true
@@ -55,8 +55,8 @@ export default class MusicDetails extends Component {
       : axios({
           url: "http://localhost:3010/add_fav",
           data: {
-            _id: this.state.selectedMusic._id,
-            user_id: this.state.currentUser._id
+            sheetId: this.state.selectedMusic._id,
+            currentUserId: this.state.currentUser._id
           },
           method: "post",
           withCredentials: true
@@ -79,6 +79,7 @@ export default class MusicDetails extends Component {
     var isUserLoggedIn = this.isUserLoggedIn();
 
     let favBtnClassName = "flex-ctd fav-btn";
+    debugger;
     this.state.isFavorite
       ? (favBtnClassName = "flex-ctd fav-btn is-fav")
       : (favBtnClassName = "flex-ctd fav-btn not-fav");
@@ -118,7 +119,7 @@ export default class MusicDetails extends Component {
           {this.state.selectedMusic.composer.first_name}{" "}
           {this.state.selectedMusic.composer.last_name}
         </p>
-        {/* <p>
+        <p>
           <span className="label-text">Arrangement author: </span>
         </p>
         <p>
@@ -146,7 +147,13 @@ export default class MusicDetails extends Component {
         <p>
           <span className="label-text">Sheet music: </span>
         </p>
-        <p>{this.state.selectedMusic.file}</p> */}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`http://localhost:3010${this.state.selectedMusic.file}`}
+        >
+          {this.state.selectedMusic.file}
+        </a>
       </div>
     );
   }
