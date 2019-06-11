@@ -34,7 +34,7 @@ router.get("/id", (req,res)=>{
             debugger
             res.json(result)
         };
-    })
+    })  
 })
 
 

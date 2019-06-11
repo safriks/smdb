@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     voice: String,
     uploads: [{ type: mongoose.Schema.Types.ObjectId, ref: Music }],
-    favourites: [{ type: mongoose.Schema.Types.ObjectId, ref: Music }]
+    favs: [{ type: mongoose.Schema.Types.ObjectId, ref: Music }]
 
 });
 

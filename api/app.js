@@ -22,6 +22,7 @@ const searchRoute = require("./routes/search.js");
 const uploadRoute = require("./routes/upload.js");
 const usersRoute = require("./routes/users.js");
 const choirRoute = require("./routes/choirs.js");
+const favRoute = require("./routes/favs.js");
 
 
 
@@ -46,6 +47,7 @@ app.use("/", searchRoute);
 app.use("/", uploadRoute);
 app.use("/", usersRoute);
 app.use("/", choirRoute);
+app.use("/", favRoute);
 
 app.use(express.static(path.join(__dirname, 'public')))
 
