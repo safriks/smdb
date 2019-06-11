@@ -12,38 +12,52 @@ router.get('/favourites', (req,res) => {
 })
 
 router.post('/add_fav', (req,res) => {
-    debugger
-    const userUpdRes = {}
-    Music.updateOne(
-        { _id: req.body._id },
-        { $push: {favs: req.body.user_id}} // change req.body.user_id to req.session.user._id
-    );
-    User.updateOne(
-        { _id: req.body.user_id }, // change req.body.user_id to req.session.user._id
-        { $push: {favs: req.body._id}}
-    )
-    .then(()=>{
-        debugger
-        res.status(200).json({message: "Favourited!"})
+
+
+    const musicID = req.body._id;
+    const userId = req.body.user_id
+
+    Promise.all([
+        Music.updateOne(
+            { _id: musicID },
+            { $push: {favs: userId}} // change req.body.user_id to req.session.user._id
+        ),
+        User.updateOne(
+            { _id: userId }, // change req.body.user_id to req.session.user._id
+            { $push: {favs: musicID}}
+        )
+    ])
+    .then((results)=>{
+        res.status(200).json({message: `Favourited!(hopefully)`})
     })
-    .catch(err=>console.log("could not add favourite, err msg:",err))
+    .catch(err=> {
+        console.log("could not add favourite, err msg:",err)
+        res.status(500).json({message: err})
+    })
 })
 
 router.post('/remove_fav', (req,res) => {
-    debugger
-    Music.updateOne(
-        { _id: req.body._id },
-        { $pull: {favs: req.body.user_id}} // change req.body.user_id to req.session.user._id
-    ) 
-    User.updateOne(
-        { _id: req.body.user_id }, // change req.body.user_id to req.session.user._id
-        { $pull: {favs: req.body._id}}
-    )
-    .then(()=>{
-        debugger
-        res.status(200).json({message: "Fav mark removed!"})
+    const musicID = req.body._id;
+    const userId = req.body.user_id
+
+    Promise.all([
+        Music.updateOne(
+            { _id: musicID },
+            { $pull: {favs: userId}} // change req.body.user_id to req.session.user._id
+        ),
+        User.updateOne(
+            { _id: userId }, // change req.body.user_id to req.session.user._id
+            { $pull: {favs: musicID}}
+        )
+    ])
+    .then((results)=>{
+        res.status(200).json({message: `Fav removed!(hopefully)`})
     })
-    .catch(err=>console.log("could not add favourite, err msg:",err))
+    .catch(err=> {
+        console.log("could not remove, err msg:",err)
+        res.status(500).json({message: err})
+    })
 })
+
 
 module.exports = router;
