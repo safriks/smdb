@@ -92,75 +92,79 @@ export default class MusicDetails extends Component {
       : (favBtnClassName = "flex-ctd fav-btn not-fav");
 
     return (
-      <div>
-        {isUserLoggedIn ? (
-          <div className="align-ctr">
-            <button
-              onClick={this.handleFavoriteClick}
-              className={favBtnClassName}
-            >
-              <i className="fas fa-heart" />
-            </button>
-            <Link
-              to={`/edit_sheet/${this.state.selectedMusic._id}`}
-              className="nav-link"
-            >
-              Edit
-            </Link>
-          </div>
-        ) : (
-          <></>
-        )}
-        <p>
-          <span className="label-text">Title: </span>
-        </p>
-        <p>{this.state.selectedMusic.title}</p>
-        <p>
-          <span className="label-text">Year: </span>
-        </p>
-        <p>{this.state.selectedMusic.year}</p>
-        <p>
-          <span className="label-text">Composer: </span>
-        </p>
-        <p>
-          {this.state.selectedMusic.composer.first_name}{" "}
-          {this.state.selectedMusic.composer.last_name}
-        </p>
-        <p>
-          <span className="label-text">Arrangement author: </span>
-        </p>
-        <p>
-          {this.state.selectedMusic.arrangement_author.first_name}{" "}
-          {this.state.selectedMusic.arrangement_author.last_name}
-        </p>
-        <p>
-          <span className="label-text">Voices: </span>
-        </p>
-        <ul>
-          {this.state.selectedMusic.voices.map((voice, index) => {
-            return <li key={index.toString()}>{voice}</li>;
-          })}
-        </ul>
-        <p>
-          <span className="label-text">Genre: </span>
-        </p>
-        <p>{this.state.selectedMusic.genre}</p>
-        <p>
-          <span className="label-text">Video: </span>
-        </p>
-        <a href={this.state.selectedMusic.video}>
-          {this.state.selectedMusic.video}
-        </a>
-        <p>
-          <span className="label-text">Sheet music: </span>
-        </p>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`http://localhost:3010${this.state.selectedMusic.file}`}
-        >
-          {this.state.selectedMusic.file}
-        </a>
+      <div className="columns">
+        <div className="column is-half">
+          <p>
+            <span className="label-text">Title: </span>
+          </p>
+          <p>{this.state.selectedMusic.title}</p>
+          <p>
+            <span className="label-text">Year: </span>
+          </p>
+          <p>{this.state.selectedMusic.year}</p>
+          <p>
+            <span className="label-text">Composer: </span>
+          </p>
+          <p>
+            {this.state.selectedMusic.composer.first_name}{" "}
+            {this.state.selectedMusic.composer.last_name}
+          </p>
+          <p>
+            <span className="label-text">Arrangement author: </span>
+          </p>
+          <p>
+            {this.state.selectedMusic.arrangement_author.first_name}{" "}
+            {this.state.selectedMusic.arrangement_author.last_name}
+          </p>
+          <p>
+            <span className="label-text">Voices: </span>
+          </p>
+          <ul>
+            {this.state.selectedMusic.voices.map((voice, index) => {
+              return <li key={index.toString()}>{voice}</li>;
+            })}
+          </ul>
+          <p>
+            <span className="label-text">Genre: </span>
+          </p>
+          <p>{this.state.selectedMusic.genre}</p>
+          <p>
+            <span className="label-text">Video: </span>
+          </p>
+          <a href={this.state.selectedMusic.video}>
+            {this.state.selectedMusic.video}
+          </a>
+          <p>
+            <span className="label-text">Sheet music: </span>
+          </p>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`http://localhost:3010${this.state.selectedMusic.file}`}
+          >
+            {this.state.selectedMusic.file}
+          </a>
+        </div>
+        <div className="column is-half">
+          {isUserLoggedIn ? (
+            <div className="align-ctr dlt-row">
+              <button
+                onClick={this.handleFavoriteClick}
+                className={favBtnClassName}
+              >
+                <i className="fas fa-heart" />
+              </button>
+              <Link
+                to={`/edit_sheet/${this.state.selectedMusic._id}`}
+                className="nav-link"
+              >
+                Edit
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
   }
