@@ -3,6 +3,8 @@ const router = express.Router();
 
 const Music = require("../models/music.js");
 const Composer = require("../models/composer.js");
+const User = require("../models/user.js");
+
 
 router.get("/search", (req,res)=>{
     // const searchQuery = req.query.q;
@@ -17,6 +19,25 @@ router.get("/search", (req,res)=>{
         };
     })
 })
+
+router.get("/id", (req,res)=>{
+    // const searchQuery = req.query.q;
+    // const regExSearch = new RegExp(`.${searchQuery}.`);
+    debugger
+    Music.find({_id : {$eq : req.query.q }})
+    .populate("composer")
+    .populate("arrangement")
+    .populate("uploader")
+    .exec((err,result)=>{  
+        if (err) res.send("error searching music. err msg: "+err);
+        if (!err) {
+            debugger
+            res.json(result)
+        };
+    })
+})
+
+
 
 module.exports = router;
 
