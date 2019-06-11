@@ -29,7 +29,6 @@ export default class Profile extends Component {
   };
 
   render() {
-    debugger;
     return (
       <div className="columns is-centered">
         <div className="column is-half col container">

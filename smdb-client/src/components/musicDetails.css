@@ -1,13 +1,26 @@
 .fav-btn {
   border: 1px solid rgb(156, 5, 5);
-  color: rgb(156, 5, 5);
   border-radius: 25px;
-  background: #fff;
   padding: 2vh;
-  margin-bottom: 3vh;
+  margin-right: 2vw;
 }
 
-.fav-btn:hover {
-  background: rgb(156, 5, 5);
+.not-fav {
+  color: rgb(156, 5, 5);
+  background: #fff;
+}
+
+.is-fav {
   color: #fff;
+  background: rgb(156, 5, 5);
+}
+
+.not-fav:hover {
+  color: #fff;
+  background: rgb(156, 5, 5);
+}
+
+.is-fav:hover {
+  color: rgb(156, 5, 5);
+  background: #fff;
 }

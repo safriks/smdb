@@ -28,6 +28,11 @@
   display: flex;
 }
 
+.align-ctr {
+  display: flex;
+  align-items: center;
+}
+
 .flex-ctd {
   display: flex;
   justify-content: center;
@@ -40,10 +45,6 @@
 
 nav {
   border-bottom: 1px solid #01c4a7;
-}
-
-p {
-  margin: 2vh;
 }
 
 .error-message {
