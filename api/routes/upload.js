@@ -39,7 +39,7 @@ router.post("/edit_sheet_and_file", upload.single("sheet_file"), (req,res,next)=
   })
 })
 
-router.post("/edit_sheet", (req,res,next)=>{
+router.post("/edit_sheet", upload.single("sheet_file"), (req,res,next)=>{
   const updatedSheet = {
        title: req.body.title,
        composer: req.body.composer, // an objectId
