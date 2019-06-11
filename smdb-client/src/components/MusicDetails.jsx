@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       selectedMusic: props.selectedMusic[0],
@@ -26,19 +27,18 @@ export default class MusicDetails extends Component {
     }
   }
 
-  //deprecated -- replace with componentDidUpdate oid
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
-      this.setState({ selectedMusic: nextProps.selectedMusic[0] });
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
+      this.setState({ selectedMusic: this.props.selectedMusic[0] });
     }
   }
 
   handleFavoriteClick = e => {
     this.state.isFavorite
       ? axios({
-          url: "http://localhost:3010/remove_favorite",
+          url: "http://localhost:3010/remove_fav",
           data: {
-            sheet: this.state.selectedMusic._id,
+            sheetId: this.state.selectedMusic._id,
             currentUserId: this.state.currentUser._id
           },
           method: "post",
@@ -47,9 +47,9 @@ export default class MusicDetails extends Component {
           this.setState({ isFavorite: false });
         })
       : axios({
-          url: "http://localhost:3010/add_favorite",
+          url: "http://localhost:3010/add_fav",
           data: {
-            sheet: this.state.selectedMusic._id,
+            sheetID: this.state.selectedMusic._id,
             currentUserId: this.state.currentUser._id
           },
           method: "post",
@@ -61,6 +61,7 @@ export default class MusicDetails extends Component {
 
   //Check whether user is logged in
   isUserLoggedIn = () => {
+    debugger;
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
     } else {
@@ -96,24 +97,49 @@ export default class MusicDetails extends Component {
         ) : (
           <></>
         )}
+        <p>
+          <span className="label-text">Title: </span>
+        </p>
         <p>{this.state.selectedMusic.title}</p>
+        <p>
+          <span className="label-text">Year: </span>
+        </p>
         <p>{this.state.selectedMusic.year}</p>
+        <p>
+          <span className="label-text">Composer: </span>
+        </p>
         <p>
           {this.state.selectedMusic.composer.first_name}{" "}
           {this.state.selectedMusic.composer.last_name}
         </p>
-        {/*
+        {/* <p>
+          <span className="label-text">Arrangement author: </span>
+        </p>
         <p>
           {this.state.selectedMusic.arrangement_author.first_name}{" "}
           {this.state.selectedMusic.arrangement_author.last_name}
+        </p>
+        <p>
+          <span className="label-text">Voices: </span>
         </p>
         <ul>
           {this.state.selectedMusic.voices.map(voice => {
             return <li>{voice}</li>;
           })}
         </ul>
+        <p>
+          <span className="label-text">Genre: </span>
+        </p>
         <p>{this.state.selectedMusic.genre}</p>
-        <a href={this.state.selectedMusic.video}>{this.state.selectedMusic.video}</a>
+        <p>
+          <span className="label-text">Video: </span>
+        </p>
+        <a href={this.state.selectedMusic.video}>
+          {this.state.selectedMusic.video}
+        </a>
+        <p>
+          <span className="label-text">Sheet music: </span>
+        </p>
         <p>{this.state.selectedMusic.file}</p> */}
       </div>
     );

@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default class Navbar extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       currentUser: this.props.currentUser,
@@ -31,8 +30,6 @@ export default class Navbar extends Component {
     })
       .then(response => {
         this.props.logOut();
-        //REDIRECT DOES NOT WORK YET
-        // this.props.history.push("/");
       })
       .catch(err => {
         this.setState({ err: err });

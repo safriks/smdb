@@ -4,7 +4,6 @@ import uploadSelectValues from "../values.json";
 
 export default class EditSheet extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       currentSheetId: "",
@@ -28,19 +27,15 @@ export default class EditSheet extends Component {
   }
 
   componentDidMount() {
-    debugger;
     if (!this.isUserLoggedIn()) {
       this.props.history.push("/");
     } else {
-      debugger;
       //Check if there is data in props.location.state (when redirected from upload page)
       //If not: get data of current sheet from database
       if (!this.props.location.state) {
-        debugger;
         axios
           .get(`http://localhost:3010/id${this.props.match.params.id}`)
           .then(response => {
-            debugger;
             let currentSheet = response.data;
             this.setState({
               currentSheetId: currentSheet._id,
@@ -55,7 +50,6 @@ export default class EditSheet extends Component {
             });
           });
       } else {
-        debugger;
         this.setState({
           currentSheetId: this.props.location.state.current_sheet._id,
           title: this.props.location.state.current_sheet.title,
@@ -68,7 +62,6 @@ export default class EditSheet extends Component {
           file: this.props.location.state.current_sheet.file
         });
       }
-      debugger;
       let pathName = this.props.history.location.pathname;
       this.props.isNavBarBlurred(pathName);
       //Set currentSheet with id that is passed in url
@@ -84,16 +77,16 @@ export default class EditSheet extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
     let editForm = this.formRef.current;
     let formData = new FormData(editForm);
 
     //check whether new file is uploaded
-
+    const fileInputVal = editForm.querySelector("#file-input").value;
+    const route = fileInputVal ? "edit-sheet-and-file" : "edit-sheet";
     axios({
-      url: "http://localhost:3010/ROUTES ABOVE",
+      url: `http://localhost:3010/${route}`,
       data: formData,
       method: "post",
       headers: { "Content-Type": "multipart/form-data" },
@@ -265,6 +258,7 @@ export default class EditSheet extends Component {
                   <div className="file is-link">
                     <label className="file-label">
                       <input
+                        id="file-input"
                         type="file"
                         className="file-input"
                         name="file"
