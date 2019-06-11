@@ -15,45 +15,28 @@ export default class AllMusic extends Component {
       searchQuery: "",
       currentUser: props.currentUser
     };
+    this.selectSheetHandler = this.selectSheetHandler.bind(this);
   }
 
   componentDidMount() {
-    debugger;
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
     axios
       .get("http://localhost:3010/all_music/")
       .then(response => {
-        let selectedMusic = null;
-
-        if (this.props.match.params.id) {
-          //filter selected list item
-          const queryId = this.props.match.params.id;
-          selectedMusic = response.data.filter(music => music._id === queryId);
-        }
-
-        this.setState({ sheets: response.data, selectedMusic: selectedMusic });
+        this.setState({
+          sheets: response.data
+          // selectedMusic: response.data[0]
+        });
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  //deprecated -- replace with componentDidUpdate oid
-  componentDidUpdate(prevProps) {
-    debugger;
-    debugger;
-    if (prevProps.match.params.id !== this.props.match.params.id) {
-      const data = [...this.state.sheets];
-
-      //filter selected list item
-      const queryId = prevProps.match.params.id;
-      const selectedMusic = data.filter(music => music._id === queryId);
-      this.setState({ selectedMusic: selectedMusic });
-    }
-    if (prevProps.currentUser !== this.props.currentUser) {
-      this.setState({ currentUser: prevProps.currentUser });
-    }
+  selectSheetHandler(_id) {
+    const selectedMusic = this.state.sheets.filter(music => music._id === _id);
+    this.setState({ selectedMusic: selectedMusic });
   }
 
   handleClose = () => {
@@ -72,15 +55,15 @@ export default class AllMusic extends Component {
       var sheetsJSX = this.state.sheets.map((sheet, index) => {
         return (
           <MusicListItem
+            selectSheetHandler={this.selectSheetHandler}
             key={`sheet ${index + 1}`}
             {...sheet}
             index={index.toString()}
-            props={this.selectSheetHandler}
           />
         );
       });
     } else {
-      //Filter all sheets with search query --- ADD FUNCTION THAT MAKES QUERYING BOTH COMPOSER AND TITLE AT SAME TIME
+      //Filter all sheets with search query
       let searchedSheets = this.state.sheets.filter(
         sheet =>
           sheet.title.toLowerCase().includes(this.state.searchQuery) ||
@@ -95,6 +78,7 @@ export default class AllMusic extends Component {
       var sheetsJSX = searchedSheets.map((sheet, index) => {
         return (
           <MusicListItem
+            selectSheetHandler={this.selectSheetHandler}
             key={`sheet ${index + 1}`}
             {...sheet}
             index={index.toString()}
@@ -104,7 +88,6 @@ export default class AllMusic extends Component {
     }
 
     const selectedMusic = this.state.selectedMusic;
-
     return (
       <>
         <div className="columns">
@@ -116,12 +99,6 @@ export default class AllMusic extends Component {
               name="searchQuery"
               onInput={this.handleSearchInputChange}
             />
-            {/* <button
-              onClick={this.handleSearchClick}
-              className="search-el search-btn"
-            >
-              Search
-            </button> */}
           </div>
         </div>
         <div className="columns list-container">

@@ -27,10 +27,9 @@ export default class MusicDetails extends Component {
     }
   }
 
-  //deprecated -- replace with componentDidUpdate oid
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
-      this.setState({ selectedMusic: nextProps.selectedMusic[0] });
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
+      this.setState({ selectedMusic: this.props.selectedMusic[0] });
     }
   }
 
@@ -71,7 +70,6 @@ export default class MusicDetails extends Component {
   };
 
   render() {
-    debugger;
     var isUserLoggedIn = this.isUserLoggedIn();
 
     let favBtnClassName = "flex-ctd fav-btn";
@@ -99,24 +97,49 @@ export default class MusicDetails extends Component {
         ) : (
           <></>
         )}
+        <p>
+          <span className="label-text">Title: </span>
+        </p>
         <p>{this.state.selectedMusic.title}</p>
+        <p>
+          <span className="label-text">Year: </span>
+        </p>
         <p>{this.state.selectedMusic.year}</p>
+        <p>
+          <span className="label-text">Composer: </span>
+        </p>
         <p>
           {this.state.selectedMusic.composer.first_name}{" "}
           {this.state.selectedMusic.composer.last_name}
         </p>
-        {/*
+        {/* <p>
+          <span className="label-text">Arrangement author: </span>
+        </p>
         <p>
           {this.state.selectedMusic.arrangement_author.first_name}{" "}
           {this.state.selectedMusic.arrangement_author.last_name}
+        </p>
+        <p>
+          <span className="label-text">Voices: </span>
         </p>
         <ul>
           {this.state.selectedMusic.voices.map(voice => {
             return <li>{voice}</li>;
           })}
         </ul>
+        <p>
+          <span className="label-text">Genre: </span>
+        </p>
         <p>{this.state.selectedMusic.genre}</p>
-        <a href={this.state.selectedMusic.video}>{this.state.selectedMusic.video}</a>
+        <p>
+          <span className="label-text">Video: </span>
+        </p>
+        <a href={this.state.selectedMusic.video}>
+          {this.state.selectedMusic.video}
+        </a>
+        <p>
+          <span className="label-text">Sheet music: </span>
+        </p>
         <p>{this.state.selectedMusic.file}</p> */}
       </div>
     );

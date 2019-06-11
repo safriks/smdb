@@ -31,14 +31,12 @@ class App extends Component {
   }
 
   getCurrentUser = () => {
-    debugger;
     axios({
       url: "http://localhost:3010/get_user",
       method: "post",
       withCredentials: true
     })
       .then(response => {
-        debugger;
         this.setState(
           {
             currentUser: response.data
@@ -94,17 +92,6 @@ class App extends Component {
           <Route
             exact
             path="/all_music"
-            render={props => (
-              <AllMusic
-                {...props}
-                isNavBarBlurred={this.isNavBarBlurred}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/all_music/:id"
             render={props => (
               <AllMusic
                 {...props}
