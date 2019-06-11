@@ -14,8 +14,8 @@ router.get('/favourites', (req,res) => {
 router.post('/add_fav', (req,res) => {
 
 
-    const musicID = req.body._id;
-    const userId = req.body.user_id
+    const musicID = req.body.sheetId;
+    const userId = req.body.currentUserId
 
     Promise.all([
         Music.updateOne(
@@ -37,8 +37,8 @@ router.post('/add_fav', (req,res) => {
 })
 
 router.post('/remove_fav', (req,res) => {
-    const musicID = req.body._id;
-    const userId = req.body.user_id
+    const musicID = req.body.sheetId;
+    const userId = req.body.currentUserId
 
     Promise.all([
         Music.updateOne(
