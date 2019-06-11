@@ -50,8 +50,8 @@ export default class Profile extends Component {
                 <span className="label-text">Favorites: </span>
               </p>
               <ul className="custom-list">
-                {this.state.currentUser.favs.map(fav => {
-                  return <li>{fav}</li>;
+                {this.state.currentUser.favs.map((fav, index) => {
+                  return <li key={index.toString()}>{fav}</li>;
                 })}
               </ul>
             </div>

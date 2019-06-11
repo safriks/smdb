@@ -130,8 +130,8 @@ export default class MusicDetails extends Component {
           <span className="label-text">Voices: </span>
         </p>
         <ul>
-          {this.state.selectedMusic.voices.map(voice => {
-            return <li>{voice}</li>;
+          {this.state.selectedMusic.voices.map((voice, index) => {
+            return <li key={index.toString()}>{voice}</li>;
           })}
         </ul>
         <p>
