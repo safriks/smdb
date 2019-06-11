@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default class Navbar extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       currentUser: this.props.currentUser,
@@ -24,6 +23,7 @@ export default class Navbar extends Component {
   }
 
   handleLogOutClick = e => {
+    debugger;
     axios({
       url: "http://localhost:3010/log_out",
       method: "post",
@@ -31,8 +31,6 @@ export default class Navbar extends Component {
     })
       .then(response => {
         this.props.logOut();
-        //REDIRECT DOES NOT WORK YET
-        // this.props.history.push("/");
       })
       .catch(err => {
         this.setState({ err: err });
@@ -41,6 +39,7 @@ export default class Navbar extends Component {
 
   //Check whether user is logged in
   isUserLoggedIn = () => {
+    debugger;
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
     } else {
@@ -49,6 +48,7 @@ export default class Navbar extends Component {
   };
 
   render() {
+    debugger;
     var isUserLoggedIn = this.isUserLoggedIn();
 
     return (

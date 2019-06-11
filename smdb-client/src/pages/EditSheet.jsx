@@ -84,7 +84,6 @@ export default class EditSheet extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
     let editForm = this.formRef.current;
@@ -92,8 +91,11 @@ export default class EditSheet extends Component {
 
     //check whether new file is uploaded
 
+    const fileInputVal = editForm.querySelector("#file-input").value;
+    const route = fileInputVal ? "edit-sheet-and-file" : "edit-sheet";
+    debugger;
     axios({
-      url: "http://localhost:3010/ROUTES ABOVE",
+      url: `http://localhost:3010/${route}`,
       data: formData,
       method: "post",
       headers: { "Content-Type": "multipart/form-data" },
@@ -265,6 +267,7 @@ export default class EditSheet extends Component {
                   <div className="file is-link">
                     <label className="file-label">
                       <input
+                        id="file-input"
                         type="file"
                         className="file-input"
                         name="file"

@@ -7,13 +7,13 @@ import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       sheets: [],
       selectedMusic: null,
       searchQuery: "",
       currentUser: props.currentUser
-      // isLoading: true
     };
   }
 
@@ -40,14 +40,19 @@ export default class AllMusic extends Component {
   }
 
   //deprecated -- replace with componentDidUpdate oid
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
+  componentDidUpdate(prevProps) {
+    debugger;
+    debugger;
+    if (prevProps.match.params.id !== this.props.match.params.id) {
       const data = [...this.state.sheets];
 
       //filter selected list item
-      const queryId = nextProps.match.params.id;
+      const queryId = prevProps.match.params.id;
       const selectedMusic = data.filter(music => music._id === queryId);
       this.setState({ selectedMusic: selectedMusic });
+    }
+    if (prevProps.currentUser !== this.props.currentUser) {
+      this.setState({ currentUser: prevProps.currentUser });
     }
   }
 
@@ -70,6 +75,7 @@ export default class AllMusic extends Component {
             key={`sheet ${index + 1}`}
             {...sheet}
             index={index.toString()}
+            props={this.selectSheetHandler}
           />
         );
       });

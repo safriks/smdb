@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       selectedMusic: props.selectedMusic[0],
@@ -36,9 +37,9 @@ export default class MusicDetails extends Component {
   handleFavoriteClick = e => {
     this.state.isFavorite
       ? axios({
-          url: "http://localhost:3010/remove_favorite",
+          url: "http://localhost:3010/remove_fav",
           data: {
-            sheet: this.state.selectedMusic._id,
+            sheetId: this.state.selectedMusic._id,
             currentUserId: this.state.currentUser._id
           },
           method: "post",
@@ -47,9 +48,9 @@ export default class MusicDetails extends Component {
           this.setState({ isFavorite: false });
         })
       : axios({
-          url: "http://localhost:3010/add_favorite",
+          url: "http://localhost:3010/add_fav",
           data: {
-            sheet: this.state.selectedMusic._id,
+            sheetID: this.state.selectedMusic._id,
             currentUserId: this.state.currentUser._id
           },
           method: "post",
@@ -61,6 +62,7 @@ export default class MusicDetails extends Component {
 
   //Check whether user is logged in
   isUserLoggedIn = () => {
+    debugger;
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
     } else {
@@ -69,6 +71,7 @@ export default class MusicDetails extends Component {
   };
 
   render() {
+    debugger;
     var isUserLoggedIn = this.isUserLoggedIn();
 
     let favBtnClassName = "flex-ctd fav-btn";

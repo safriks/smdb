@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./Layout.css";
 import axios from "axios";
 import Navbar from "./components/Navbar";
@@ -11,34 +11,42 @@ import Upload from "./pages/Upload";
 import EditSheet from "./pages/EditSheet";
 import { Redirect } from "react-router-dom";
 import Profile from "./pages/Profile";
+import history from "./history";
 
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      currentUser: {},
+      navBarClassName: "navbar",
+      err: null
+    };
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.isNavBarBlurred = this.isNavBarBlurred.bind(this);
     this.logOut = this.logOut.bind(this);
   }
-  state = {
-    currentUser: {},
-    navBarClassName: "navbar",
-    err: null
-  };
 
   componentDidMount() {
     this.getCurrentUser();
   }
 
   getCurrentUser = () => {
+    debugger;
     axios({
       url: "http://localhost:3010/get_user",
       method: "post",
       withCredentials: true
     })
       .then(response => {
-        this.setState({
-          currentUser: response.data
-        });
+        debugger;
+        this.setState(
+          {
+            currentUser: response.data
+          },
+          () => {
+            history.push("/all_music");
+          }
+        );
       })
       .catch(err => {
         this.setState({
@@ -56,7 +64,10 @@ class App extends Component {
   };
 
   logOut = () => {
-    this.setState({ currentUser: {} });
+    debugger;
+    this.setState({ currentUser: {} }, () => {
+      history.push("/");
+    });
   };
 
   render() {
@@ -95,7 +106,11 @@ class App extends Component {
             exact
             path="/all_music/:id"
             render={props => (
-              <AllMusic {...props} isNavBarBlurred={this.isNavBarBlurred} />
+              <AllMusic
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
             )}
           />
           <Route
