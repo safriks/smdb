@@ -58,7 +58,6 @@ export default class Upload extends Component {
       withCredentials: true
     })
       .then(response => {
-        debugger;
         //redirect from upload to edit with id of just uploaded file
         let sheetId = response.data._id;
         this.props.history.push({
