@@ -1,8 +1,18 @@
-.black {
-  background: black;
-  height: 400px;
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
-.black h1 {
-  color: white;
+.filter-label {
+  color: #276cda;
+  margin: 1vh;
+}
+
+.filter-label:hover {
+  color: #01c4a7;
+  cursor: pointer;
+}
+
+.filter-checkbox {
+  margin: 1vh;
 }
