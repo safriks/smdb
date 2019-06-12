@@ -27,7 +27,6 @@ export default class EditSheet extends Component {
   }
 
   componentDidMount() {
-    debugger;
     if (!this.isUserLoggedIn()) {
       this.props.history.push("/");
     } else {
@@ -37,9 +36,7 @@ export default class EditSheet extends Component {
         axios
           .get(`http://localhost:3010/id/${this.props.match.params.id}`)
           .then(response => {
-            debugger;
             let currentSheet = response.data[0];
-            debugger;
             this.setState({
               currentSheetId: currentSheet._id,
               title: currentSheet.title,
@@ -53,7 +50,6 @@ export default class EditSheet extends Component {
             });
           });
       } else {
-        debugger;
         this.setState({
           currentSheetId: this.props.location.state.current_sheet._id,
           title: this.props.location.state.current_sheet.title,
@@ -81,7 +77,6 @@ export default class EditSheet extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
     let editForm = this.formRef.current;
@@ -98,7 +93,6 @@ export default class EditSheet extends Component {
       withCredentials: true
     })
       .then(response => {
-        debugger;
         //redirect from edit to all music with id of just edited file
         this.props.history.push("/all_music");
       })

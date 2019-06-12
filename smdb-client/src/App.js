@@ -31,6 +31,7 @@ class App extends Component {
   }
 
   getCurrentUser = () => {
+    debugger;
     axios({
       url: `${process.env.REACT_APP_API_URL}/get_user`,
       method: "post",
@@ -62,7 +63,6 @@ class App extends Component {
   };
 
   logOut = () => {
-    debugger;
     this.setState({ currentUser: {} }, () => {
       history.push("/");
     });

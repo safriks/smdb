@@ -7,7 +7,6 @@ import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       sheets: [],
