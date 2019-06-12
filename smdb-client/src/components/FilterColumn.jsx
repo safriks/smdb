@@ -4,8 +4,9 @@ import uploadSelectValues from "../values.json";
 import axios from "axios";
 
 export default class MusicListItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    debugger;
+    super(props);
     this.state = {
       genreList: uploadSelectValues.genres,
       composerList: [],
@@ -19,10 +20,6 @@ export default class MusicListItem extends Component {
       this.setState({ composerList: response.data });
     });
   }
-
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
 
   handleDropdownClick = e => {
     let targetName = e.target.attributes[1].value;
@@ -38,7 +35,9 @@ export default class MusicListItem extends Component {
         <label key={index} className="checkbox">
           <input
             className="filter-checkbox"
-            onInput={this.handleInputChange}
+            onInput={e => {
+              this.props.handleGenreFilterInputChange(e);
+            }}
             type="checkbox"
             name={genre}
           />
@@ -53,7 +52,9 @@ export default class MusicListItem extends Component {
         <label key={index} className="checkbox">
           <input
             className="filter-checkbox"
-            onInput={this.handleInputChange}
+            onInput={e => {
+              this.props.handleComposerFilterInputChange(e);
+            }}
             type="checkbox"
             name={composerName}
           />
