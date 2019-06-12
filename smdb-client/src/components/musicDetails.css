@@ -24,3 +24,7 @@
   color: rgb(156, 5, 5);
   background: #fff;
 }
+
+.soft-corner {
+  border-radius: 10px;
+}

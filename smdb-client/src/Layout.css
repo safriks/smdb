@@ -1,17 +1,32 @@
+@font-face {
+  font-family: Alegreya;
+  src: url(./design/alegreya/Alegreya-Regular.otf);
+}
+
+*,
+input,
+a,
+button {
+  font-family: Alegreya;
+}
+
 .App {
   height: 100vh;
+  background-image: url("./design/black-and-white-blur-document-164821.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
   padding: 5vh;
-  margin: 5vh;
+  margin: 1vh;
 }
 
 .header {
   font-size: 2.5em;
   font-weight: 800;
   margin: 5vh;
-  color: #276cda;
+  color: black;
   text-align: center;
 }
 
@@ -22,6 +37,10 @@
   -ms-filter: blur(5px);
   filter: blur(5px);
   pointer-events: none;
+}
+
+.background {
+  background: rgba(255, 255, 255, 0.795);
 }
 
 .flex {
@@ -40,12 +59,12 @@
 }
 
 .col {
-  border: 1px solid #01c4a7;
-  border-radius: 5px;
+  border: 1px solid grey;
+  border-radius: 15px;
 }
 
 nav {
-  border-bottom: 1px solid #01c4a7;
+  border-bottom: 1px solid grey;
 }
 
 .error-message {
@@ -58,4 +77,8 @@ nav {
 
 .custom-list {
   list-style-type: circle;
+}
+
+.label-text {
+  color: black;
 }

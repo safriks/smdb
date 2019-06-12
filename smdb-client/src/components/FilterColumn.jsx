@@ -66,23 +66,25 @@ export default class FilterColumn extends Component {
     });
 
     return (
-      <div className="flex-col">
-        <h1
-          className="filter-label"
-          name="genre"
-          onClick={this.handleDropdownClick}
-        >
-          Genre
-        </h1>
-        {this.state.genreDropdown ? genreCheckBoxJSX : <></>}
-        <h1
-          className="filter-label"
-          name="composer"
-          onClick={this.handleDropdownClick}
-        >
-          Composer
-        </h1>
-        {this.state.composerDropdown ? composerCheckBoxJSX : <></>}
+      <div className="background full-height">
+        <div className="flex-col">
+          <h1
+            className="filter-label"
+            name="genre"
+            onClick={this.handleDropdownClick}
+          >
+            Genre
+          </h1>
+          {this.state.genreDropdown ? genreCheckBoxJSX : <></>}
+          <h1
+            className="filter-label"
+            name="composer"
+            onClick={this.handleDropdownClick}
+          >
+            Composer
+          </h1>
+          {this.state.composerDropdown ? composerCheckBoxJSX : <></>}
+        </div>
       </div>
     );
   }

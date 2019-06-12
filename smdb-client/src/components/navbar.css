@@ -2,10 +2,29 @@ nav {
   margin-bottom: 2vh;
 }
 
+.navbar {
+  background: rgba(255, 255, 255, 0.452);
+}
+
+.navbar-menu {
+  background: rgba(255, 255, 255, 0.452);
+}
+
 .nav-link {
-  color: #01c4a7;
+  color: black;
 }
 
 .nav-link:hover {
-  color: #276cda;
+  color: grey;
+}
+
+.icon {
+  background: url("../design/osmdb-logo.svg");
+  height: 100%;
+}
+
+.is-bordeaux {
+  background: rgb(156, 5, 5);
+  color: white;
+  border: 1px solid rgb(156, 5, 5);
 }

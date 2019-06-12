@@ -4,15 +4,20 @@
 }
 
 .filter-label {
-  color: #276cda;
+  color: black;
   margin: 1vh;
 }
 
 .filter-label:hover {
-  color: #01c4a7;
+  color: grey;
   cursor: pointer;
 }
 
 .filter-checkbox {
   margin: 1vh;
+}
+
+.full-height {
+  height: 100%;
+  border-radius: 10px;
 }
