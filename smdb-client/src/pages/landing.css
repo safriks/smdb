@@ -16,13 +16,13 @@
   margin: 2vh;
 }
 
-.btn-blue {
-  background: white;
-  border: solid 1px rgb(39, 108, 218);
-  color: rgb(39, 108, 218);
+.btn-black {
+  background: rgba(255, 255, 255, 0.815);
+  border: solid 1px black;
+  color: black;
 }
 
-.btn-blue:hover {
-  background: rgb(39, 108, 218);
+.btn-black:hover {
+  background: black;
   color: white;
 }

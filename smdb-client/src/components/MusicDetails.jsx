@@ -92,7 +92,7 @@ export default class MusicDetails extends Component {
       : (favBtnClassName = "flex-ctd fav-btn not-fav");
 
     return (
-      <div className="columns">
+      <div className="columns background soft-corner">
         <div className="column is-half">
           <p>
             <span className="label-text">Title: </span>

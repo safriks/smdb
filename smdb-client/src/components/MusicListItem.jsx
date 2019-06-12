@@ -7,7 +7,7 @@ export default function MusicListItem(props) {
       onClick={() => {
         props.selectSheetHandler(props._id);
       }}
-      className="list-item"
+      className="list-item background"
     >
       <p>
         <span className="label-text">Title: </span>

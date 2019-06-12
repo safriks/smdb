@@ -139,7 +139,7 @@ export default class EditSheet extends Component {
 
     return (
       <div className="columns is-centered">
-        <div className="column is-half col container">
+        <div className="column is-half col container background">
           <div>
             <h1 className="header flex-ctd">Edit sheet music info</h1>
           </div>
@@ -252,7 +252,7 @@ export default class EditSheet extends Component {
                   </div>
                 </div>
                 <div className="field">
-                  <div className="file is-link">
+                  <div className="file is-black">
                     <label className="file-label">
                       <input
                         id="file-input"
@@ -284,7 +284,7 @@ export default class EditSheet extends Component {
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
-                    <button type="submit" className="button is-primary">
+                    <button type="submit" className="button is-black">
                       <strong>Next</strong>
                     </button>
                   </p>

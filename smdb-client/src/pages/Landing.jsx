@@ -31,19 +31,19 @@ export default class Landing extends Component {
             <></>
           ) : (
             <>
-              <Link to="/log_in" className="button btn-landing btn-blue">
+              <Link to="/log_in" className="button btn-landing btn-black">
                 Log in
               </Link>
-              <Link to={"/sign_up"} className="button btn-landing btn-blue">
+              <Link to={"/sign_up"} className="button btn-landing btn-black">
                 Sign up
               </Link>
             </>
           )}
           <Link to={"/all_music"}>
             {isUserLoggedIn ? (
-              <button className="button btn-landing btn-blue">Browse</button>
+              <button className="button btn-landing btn-black">Browse</button>
             ) : (
-              <button className="button btn-landing btn-blue">
+              <button className="button btn-landing btn-black">
                 Browse as guest
               </button>
             )}

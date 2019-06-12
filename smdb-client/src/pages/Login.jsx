@@ -57,7 +57,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="columns is-centered">
-        <div className="column is-half col container">
+        <div className="column is-half col container background">
           <div>
             <h1 className="header flex-ctd">
               Log in to Oh Sheet Music Database!
@@ -102,7 +102,7 @@ export default class Login extends Component {
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
-                    <button type="submit" className="button is-primary">
+                    <button type="submit" className="button is-black">
                       <strong>Login</strong>
                     </button>
                   </p>

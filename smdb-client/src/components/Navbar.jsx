@@ -59,13 +59,13 @@ export default class Navbar extends Component {
             <div className="navbar-item">
               <div className="buttons">
                 {isUserLoggedIn ? (
-                  <Link to="/upload" className="button is-link">
+                  <Link to="/upload" className="button is-light">
                     <strong>Upload sheet music</strong>
                   </Link>
                 ) : (
                   <></>
                 )}
-                <Link to="/" className="button is-link ">
+                <Link to="/" className="button is-black">
                   <i className="fa fa-home" aria-hidden="true" />
                 </Link>
                 {isUserLoggedIn ? (
@@ -89,14 +89,14 @@ export default class Navbar extends Component {
                 {isUserLoggedIn ? (
                   <></>
                 ) : (
-                  <Link to="/sign_up" className="button is-primary">
+                  <Link to="/sign_up" className="button is-black">
                     <strong>Sign up</strong>
                   </Link>
                 )}
                 {isUserLoggedIn ? (
                   <button
                     onClick={this.handleLogOutClick}
-                    className="button is-danger"
+                    className="button is-bordeaux"
                   >
                     Log out
                   </button>

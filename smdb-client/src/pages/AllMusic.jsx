@@ -56,7 +56,6 @@ export default class AllMusic extends Component {
   };
 
   handleGenreFilterInputChange = e => {
-    debugger;
     let genreFilterState = [...this.state.genreFilter];
     genreFilterState.includes(e.target.name)
       ? genreFilterState.splice(e.target.name, 1)
@@ -65,7 +64,6 @@ export default class AllMusic extends Component {
   };
 
   handleComposerFilterInputChange = e => {
-    debugger;
     let composerFilterState = [...this.state.composerFilter];
     composerFilterState.includes(e.target.name)
       ? composerFilterState.splice(e.target.name, 1)
@@ -120,7 +118,6 @@ export default class AllMusic extends Component {
   };
 
   render() {
-    debugger;
     let sheetsJSX = this.searchSheets();
 
     const selectedMusic = this.state.selectedMusic;
@@ -184,48 +181,3 @@ export default class AllMusic extends Component {
     );
   }
 }
-
-// filterSheets = () => {
-//   if (
-//     this.state.genreFilter.length === 0 &&
-//     this.state.composerFilter.length === 0 &&
-//     this.state.searchQuery.length === 0
-//   ) {
-//     var sheetsJSX = this.state.sheets.map((sheet, index) => {
-//       return (
-//         <MusicListItem
-//           selectSheetHandler={this.selectSheetHandler}
-//           key={`sheet ${index + 1}`}
-//           {...sheet}
-//           index={index.toString()}
-//         />
-//       );
-//     });
-//   } else if (
-//     this.state.genreFilter.length > 0 &&
-//     this.state.composerFilter.length === 0 &&
-//     this.state.searchQuery.length === 0
-//   ) {
-//     let searchedSheets = this.state.sheets.filter(sheet => {
-//       for (let i = 0; i < this.state.genreFilter.length; i++) {
-//         sheet.genre.includes(this.state.genreFilter[i]);
-//       }
-//     });
-//     var sheetsJSX = searchedSheets.map((sheet, index) => {
-//       return (
-//         <MusicListItem
-//           selectSheetHandler={this.selectSheetHandler}
-//           key={`sheet ${index + 1}`}
-//           {...sheet}
-//           index={index.toString()}
-//         />
-//       );
-//     });
-//   } else if (
-//     this.state.genreFilter.length > 0 &&
-//     this.state.composerFilter.length > 0 &&
-//     this.state.searchQuery.length === 0
-//   ) {
-
-//   }
-// };
