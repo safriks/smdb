@@ -3,7 +3,7 @@ import "./filterColumn.css";
 import uploadSelectValues from "../values.json";
 import axios from "axios";
 
-export default class MusicListItem extends Component {
+export default class FilterColumn extends Component {
   constructor(props) {
     debugger;
     super(props);
@@ -58,7 +58,7 @@ export default class MusicListItem extends Component {
               this.props.handleComposerFilterInputChange(e);
             }}
             type="checkbox"
-            name={composerName}
+            name={composer.last_name}
           />
           {composerName}
         </label>
