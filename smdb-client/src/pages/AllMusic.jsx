@@ -74,48 +74,53 @@ export default class AllMusic extends Component {
   };
 
   searchSheets = () => {
-    let searchQueryZero = this.state.searchQuery.length === 0;
-    let searchedSheets = this.state.sheets;
-    let sheetsJSX = searchQueryZero
-      ? this.state.sheets.map((sheet, index) => {
-          return (
-            <MusicListItem
-              selectSheetHandler={this.selectSheetHandler}
-              key={`sheet ${index + 1}`}
-              {...sheet}
-              index={index.toString()}
-            />
-          );
-        })
-      : searchedSheets
-          .filter(
-            sheet =>
-              sheet.title.toLowerCase().includes(this.state.searchQuery) ||
-              sheet.composer.first_name
-                .toLowerCase()
-                .includes(this.state.searchQuery) ||
-              sheet.composer.last_name
-                .toLowerCase()
-                .includes(this.state.searchQuery)
-          )
-          .map((sheet, index) => {
-            return (
-              <MusicListItem
-                selectSheetHandler={this.selectSheetHandler}
-                key={`sheet ${index + 1}`}
-                {...sheet}
-                index={index.toString()}
-              />
-            );
-          });
+    const searchedSheets = [...this.state.sheets];
 
-    let genreFilterZero = this.state.genreFilter.length === 0;
-    let genreFilter = this.state.genreFilter;
+    const sheetsJSX = searchedSheets
+      .filter(sheet => {
+        if (this.state.searchQuery.length === 0) return true;
+        return (
+          sheet.title.toLowerCase().includes(this.state.searchQuery) ||
+          sheet.composer.first_name
+            .toLowerCase()
+            .includes(this.state.searchQuery) ||
+          sheet.composer.last_name
+            .toLowerCase()
+            .includes(this.state.searchQuery)
+        );
+      })
+      .filter(sheet => {
+        if (this.state.genreFilter.length === 0) return true;
+        const filterByGenre = filteredGenre => {
+          for (let i = 0; i < sheet.genre.length; i++) {
+            return filteredGenre === sheet.genre[i];
+          }
+        };
+        return this.state.genreFilter.some(filterByGenre);
+      })
+      .filter(sheet => {
+        if (this.state.composerFilter.length === 0) return true;
+        const filterByComposer = filteredComposer => {
+          return filteredComposer === sheet.composer.last_name;
+        };
+        return this.state.composerFilter.some(filterByComposer);
+      })
+      .map((sheet, index) => {
+        return (
+          <MusicListItem
+            selectSheetHandler={this.selectSheetHandler}
+            key={`sheet ${index + 1}`}
+            {...sheet}
+            index={index.toString()}
+          />
+        );
+      });
 
     return sheetsJSX;
   };
 
   render() {
+    debugger;
     let sheetsJSX = this.searchSheets();
 
     const selectedMusic = this.state.selectedMusic;
