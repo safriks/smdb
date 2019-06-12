@@ -73,7 +73,42 @@ export default class AllMusic extends Component {
     this.setState({ composerFilter: composerFilterState });
   };
 
-  searchSheets = () => {};
+  // searchSheets = () => {
+  //   let searchQuery = this.state.searchQuery;
+  //   let searchedSheets = this.state.sheets
+  //   searchQuery.length === 0 ? (this.state.sheets.map((sheet, index) => {
+  //     return (
+  //       <MusicListItem
+  //         selectSheetHandler={this.selectSheetHandler}
+  //         key={`sheet ${index + 1}`}
+  //         {...sheet}
+  //         index={index.toString()}
+  //       />
+  //     );
+  //   })
+  //   ) : (searchedSheets.filter(
+  //     sheet =>
+  //       sheet.title.toLowerCase().includes(this.state.searchQuery) ||
+  //       sheet.composer.first_name
+  //         .toLowerCase()
+  //         .includes(this.state.searchQuery) ||
+  //       sheet.composer.last_name
+  //         .toLowerCase()
+  //         .includes(this.state.searchQuery)
+  //     )
+  //     .map((sheet, index) => {
+  //       return (
+  //         <MusicListItem
+  //           selectSheetHandler={this.selectSheetHandler}
+  //           key={`sheet ${index + 1}`}
+  //           {...sheet}
+  //           index={index.toString()}
+  //         />
+  //       );
+  //     })
+  //   )
+
+  // };
 
   render() {
     //Show all sheets if search bar is empty
