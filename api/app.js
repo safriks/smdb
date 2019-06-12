@@ -20,7 +20,9 @@ app.use(cors({
 const allRoute = require("./routes/all.js");
 const searchRoute = require("./routes/search.js");
 const uploadRoute = require("./routes/upload.js");
-const usersRoute = require("./routes/users.js");
+//const usersRoute = require("./routes/users.js");
+const userAuthRoute =require("./routes/users/user-auth");
+const userProfileRoute =require("./routes/users/user-profile");
 const choirRoute = require("./routes/choirs.js");
 const favRoute = require("./routes/favs.js");
 
@@ -45,7 +47,9 @@ app.use(
 app.use("/", allRoute);
 app.use("/", searchRoute);
 app.use("/", uploadRoute);
-app.use("/", usersRoute);
+//app.use("/", usersRoute);
+app.use("/", userAuthRoute);
+app.use("/", userProfileRoute);
 app.use("/", choirRoute);
 app.use("/", favRoute);
 

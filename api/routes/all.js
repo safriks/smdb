@@ -7,8 +7,6 @@ const Choir = require("../models/choir.js")
 const User = require("../models/user");
 const values = require("../../smdb-client/src/values")
 
-
-
 router.get('/all_music', (req, res) => {
     Music.find({}).
         populate("composer").
@@ -20,6 +18,7 @@ router.get('/all_music', (req, res) => {
             };
         })
 })
+
 router.get('/all_composers', (req, res) => {
     Composer.find({}).
         populate("works").
@@ -71,7 +70,5 @@ router.get('/choir_list', (req, res) => {
 router.get('/values', (req, res) => {
     res.json(values)
 })
-
-
 
 module.exports = router;

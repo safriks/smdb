@@ -28,6 +28,4 @@ router.post("/create_choir", (req,res,next)=>{
     })
 })
 
-
-
 module.exports = router;

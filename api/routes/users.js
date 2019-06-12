@@ -65,9 +65,10 @@ router.post("/get_user", (req, res) => {
 
 router.get("/user_info", (req, res) => {
   if (req.session.user) {
+    de
     User.findOne({_id: req.session.user._id})
       .populate("favs")
-      populate("uploads")
+      .populate("uploads")
       .then(result=>{
         res.json(result)
       })
