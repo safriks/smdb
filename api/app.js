@@ -44,6 +44,8 @@ app.use(
     })
 );
 
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use("/", allRoute);
 app.use("/", searchRoute);
 app.use("/", uploadRoute);
@@ -53,7 +55,6 @@ app.use("/", userProfileRoute);
 app.use("/", choirRoute);
 app.use("/", favRoute);
 
-app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
     if(!err)console.log("connected to sheet music db")
