@@ -34,7 +34,7 @@ export default class EditSheet extends Component {
       //If not: get data of current sheet from database
       if (!this.props.location.state) {
         axios
-          .get(`http://localhost:3010/id/${this.props.match.params.id}`)
+          .get(`${process.env.REACT_APP_API_URL}/${this.props.match.params.id}`)
           .then(response => {
             let currentSheet = response.data[0];
             this.setState({
@@ -86,7 +86,7 @@ export default class EditSheet extends Component {
     const fileInputVal = editForm.querySelector("#file-input").value;
     const route = fileInputVal ? "edit_sheet_and_file" : "edit_sheet";
     axios({
-      url: `http://localhost:3010/${route}`,
+      url: `${process.env.REACT_APP_API_URL}/${route}`,
       data: formData,
       method: "post",
       // headers: { "Content-Type": "multipart/form-data" },

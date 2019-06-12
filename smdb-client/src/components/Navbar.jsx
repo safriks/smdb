@@ -24,7 +24,7 @@ export default class Navbar extends Component {
 
   handleLogOutClick = e => {
     axios({
-      url: "http://localhost:3010/log_out",
+      url: `${process.env.REACT_APP_API_URL}/log_out`,
       method: "post",
       withCredentials: true
     })

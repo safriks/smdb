@@ -16,9 +16,11 @@ export default class MusicListItem extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3010/composer_list/").then(response => {
-      this.setState({ composerList: response.data });
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/composer_list`)
+      .then(response => {
+        this.setState({ composerList: response.data });
+      });
   }
 
   handleDropdownClick = e => {

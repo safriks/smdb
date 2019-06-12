@@ -24,9 +24,11 @@ export default class Upload extends Component {
     } else {
       let pathName = this.props.history.location.pathname;
       this.props.isNavBarBlurred(pathName);
-      axios.get("http://localhost:3010/composer_list/").then(response => {
-        this.setState({ composerList: response.data });
-      });
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/composer_list`)
+        .then(response => {
+          this.setState({ composerList: response.data });
+        });
     }
   }
 
@@ -44,14 +46,13 @@ export default class Upload extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
     let uploadForm = this.formRef.current;
     let formData = new FormData(uploadForm);
 
     axios({
-      url: "http://localhost:3010/upload",
+      url: `${process.env.REACT_APP_API_URL}/upload`,
       data: formData,
       method: "post",
       headers: { "Content-Type": "multipart/form-data" },
