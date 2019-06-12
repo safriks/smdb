@@ -35,7 +35,7 @@ export default class Login extends Component {
     // let formData = new FormData(loginForm);
 
     axios({
-      url: "http://localhost:3010/log_in",
+      url: `${process.env.REACT_APP_API_URL}/log_in`,
       data: {
         email: this.state.email,
         password: this.state.password

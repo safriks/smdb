@@ -29,7 +29,7 @@ export default class AllMusic extends Component {
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
     axios
-      .get("http://localhost:3010/all_music/")
+      .get(`${process.env.REACT_APP_API_URL}/all_music`)
       .then(response => {
         this.setState({
           sheets: response.data
@@ -73,80 +73,50 @@ export default class AllMusic extends Component {
     this.setState({ composerFilter: composerFilterState });
   };
 
-  // searchSheets = () => {
-  //   let searchQuery = this.state.searchQuery;
-  //   let searchedSheets = this.state.sheets
-  //   searchQuery.length === 0 ? (this.state.sheets.map((sheet, index) => {
-  //     return (
-  //       <MusicListItem
-  //         selectSheetHandler={this.selectSheetHandler}
-  //         key={`sheet ${index + 1}`}
-  //         {...sheet}
-  //         index={index.toString()}
-  //       />
-  //     );
-  //   })
-  //   ) : (searchedSheets.filter(
-  //     sheet =>
-  //       sheet.title.toLowerCase().includes(this.state.searchQuery) ||
-  //       sheet.composer.first_name
-  //         .toLowerCase()
-  //         .includes(this.state.searchQuery) ||
-  //       sheet.composer.last_name
-  //         .toLowerCase()
-  //         .includes(this.state.searchQuery)
-  //     )
-  //     .map((sheet, index) => {
-  //       return (
-  //         <MusicListItem
-  //           selectSheetHandler={this.selectSheetHandler}
-  //           key={`sheet ${index + 1}`}
-  //           {...sheet}
-  //           index={index.toString()}
-  //         />
-  //       );
-  //     })
-  //   )
+  searchSheets = () => {
+    let searchQueryZero = this.state.searchQuery.length === 0;
+    let searchedSheets = this.state.sheets;
+    let sheetsJSX = searchQueryZero
+      ? this.state.sheets.map((sheet, index) => {
+          return (
+            <MusicListItem
+              selectSheetHandler={this.selectSheetHandler}
+              key={`sheet ${index + 1}`}
+              {...sheet}
+              index={index.toString()}
+            />
+          );
+        })
+      : searchedSheets
+          .filter(
+            sheet =>
+              sheet.title.toLowerCase().includes(this.state.searchQuery) ||
+              sheet.composer.first_name
+                .toLowerCase()
+                .includes(this.state.searchQuery) ||
+              sheet.composer.last_name
+                .toLowerCase()
+                .includes(this.state.searchQuery)
+          )
+          .map((sheet, index) => {
+            return (
+              <MusicListItem
+                selectSheetHandler={this.selectSheetHandler}
+                key={`sheet ${index + 1}`}
+                {...sheet}
+                index={index.toString()}
+              />
+            );
+          });
 
-  // };
+    let genreFilterZero = this.state.genreFilter.length === 0;
+    let genreFilter = this.state.genreFilter;
+
+    return sheetsJSX;
+  };
 
   render() {
-    //Show all sheets if search bar is empty
-    if (this.state.searchQuery.length === 0) {
-      var sheetsJSX = this.state.sheets.map((sheet, index) => {
-        debugger;
-        return (
-          <MusicListItem
-            selectSheetHandler={this.selectSheetHandler}
-            key={`sheet ${index + 1}`}
-            {...sheet}
-            index={index.toString()}
-          />
-        );
-      });
-    } else {
-      //Filter all sheets with search query
-      let searchedSheets = this.state.sheets.filter(
-        sheet =>
-          sheet.title.toLowerCase().includes(this.state.searchQuery) ||
-          sheet.composer.first_name
-            .toLowerCase()
-            .includes(this.state.searchQuery) ||
-          sheet.composer.last_name
-            .toLowerCase()
-            .includes(this.state.searchQuery)
-      );
-      var sheetsJSX = searchedSheets.map((sheet, index) => {
-        return (
-          <MusicListItem
-            selectSheetHandler={this.selectSheetHandler}
-            key={`sheet ${index + 1}`}
-            {...sheet}
-            index={index.toString()}
-          />
-        );
-      });
-    }
+    let sheetsJSX = this.searchSheets();
 
     const selectedMusic = this.state.selectedMusic;
     return (
