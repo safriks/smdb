@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./profile.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class Profile extends Component {
   constructor(props) {
@@ -51,7 +52,19 @@ export default class Profile extends Component {
       favorites = (
         <ul className="custom-list">
           {favSheets.map((sheet, index) => (
-            <li key={`fav${index + 1}`}>{sheet.title}</li>
+            <Link
+              className="fav-link"
+              key={`fav${index + 1}`}
+              to={{
+                pathname: "/all_music",
+                query: {
+                  selectedMusic: sheet
+                }
+              }}
+            >
+              {" "}
+              <li>{sheet.title}</li>
+            </Link>
           ))}
         </ul>
       );

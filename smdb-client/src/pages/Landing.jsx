@@ -26,30 +26,41 @@ export default class Landing extends Component {
 
     return (
       <div className="columns is-centered">
-        <div className="column is-half container flex-column col">
+        <div className="column is-half container flex-column col no-border">
           <img className="logo" src={logo} alt="smdb-logo" />
-          <h1 className="header">Welcome to Oh Sheet Music Database!</h1>
-          {isUserLoggedIn ? (
-            <></>
-          ) : (
-            <>
-              <Link to="/log_in" className="button btn-landing btn-black">
-                Log in
+          <h1 className="header is-white">
+            Welcome to Oh Sheet Music Database!
+          </h1>
+          <div className="columns is-centered">
+            <div className="column is-12 center">
+              {isUserLoggedIn ? (
+                <></>
+              ) : (
+                <>
+                  <Link to="/log_in" className="button btn-landing btn-black">
+                    Log in
+                  </Link>
+                  <Link
+                    to={"/sign_up"}
+                    className="button btn-landing btn-black"
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
+              <Link to={"/all_music"}>
+                {isUserLoggedIn ? (
+                  <button className="button btn-landing btn-black">
+                    Browse
+                  </button>
+                ) : (
+                  <button className="button btn-landing btn-black">
+                    Browse as guest
+                  </button>
+                )}
               </Link>
-              <Link to={"/sign_up"} className="button btn-landing btn-black">
-                Sign up
-              </Link>
-            </>
-          )}
-          <Link to={"/all_music"}>
-            {isUserLoggedIn ? (
-              <button className="button btn-landing btn-black">Browse</button>
-            ) : (
-              <button className="button btn-landing btn-black">
-                Browse as guest
-              </button>
-            )}
-          </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
