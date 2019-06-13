@@ -132,7 +132,7 @@ export default class MusicDetails extends Component {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={`${process.env.REACT_APP_API_URL}${
+            href={`${process.env.REACT_APP_API_URL}/${
               this.state.selectedMusic.file
             }`}
           >
