@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       selectedMusic: props.selectedMusic,

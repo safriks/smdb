@@ -34,7 +34,9 @@ export default class EditSheet extends Component {
       //If not: get data of current sheet from database
       if (!this.props.location.state) {
         axios
-          .get(`${process.env.REACT_APP_API_URL}/${this.props.match.params.id}`)
+          .get(
+            `${process.env.REACT_APP_API_URL}/id/${this.props.match.params.id}`
+          )
           .then(response => {
             let currentSheet = response.data[0];
             this.setState({
