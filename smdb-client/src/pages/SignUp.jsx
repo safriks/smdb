@@ -69,7 +69,7 @@ export default class SignUp extends Component {
   render() {
     return (
       <div className="columns is-centered">
-        <div className="column is-half col container">
+        <div className="column is-half col container background overflow">
           <div>
             <h1 className="header flex-ctd">
               Sign up to Oh Sheet Music Database!
