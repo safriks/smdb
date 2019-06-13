@@ -27,6 +27,8 @@ const choirRoute = require("./routes/choirs.js");
 const favRoute = require("./routes/favs.js");
 
 
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'build')))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,9 +44,7 @@ app.use(
         ttl: 24 * 60 * 60 // 1 day
       })
     })
-);
-
-app.use(express.static(path.join(__dirname, 'public')))
+)
 
 app.use("/", allRoute);
 app.use("/", searchRoute);
