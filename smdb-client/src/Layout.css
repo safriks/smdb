@@ -20,6 +20,7 @@ button {
 .container {
   padding: 5vh;
   margin: 1vh;
+  max-height: 78vh;
 }
 
 .header {
@@ -81,4 +82,9 @@ nav {
 
 .label-text {
   color: black;
+}
+
+.overflow {
+  overflow-y: scroll;
+  height: 100%;
 }

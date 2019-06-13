@@ -29,9 +29,9 @@ export default class Profile extends Component {
   };
 
   render() {
-    return (
+    return this.isUserLoggedIn() ? (
       <div className="columns is-centered">
-        <div className="column is-half col container">
+        <div className="column is-half col container background">
           <div>
             <h1 className="header flex-ctd">Profile</h1>
           </div>
@@ -58,6 +58,8 @@ export default class Profile extends Component {
           </div>
         </div>
       </div>
+    ) : (
+      <></>
     );
   }
 }

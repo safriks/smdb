@@ -28,11 +28,6 @@
   height: 70%;
 }
 
-.overflow {
-  overflow-y: scroll;
-  height: 100%;
-}
-
 .dlt-row {
   display: flex;
   justify-content: flex-end;
