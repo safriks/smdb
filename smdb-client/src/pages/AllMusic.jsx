@@ -7,6 +7,7 @@ import MusicDetails from "../components/MusicDetails";
 
 export default class AllMusic extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       sheets: [],
@@ -26,6 +27,7 @@ export default class AllMusic extends Component {
   }
 
   componentDidMount() {
+    debugger;
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
     axios
@@ -38,11 +40,21 @@ export default class AllMusic extends Component {
       .catch(err => {
         console.log(err);
       });
+    debugger;
+    if (this.props.location.query) {
+      debugger;
+      this.setState({
+        selectedMusic: this.props.location.query.selectedMusic
+      });
+    } else {
+      debugger;
+      return;
+    }
   }
 
   selectSheetHandler(_id) {
     const selectedMusic = this.state.sheets.filter(music => music._id === _id);
-    this.setState({ selectedMusic: selectedMusic });
+    this.setState({ selectedMusic: selectedMusic[0] });
   }
 
   handleClose = () => {
@@ -118,6 +130,7 @@ export default class AllMusic extends Component {
   };
 
   render() {
+    debugger;
     let sheetsJSX = this.searchSheets();
 
     const selectedMusic = this.state.selectedMusic;

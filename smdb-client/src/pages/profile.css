@@ -1,0 +1,7 @@
+.fav-link {
+  color: grey;
+}
+
+.fav-link:hover {
+  color: black;
+}
