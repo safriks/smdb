@@ -25,6 +25,7 @@ const userAuthRoute =require("./routes/users/user-auth");
 const userProfileRoute =require("./routes/users/user-profile");
 const choirRoute = require("./routes/choirs.js");
 const favRoute = require("./routes/favs.js");
+const compRoute = require("./routes/composer.js");
 
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -54,6 +55,7 @@ app.use("/", userAuthRoute);
 app.use("/", userProfileRoute);
 app.use("/", choirRoute);
 app.use("/", favRoute);
+app.use("/", compRoute);
 
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err)=> {
