@@ -25,21 +25,18 @@ export default class MusicDetails extends Component {
   }
 
   handleFavoriteClick = e => {
-    debugger;
     this.checkIfFavorite()
       ? axios({
-          url: "http://localhost:3010/remove_fav",
+          url: `${process.env.REACT_APP_API_URL}/remove_fav`,
           data: {
             sheetId: this.state.selectedMusic._id,
             currentUserId: this.state.currentUser._id
           },
           method: "post",
           withCredentials: true
-        }).then(response => {
-          // this.setState({ isFavorite: false });
-        })
+        }).then(response => {})
       : axios({
-          url: "http://localhost:3010/add_fav",
+          url: `${process.env.REACT_APP_API_URL}/add_fav`,
           data: {
             sheetId: this.state.selectedMusic._id,
             currentUserId: this.state.currentUser._id
@@ -49,7 +46,6 @@ export default class MusicDetails extends Component {
         }).then(response => {});
     //Update user info in state
     axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
-      debugger;
       this.setState({ currentUser: response.data });
     });
   };
@@ -65,16 +61,13 @@ export default class MusicDetails extends Component {
 
   //Check whether selected music sheet is stored in favs of current user
   checkIfFavorite = () => {
-    debugger;
     let selectedMusicId = this.state.selectedMusic._id;
     let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
       selectedMusicId
     );
     if (selectedMusicIsFavorite === true) {
-      debugger;
       return true;
     } else {
-      debugger;
       return false;
     }
   };
@@ -86,7 +79,6 @@ export default class MusicDetails extends Component {
     }
 
     let favBtnClassName = "flex-ctd fav-btn";
-    debugger;
     isFavorite
       ? (favBtnClassName = "flex-ctd fav-btn is-fav")
       : (favBtnClassName = "flex-ctd fav-btn not-fav");
@@ -140,7 +132,9 @@ export default class MusicDetails extends Component {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={`http://localhost:3010${this.state.selectedMusic.file}`}
+            href={`${process.env.REACT_APP_API_URL}${
+              this.state.selectedMusic.file
+            }`}
           >
             {this.state.selectedMusic.file}
           </a>

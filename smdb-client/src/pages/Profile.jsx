@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import "./profile.css";
+import axios from "axios";
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: props.currentUser
+      currentUser: props.currentUser,
+      sheets: []
     };
   }
 
@@ -16,6 +18,16 @@ export default class Profile extends Component {
     } else {
       let pathName = this.props.history.location.pathname;
       this.props.isNavBarBlurred(pathName);
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/all_music`)
+        .then(response => {
+          this.setState({
+            sheets: response.data
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 
@@ -29,6 +41,21 @@ export default class Profile extends Component {
   };
 
   render() {
+    let favorites;
+    if (this.state.currentUser.favs.length <= 0) {
+      favorites = <p>No favorites yet... Go add some!</p>;
+    } else {
+      var favSheets = this.state.sheets.filter(sheet => {
+        return this.state.currentUser.favs.includes(sheet._id);
+      });
+      favorites = (
+        <ul className="custom-list">
+          {favSheets.map((sheet, index) => (
+            <li key={`fav${index + 1}`}>{sheet.title}</li>
+          ))}
+        </ul>
+      );
+    }
     return this.isUserLoggedIn() ? (
       <div className="columns is-centered">
         <div className="column is-half col container background">
@@ -49,11 +76,7 @@ export default class Profile extends Component {
               <p>
                 <span className="label-text">Favorites: </span>
               </p>
-              <ul className="custom-list">
-                {this.state.currentUser.favs.map((fav, index) => {
-                  return <li key={index.toString()}>{fav}</li>;
-                })}
-              </ul>
+              {favorites}
             </div>
           </div>
         </div>
