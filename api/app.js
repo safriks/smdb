@@ -11,6 +11,9 @@ const MongoStore = require('connect-mongo')(session);
 const Music = require("./models/music.js");
 const Composer = require("./models/composer.js");
 
+var enforce = require('express-sslify');
+app.use(enforce.HTTPS());
+
 const cors = require("cors")
 app.use(cors({
     origin: ["http://localhost:3000", "localhost:3000"],
