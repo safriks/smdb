@@ -88,3 +88,8 @@ nav {
   overflow-y: scroll;
   height: 100%;
 }
+
+.logo {
+  width: 10vw;
+  height: 10vw;
+}
