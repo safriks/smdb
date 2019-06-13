@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from "../design/osmdb-logo.svg";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -54,6 +55,11 @@ export default class Navbar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
+        <div className="navbar-brand">
+          <Link to="/">
+            <img className="nav-logo" src={logo} alt="nav-logo" />
+          </Link>
+        </div>
         <div className="navbar-menu is-active">
           <div className="navbar-start">
             <div className="navbar-item">
@@ -65,9 +71,6 @@ export default class Navbar extends Component {
                 ) : (
                   <></>
                 )}
-                <Link to="/" className="button is-black">
-                  <i className="fa fa-home" aria-hidden="true" />
-                </Link>
                 {isUserLoggedIn ? (
                   <div className="navbar-item">
                     <h3 className="nav-text">

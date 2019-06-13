@@ -13,7 +13,7 @@
   min-width: 150px;
   padding: 2vh;
   height: auto;
-  margin: 2vh;
+  margin: 1vh;
 }
 
 .btn-black {
@@ -25,4 +25,16 @@
 .btn-black:hover {
   background: black;
   color: white;
+  border: solid 1px black;
+}
+
+.no-border {
+  border: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
