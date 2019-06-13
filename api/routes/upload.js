@@ -70,7 +70,7 @@ router.post("/upload", upload.single("sheet_file"), (req, res, next) => {
     year: "",
     genre: "",
     voices: "",
-    path: `/library/${req.file.filename}`,
+    path: `${req.file.path}`,
     file: `/library/${req.file.filename}`,
     video: "",
     tags: "",
