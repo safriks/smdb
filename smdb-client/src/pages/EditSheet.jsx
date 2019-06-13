@@ -139,7 +139,7 @@ export default class EditSheet extends Component {
 
     return (
       <div className="columns is-centered">
-        <div className="column is-half col container background">
+        <div className="column is-half col container background overflow">
           <div>
             <h1 className="header flex-ctd">Edit sheet music info</h1>
           </div>
