@@ -12,7 +12,7 @@ const Music = require("./models/music.js");
 const Composer = require("./models/composer.js");
 
 var enforce = require('express-sslify');
-app.use(enforce.HTTPS());
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 const cors = require("cors")
 app.use(cors({
