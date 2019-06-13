@@ -4,6 +4,7 @@ import uploadSelectValues from "../values.json";
 
 export default class EditSheet extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       currentSheetId: "",
@@ -33,8 +34,11 @@ export default class EditSheet extends Component {
       //Check if there is data in props.location.state (when redirected from upload page)
       //If not: get data of current sheet from database
       if (!this.props.location.state) {
+        debugger;
         axios
-          .get(`${process.env.REACT_APP_API_URL}/${this.props.match.params.id}`)
+          .get(
+            `${process.env.REACT_APP_API_URL}/id/${this.props.match.params.id}`
+          )
           .then(response => {
             let currentSheet = response.data[0];
             this.setState({
@@ -50,6 +54,7 @@ export default class EditSheet extends Component {
             });
           });
       } else {
+        debugger;
         this.setState({
           currentSheetId: this.props.location.state.current_sheet._id,
           title: this.props.location.state.current_sheet.title,
