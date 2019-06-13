@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default class FilterColumn extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       genreList: uploadSelectValues.genres,

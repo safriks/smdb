@@ -66,9 +66,11 @@ export default class EditSheet extends Component {
       this.props.isNavBarBlurred(pathName);
       //Set currentSheet with id that is passed in url
       // this.setState({ currentSheet: this.props.match.params.id})
-      axios.get("http://localhost:3010/composer_list/").then(response => {
-        this.setState({ composerList: response.data });
-      });
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/composer_list/`)
+        .then(response => {
+          this.setState({ composerList: response.data });
+        });
     }
   }
 

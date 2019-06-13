@@ -43,14 +43,10 @@ export default class SignUp extends Component {
   };
 
   handleFormSubmit = e => {
-    debugger;
     e.preventDefault();
 
-    // let signUpForm = this.formRef.current;
-    // let formData = new FormData(signUpForm);
-
     axios({
-      url: "http://localhost:3010/sign_up",
+      url: `${process.env.REACT_APP_API_URL}/sign_up`,
       data: {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
@@ -58,7 +54,6 @@ export default class SignUp extends Component {
         password: this.state.password
       },
       method: "post",
-      // headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true
     })
       .then(response => {

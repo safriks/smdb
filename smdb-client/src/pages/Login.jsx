@@ -31,9 +31,6 @@ export default class Login extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
 
-    // let loginForm = this.formRef.current;
-    // let formData = new FormData(loginForm);
-
     axios({
       url: `${process.env.REACT_APP_API_URL}/log_in`,
       data: {
@@ -41,7 +38,6 @@ export default class Login extends Component {
         password: this.state.password
       },
       method: "post",
-      // headers: { "Content-Type": "form-data" },
       withCredentials: true
     })
       .then(response => {
