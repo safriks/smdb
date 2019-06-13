@@ -10,7 +10,7 @@ const musicSchema = new mongoose.Schema({
   year: String,
   genre: Array,
   voices: Array,
-  //path: String, // this was a temporary placeholder for the path to a single file
+  path: String, // this was a temporary placeholder for the path to a single file
   file: String,
   video: String,
   uploader: { type: mongoose.Schema.Types.ObjectId, ref: User },
