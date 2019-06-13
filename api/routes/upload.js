@@ -5,7 +5,7 @@ var path = require("path");
 
 var multer = require("multer");
 var storage = multer.diskStorage({
-  destination: "./public/library",
+  destination: __dirname + "/../public/library",
   filename: function(req, file, cb) {
     cb(null, file.originalname + Date.now() + path.extname(file.originalname)); //Appending extension
   } // - taking in the file with it's extention as provided by the user is a potential vulnerability. The safe way is to get extention via file.mimetype. Oh well, one day...
