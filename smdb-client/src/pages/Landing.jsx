@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
+import logo from "../design/osmdb-logo.svg";
 
 export default class Landing extends Component {
   state = {
@@ -26,6 +27,7 @@ export default class Landing extends Component {
     return (
       <div className="columns is-centered">
         <div className="column is-half container flex-column col">
+          <img className="logo" src={logo} alt="smdb-logo" />
           <h1 className="header">Welcome to Oh Sheet Music Database!</h1>
           {isUserLoggedIn ? (
             <></>
