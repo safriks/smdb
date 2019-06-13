@@ -25,4 +25,9 @@
 .btn-black:hover {
   background: black;
   color: white;
+  border: solid 1px black;
+}
+
+.no-border {
+  border: none;
 }

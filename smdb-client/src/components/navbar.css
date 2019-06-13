@@ -28,3 +28,12 @@ nav {
   color: white;
   border: 1px solid rgb(156, 5, 5);
 }
+
+.nav-logo {
+  height: 50px;
+  filter: invert(100%) brightness(150%);
+}
+
+.nav-logo:hover {
+  filter: brightness(80%);
+}
