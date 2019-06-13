@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.3d29adba.chunk.css",
-    "main.js": "/static/js/main.a228a467.chunk.js",
-    "main.js.map": "/static/js/main.a228a467.chunk.js.map",
+    "main.css": "/static/css/main.729e1ac2.chunk.css",
+    "main.js": "/static/js/main.4d3e9466.chunk.js",
+    "main.js.map": "/static/js/main.4d3e9466.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/css/2.62908225.chunk.css": "/static/css/2.62908225.chunk.css",
     "static/js/2.86f76251.chunk.js": "/static/js/2.86f76251.chunk.js",
     "static/js/2.86f76251.chunk.js.map": "/static/js/2.86f76251.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.6417a013e78b4d394186b35dc34a941a.js": "/precache-manifest.6417a013e78b4d394186b35dc34a941a.js",
+    "precache-manifest.e97fa669dca207cd607fcc3cde33ee6b.js": "/precache-manifest.e97fa669dca207cd607fcc3cde33ee6b.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.62908225.chunk.css.map": "/static/css/2.62908225.chunk.css.map",
-    "static/css/main.3d29adba.chunk.css.map": "/static/css/main.3d29adba.chunk.css.map"
+    "static/css/main.729e1ac2.chunk.css.map": "/static/css/main.729e1ac2.chunk.css.map",
+    "static/media/Layout.css": "/static/media/black-and-white-blur-document-164821.80530795.jpg",
+    "static/media/navbar.css": "/static/media/osmdb-logo.0c72c768.svg"
   }
 }
