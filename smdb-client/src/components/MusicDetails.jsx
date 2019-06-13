@@ -5,9 +5,10 @@ import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
-      selectedMusic: props.selectedMusic[0],
+      selectedMusic: props.selectedMusic,
       currentUser: props.currentUser
     };
   }
@@ -19,8 +20,8 @@ export default class MusicDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedMusic[0] !== this.props.selectedMusic[0]) {
-      this.setState({ selectedMusic: this.props.selectedMusic[0] });
+    if (prevProps.selectedMusic !== this.props.selectedMusic) {
+      this.setState({ selectedMusic: this.props.selectedMusic });
     }
   }
 
