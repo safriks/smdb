@@ -7,7 +7,8 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      err: null
+      err: null,
+      loginErrorMessage: ""
     };
     this.formRef = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -45,7 +46,8 @@ export default class Login extends Component {
       })
       .catch(err => {
         this.setState({
-          err: err
+          err: err,
+          loginErrorMessage: "Invalid credentials..."
         });
       });
   };
@@ -95,6 +97,9 @@ export default class Login extends Component {
                       <i className="fas fa-lock" />
                     </span>
                   </div>
+                  <p className="error-message">
+                    {this.state.loginErrorMessage}
+                  </p>
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
