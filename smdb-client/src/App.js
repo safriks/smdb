@@ -22,6 +22,7 @@ class App extends Component {
       err: null
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.updateCurrentUser = this.updateCurrentUser.bind(this);
     this.isNavBarBlurred = this.isNavBarBlurred.bind(this);
     this.logOut = this.logOut.bind(this);
   }
@@ -31,6 +32,7 @@ class App extends Component {
   }
 
   getCurrentUser = () => {
+    debugger;
     axios({
       url: `${process.env.REACT_APP_API_URL}/get_user`,
       method: "post",
@@ -47,6 +49,29 @@ class App extends Component {
         );
       })
       .catch(err => {
+        this.setState({
+          err: err
+        });
+      });
+  };
+
+  updateCurrentUser = () => {
+    debugger;
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/user_info`)
+      .then(response => {
+        debugger;
+        this.setState(
+          {
+            currentUser: response.data
+          },
+          () => {
+            history.push("/all_music");
+          }
+        );
+      })
+      .catch(err => {
+        debugger;
         this.setState({
           err: err
         });
@@ -94,6 +119,7 @@ class App extends Component {
             render={props => (
               <AllMusic
                 {...props}
+                updateCurrentUser={this.updateCurrentUser}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
               />

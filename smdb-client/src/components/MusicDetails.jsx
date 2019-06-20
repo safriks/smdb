@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default class MusicDetails extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       selectedMusic: props.selectedMusic,
@@ -22,9 +23,11 @@ export default class MusicDetails extends Component {
     if (prevProps.selectedMusic !== this.props.selectedMusic) {
       this.setState({ selectedMusic: this.props.selectedMusic });
     }
+    this.checkIfFavorite();
   }
 
   handleFavoriteClick = e => {
+    debugger;
     this.checkIfFavorite()
       ? axios({
           url: `${process.env.REACT_APP_API_URL}/remove_fav`,
@@ -34,8 +37,15 @@ export default class MusicDetails extends Component {
           },
           method: "post",
           withCredentials: true
-        }).then(response => {})
-      : axios({
+        }).then(response => {
+          debugger;
+          this.props.updateCurrentUser();
+        })
+      : // .then(() => {
+        //   debugger;
+        //   this.props.updateCurrentUser();
+        // })
+        axios({
           url: `${process.env.REACT_APP_API_URL}/add_fav`,
           data: {
             sheetId: this.state.selectedMusic._id,
@@ -43,11 +53,20 @@ export default class MusicDetails extends Component {
           },
           method: "post",
           withCredentials: true
-        }).then(response => {});
+        }).then(response => {
+          debugger;
+          this.props.updateCurrentUser();
+        });
+    // .then(() => {
+    //   debugger;
+    //   this.props.updateCurrentUser();
+    // });
     //Update user info in state
-    axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
-      this.setState({ currentUser: response.data });
-    });
+    // axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
+    //   this.setState({ currentUser: response.data });
+    // });
+    // this.props.getCurrentUser();
+    //TRY UPDATE CURRENT USER HERE
   };
 
   //Check whether user is logged in
@@ -61,6 +80,7 @@ export default class MusicDetails extends Component {
 
   //Check whether selected music sheet is stored in favs of current user
   checkIfFavorite = () => {
+    debugger;
     let selectedMusicId = this.state.selectedMusic._id;
     let selectedMusicIsFavorite = this.state.currentUser.favs.includes(
       selectedMusicId
