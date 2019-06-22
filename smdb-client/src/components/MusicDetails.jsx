@@ -34,7 +34,9 @@ export default class MusicDetails extends Component {
           },
           method: "post",
           withCredentials: true
-        }).then(response => {})
+        }).then(response => {
+          this.props.updateCurrentUser();
+        })
       : axios({
           url: `${process.env.REACT_APP_API_URL}/add_fav`,
           data: {
@@ -43,11 +45,13 @@ export default class MusicDetails extends Component {
           },
           method: "post",
           withCredentials: true
-        }).then(response => {});
+        }).then(response => {
+          this.props.updateCurrentUser();
+        });
     //Update user info in state
-    axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
-      this.setState({ currentUser: response.data });
-    });
+    // axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
+    //   this.setState({ currentUser: response.data });
+    // });
   };
 
   //Check whether user is logged in

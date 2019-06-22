@@ -174,6 +174,7 @@ export default class AllMusic extends Component {
                       <MusicDetails
                         selectedMusic={this.state.selectedMusic}
                         currentUser={this.state.currentUser}
+                        updateCurrentUser={this.props.updateCurrentUser}
                       />
                     ) : (
                       sheetsJSX
