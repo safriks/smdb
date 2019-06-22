@@ -22,7 +22,7 @@ class App extends Component {
       err: null
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
-    this.updateCurrentUser = this.updateCurrentUser.bind(this);
+    // this.updateCurrentUser = this.updateCurrentUser.bind(this);
     this.isNavBarBlurred = this.isNavBarBlurred.bind(this);
     this.logOut = this.logOut.bind(this);
   }
@@ -54,11 +54,13 @@ class App extends Component {
       });
   };
 
-  updateCurrentUser = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
-      console.log(response.data);
-    });
-  };
+  // updateCurrentUser = () => {
+  //   debugger;
+  //   axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
+  //     debugger;
+  //     console.log(response.data);
+  //   });
+  // };
 
   isNavBarBlurred = pathName => {
     if (pathName === "/") {
@@ -103,7 +105,7 @@ class App extends Component {
                 {...props}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
-                updateCurrentUser={this.updateCurrentUser}
+                // updateCurrentUser={this.updateCurrentUser}
               />
             )}
           />

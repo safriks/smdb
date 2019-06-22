@@ -25,6 +25,7 @@ export default class MusicDetails extends Component {
   }
 
   handleFavoriteClick = e => {
+    debugger;
     this.checkIfFavorite()
       ? axios({
           url: `${process.env.REACT_APP_API_URL}/remove_fav`,
@@ -35,7 +36,8 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          this.props.updateCurrentUser();
+          debugger;
+          this.setState({ currentUser: response.data });
         })
       : axios({
           url: `${process.env.REACT_APP_API_URL}/add_fav`,
@@ -46,7 +48,8 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          this.props.updateCurrentUser();
+          debugger;
+          this.setState({ currentUser: response.data });
         });
     //Update user info in state
     // axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
