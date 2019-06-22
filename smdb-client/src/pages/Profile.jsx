@@ -34,6 +34,7 @@ export default class Profile extends Component {
 
   //Check whether user is logged in
   isUserLoggedIn = () => {
+    debugger;
     if (Object.keys(this.state.currentUser).length > 0) {
       return true;
     } else {
@@ -42,13 +43,16 @@ export default class Profile extends Component {
   };
 
   render() {
-    let favorites;
-    if (this.state.currentUser.favs.length <= 0) {
-      favorites = <p>No favorites yet... Go add some!</p>;
-    } else {
-      var favSheets = this.state.sheets.filter(sheet => {
-        return this.state.currentUser.favs.includes(sheet._id);
-      });
+    let favorites = "";
+    if (this.isUserLoggedIn()) {
+      debugger;
+      if (this.state.currentUser.favs.length <= 0) {
+        favorites = <p>No favorites yet... Go add some!</p>;
+      } else {
+        var favSheets = this.state.sheets.filter(sheet => {
+          return this.state.currentUser.favs.includes(sheet._id);
+        });
+      }
       favorites = (
         <ul className="custom-list">
           {favSheets.map((sheet, index) => (
