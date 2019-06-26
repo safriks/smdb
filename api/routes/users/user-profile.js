@@ -5,7 +5,6 @@ var bcrypt = require("bcrypt");
 const User = require("../../models/user.js");
 
 router.get("/user_info", (req, res) => {
-  debugger;
   if (req.session.user) {
     User.findOne({ _id: req.session.user._id })
       .populate("favs")

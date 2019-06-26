@@ -25,7 +25,6 @@ export default class MusicDetails extends Component {
   }
 
   handleFavoriteClick = e => {
-    debugger;
     this.checkIfFavorite()
       ? axios({
           url: `${process.env.REACT_APP_API_URL}/remove_fav`,
@@ -36,7 +35,6 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          debugger;
           //Update user in App
           this.props.updateCurrentUser(response.data);
           //Update user in MusicDetails
@@ -51,7 +49,6 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          debugger;
           //Update user in App
           this.props.updateCurrentUser(response.data);
           //Update user in MusicDetails
