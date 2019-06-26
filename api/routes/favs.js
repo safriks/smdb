@@ -26,7 +26,7 @@ router.post("/add_fav", (req, res) => {
     )
   ])
     .then(results => {
-      //Send back the updated user
+      //Send back the updated user -- ADDED BY STEVEN TO FIX FAV BUG
       User.findOne({ _id: userId }).then(user => {
         req.session.user = user;
         res.status(200).json(user);
@@ -53,7 +53,7 @@ router.post("/remove_fav", (req, res) => {
     )
   ])
     .then(results => {
-      //Send back the updated user
+      //Send back the updated user -- ADDED BY STEVEN TO FIX FAV BUG
       User.findOne({ _id: userId }).then(user => {
         req.session.user = user;
         res.status(200).json(user);

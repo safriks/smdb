@@ -19,16 +19,26 @@ class App extends Component {
     this.state = {
       currentUser: {},
       navBarClassName: "navbar",
+      sheets: [],
       err: null
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
-    // this.updateCurrentUser = this.updateCurrentUser.bind(this);
+    this.updateCurrentUser = this.updateCurrentUser.bind(this);
     this.isNavBarBlurred = this.isNavBarBlurred.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
   componentDidMount() {
-    this.getCurrentUser();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/all_music`)
+      .then(response => {
+        this.setState({
+          sheets: response.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   getCurrentUser = () => {
@@ -56,7 +66,6 @@ class App extends Component {
 
   //Update current user with response data from backend after removing/adding favorite
   updateCurrentUser = updatedUser => {
-    debugger;
     this.setState({ currentUser: updatedUser });
   };
 
@@ -104,6 +113,7 @@ class App extends Component {
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
                 updateCurrentUser={this.updateCurrentUser}
+                sheets={this.state.sheets}
               />
             )}
           />
@@ -155,6 +165,7 @@ class App extends Component {
                 {...props}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
+                sheets={this.state.sheets}
               />
             )}
           />
