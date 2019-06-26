@@ -54,13 +54,11 @@ class App extends Component {
       });
   };
 
-  // updateCurrentUser = () => {
-  //   debugger;
-  //   axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
-  //     debugger;
-  //     console.log(response.data);
-  //   });
-  // };
+  //Update current user with response data from backend after removing/adding favorite
+  updateCurrentUser = updatedUser => {
+    debugger;
+    this.setState({ currentUser: updatedUser });
+  };
 
   isNavBarBlurred = pathName => {
     if (pathName === "/") {
@@ -105,7 +103,7 @@ class App extends Component {
                 {...props}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
-                // updateCurrentUser={this.updateCurrentUser}
+                updateCurrentUser={this.updateCurrentUser}
               />
             )}
           />

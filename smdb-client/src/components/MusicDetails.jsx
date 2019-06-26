@@ -37,7 +37,7 @@ export default class MusicDetails extends Component {
           withCredentials: true
         }).then(response => {
           debugger;
-          this.setState({ currentUser: response.data });
+          this.props.updateCurrentUser(response.data);
         })
       : axios({
           url: `${process.env.REACT_APP_API_URL}/add_fav`,
@@ -49,7 +49,7 @@ export default class MusicDetails extends Component {
           withCredentials: true
         }).then(response => {
           debugger;
-          this.setState({ currentUser: response.data });
+          this.props.updateCurrentUser(response.data);
         });
     //Update user info in state
     // axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
