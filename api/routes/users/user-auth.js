@@ -5,7 +5,6 @@ var bcrypt = require("bcrypt");
 const User = require("../../models/user.js");
 
 router.post("/get_user", (req, res) => {
-  debugger;
   if (req.session.user) {
     res.status(200).json(req.session.user);
   } else {
