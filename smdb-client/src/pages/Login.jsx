@@ -25,8 +25,15 @@ export default class Login extends Component {
     this.props.history.goBack();
   };
 
+  //Handles form input
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  //Seperate handler makes sure email is in lower case
+  handleEmailInputChange = e => {
+    let lowerCaseEmail = e.target.value.toLowerCase();
+    this.setState({ email: lowerCaseEmail });
   };
 
   handleFormSubmit = e => {
@@ -75,7 +82,7 @@ export default class Login extends Component {
                       className="input"
                       type="email"
                       name="email"
-                      onChange={this.handleInputChange}
+                      onChange={this.handleEmailInputChange}
                       required
                     />
                     <span className="icon is-small is-left">
