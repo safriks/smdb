@@ -11,6 +11,11 @@ const MongoStore = require("connect-mongo")(session);
 const Music = require("./models/music.js");
 const Composer = require("./models/composer.js");
 
+// commented out due to merge conflict
+//var enforce = require('express-sslify');
+//app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
+
 app.use(
   session({
     secret: "jeff9164",
@@ -40,9 +45,11 @@ const choirRoute = require("./routes/choirs.js");
 const favRoute = require("./routes/favs.js");
 const compRoute = require("./routes/composer.js");
 
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("../public/"));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
