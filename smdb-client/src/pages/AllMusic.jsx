@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./allMusic.css";
-import axios from "axios";
 import MusicListItem from "../components/MusicListItem";
 import FilterColumn from "../components/FilterColumn";
 import MusicDetails from "../components/MusicDetails";
@@ -9,7 +8,7 @@ export default class AllMusic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sheets: [],
+      sheets: props.sheets,
       selectedMusic: null,
       searchQuery: "",
       genreFilter: [],
@@ -26,18 +25,9 @@ export default class AllMusic extends Component {
   }
 
   componentDidMount() {
+    debugger;
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/all_music`)
-      .then(response => {
-        this.setState({
-          sheets: response.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
     if (this.props.location.query) {
       this.setState({
         selectedMusic: this.props.location.query.selectedMusic
@@ -125,6 +115,7 @@ export default class AllMusic extends Component {
   };
 
   render() {
+    debugger;
     let sheetsJSX = this.searchSheets();
 
     const selectedMusic = this.state.selectedMusic;
@@ -174,6 +165,7 @@ export default class AllMusic extends Component {
                       <MusicDetails
                         selectedMusic={this.state.selectedMusic}
                         currentUser={this.state.currentUser}
+                        updateCurrentUser={this.props.updateCurrentUser}
                       />
                     ) : (
                       sheetsJSX
