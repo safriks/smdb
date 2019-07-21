@@ -10,16 +10,27 @@ export default class FilterColumn extends Component {
       genreList: uploadSelectValues.genres,
       composerList: [],
       genreDropdown: false,
-      composerDropdown: false
+      composerDropdown: false,
+      isLoading: true
     };
   }
 
+  _isMounted = false;
+
   componentDidMount() {
+    this._isMounted = true;
+
     axios
       .get(`${process.env.REACT_APP_API_URL}/composer_list`)
       .then(response => {
-        this.setState({ composerList: response.data });
+        if (this._isMounted) {
+          this.setState({ composerList: response.data, isLoading: false });
+        }
       });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   handleDropdownClick = e => {

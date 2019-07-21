@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       currentUser: {},
       navBarClassName: "navbar",
+      sheets: [],
       err: null
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
@@ -28,7 +29,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getCurrentUser();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/all_music`)
+      .then(response => {
+        this.setState({
+          sheets: response.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   getCurrentUser = () => {
@@ -55,27 +65,9 @@ class App extends Component {
       });
   };
 
-  updateCurrentUser = () => {
-    debugger;
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/user_info`)
-      .then(response => {
-        debugger;
-        this.setState(
-          {
-            currentUser: response.data
-          },
-          () => {
-            history.push("/all_music");
-          }
-        );
-      })
-      .catch(err => {
-        debugger;
-        this.setState({
-          err: err
-        });
-      });
+  //Update current user with response data from backend after removing/adding favorite
+  updateCurrentUser = updatedUser => {
+    this.setState({ currentUser: updatedUser });
   };
 
   isNavBarBlurred = pathName => {
@@ -122,6 +114,8 @@ class App extends Component {
                 updateCurrentUser={this.updateCurrentUser}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
+                updateCurrentUser={this.updateCurrentUser}
+                sheets={this.state.sheets}
               />
             )}
           />
@@ -173,6 +167,7 @@ class App extends Component {
                 {...props}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
+                sheets={this.state.sheets}
               />
             )}
           />

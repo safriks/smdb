@@ -38,14 +38,12 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          debugger;
-          this.props.updateCurrentUser();
+          //Update user in App
+          this.props.updateCurrentUser(response.data);
+          //Update user in MusicDetails
+          this.setState({ currentUser: response.data });
         })
-      : // .then(() => {
-        //   debugger;
-        //   this.props.updateCurrentUser();
-        // })
-        axios({
+      : axios({
           url: `${process.env.REACT_APP_API_URL}/add_fav`,
           data: {
             sheetId: this.state.selectedMusic._id,
@@ -54,19 +52,11 @@ export default class MusicDetails extends Component {
           method: "post",
           withCredentials: true
         }).then(response => {
-          debugger;
-          this.props.updateCurrentUser();
+          //Update user in App
+          this.props.updateCurrentUser(response.data);
+          //Update user in MusicDetails
+          this.setState({ currentUser: response.data });
         });
-    // .then(() => {
-    //   debugger;
-    //   this.props.updateCurrentUser();
-    // });
-    //Update user info in state
-    // axios.get(`${process.env.REACT_APP_API_URL}/user_info`).then(response => {
-    //   this.setState({ currentUser: response.data });
-    // });
-    // this.props.getCurrentUser();
-    //TRY UPDATE CURRENT USER HERE
   };
 
   //Check whether user is logged in
