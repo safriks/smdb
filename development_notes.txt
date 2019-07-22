@@ -1,0 +1,41 @@
+FEATURES:
+
+        Choirs :
+            creatre
+            edit
+            relationship with users - join
+            custom collections (?)
+
+        Conductor - sinnger distinction
+            what else can the conductor be - 
+
+        Music:
+            public private distinction
+
+        Share-able links:
+            user
+
+        Privacy - security message on signup  Footer with links to us :)
+
+
+
+BUGS & IMPROVEMENTS:
+
+        Express session (see their site)
+        Filters
+        Logout - is no session - update state
+        Cookie expiration (fixed?)
+        Styling, grey borders (later, after some features)
+        API routes must be different from client url!! - will use /api/ prefix to all api routes
+
+
+
+Alex to do:
+        choir model
+        Create choir route
+        Get one choir
+        Get all choirs
+        Edit choir route
+        Make join request route
+        Approve/cancel/make admin route 
+	
