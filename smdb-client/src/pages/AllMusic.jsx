@@ -3,6 +3,7 @@ import "./allMusic.css";
 import MusicListItem from "../components/MusicListItem";
 import FilterColumn from "../components/FilterColumn";
 import MusicDetails from "../components/MusicDetails";
+import { Link } from "react-router-dom";
 
 export default class AllMusic extends Component {
   constructor(props) {
@@ -113,23 +114,52 @@ export default class AllMusic extends Component {
     return sheetsJSX;
   };
 
+  //Check whether user is logged in
+  isUserLoggedIn = () => {
+    if (Object.keys(this.state.currentUser).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   render() {
     debugger;
     let sheetsJSX = this.searchSheets();
+    var isUserLoggedIn = this.isUserLoggedIn();
 
     const selectedMusic = this.state.selectedMusic;
     return (
       <>
         <div className="columns">
-          <div className="column is-8 is-offset-2">
-            <input
-              className="search-el search-bar"
-              placeholder="Search sheet music!"
-              type="text"
-              name="searchQuery"
-              onInput={this.handleSearchInputChange}
-            />
-          </div>
+          {isUserLoggedIn ? (
+            <>
+              <div className="column is-1 is-offset-1 upload-btn-container">
+                <Link to="/upload" className="button is-light upload-button">
+                  <strong>Upload sheet music</strong>
+                </Link>
+              </div>
+              <div className="column is-8">
+                <input
+                  className="search-el search-bar"
+                  placeholder="Search sheet music!"
+                  type="text"
+                  name="searchQuery"
+                  onInput={this.handleSearchInputChange}
+                />
+              </div>
+            </>
+          ) : (
+            <div className="column is-8 is-offset-2">
+              <input
+                className="search-el search-bar"
+                placeholder="Search sheet music!"
+                type="text"
+                name="searchQuery"
+                onInput={this.handleSearchInputChange}
+              />
+            </div>
+          )}
         </div>
         <div className="columns list-container">
           {this.state.sheets.length > 0 && (

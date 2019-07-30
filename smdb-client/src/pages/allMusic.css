@@ -32,3 +32,12 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.upload-button {
+  margin: 1vh;
+}
+
+.upload-btn-container {
+  display: flex;
+  align-items: center;
+}
