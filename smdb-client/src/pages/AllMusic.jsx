@@ -25,7 +25,6 @@ export default class AllMusic extends Component {
   }
 
   componentDidMount() {
-    debugger;
     let pathName = this.props.history.location.pathname;
     this.props.isNavBarBlurred(pathName);
     if (this.props.location.query) {

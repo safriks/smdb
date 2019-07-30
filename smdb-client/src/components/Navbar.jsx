@@ -116,3 +116,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+//remove multiple isUserLoggedIn? -> only use one to change navbar on Login status

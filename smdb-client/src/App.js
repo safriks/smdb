@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import EditSheet from "./pages/EditSheet";
+import Choirs from "./pages/Choirs";
 import { Redirect } from "react-router-dom";
 import Profile from "./pages/Profile";
 import history from "./history";
@@ -111,7 +112,6 @@ class App extends Component {
             render={props => (
               <AllMusic
                 {...props}
-                updateCurrentUser={this.updateCurrentUser}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
                 updateCurrentUser={this.updateCurrentUser}
@@ -168,6 +168,17 @@ class App extends Component {
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
                 sheets={this.state.sheets}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/choirs"
+            render={props => (
+              <Choirs
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
               />
             )}
           />
