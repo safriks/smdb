@@ -16,9 +16,10 @@ export default class MusicDetails extends Component {
     //Check if user is logged in -- else redirect to landing
     if (!this.isUserLoggedIn()) {
       this.props.history.push("/");
+    } else {
+      let pathName = this.props.history.location.pathname;
+      this.props.isNavBarBlurred(pathName);
     }
-    let pathName = this.props.history.location.pathname;
-    this.props.isNavBarBlurred(pathName);
   }
 
   //Check whether user is logged in
@@ -40,7 +41,7 @@ export default class MusicDetails extends Component {
       <>
         <div className="columns">
           <div className="column is-1 is-offset-1 btn-container">
-            <Link to="/upload" className="button is-light upload-button">
+            <Link to="/create_choir" className="button is-light upload-button">
               <strong>Create choir</strong>
             </Link>
           </div>

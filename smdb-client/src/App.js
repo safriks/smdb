@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./Layout.css";
 import axios from "axios";
 import Navbar from "./components/Navbar";
@@ -9,8 +10,8 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import EditSheet from "./pages/EditSheet";
+import CreateChoir from "./pages/CreateChoir";
 import Choirs from "./pages/Choirs";
-import { Redirect } from "react-router-dom";
 import Profile from "./pages/Profile";
 import history from "./history";
 
@@ -43,7 +44,6 @@ class App extends Component {
   }
 
   getCurrentUser = () => {
-    debugger;
     axios({
       url: `${process.env.REACT_APP_API_URL}/get_user`,
       method: "post",
@@ -139,7 +139,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/upload"
+            path="/upload_sheet"
             render={props => (
               <Upload
                 {...props}
@@ -176,6 +176,17 @@ class App extends Component {
             path="/choirs"
             render={props => (
               <Choirs
+                {...props}
+                isNavBarBlurred={this.isNavBarBlurred}
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/create_choir"
+            render={props => (
+              <CreateChoir
                 {...props}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
