@@ -134,7 +134,7 @@ export default class AllMusic extends Component {
         <div className="columns">
           {isUserLoggedIn ? (
             <>
-              <div className="column is-1 is-offset-1 upload-btn-container">
+              <div className="column is-1 is-offset-1 btn-container">
                 <Link to="/upload" className="button is-light upload-button">
                   <strong>Upload sheet music</strong>
                 </Link>

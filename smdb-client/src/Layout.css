@@ -17,6 +17,11 @@ button {
   background-size: cover;
 }
 
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+
 .container {
   padding: 5vh;
   margin: 1vh;
