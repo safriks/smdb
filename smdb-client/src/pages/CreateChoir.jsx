@@ -1,10 +1,17 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class Upload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: this.props.currentUser
+      currentUser: this.props.currentUser,
+      name: "",
+      conductor: "",
+      singers: "",
+      choir_type: "",
+      about: "About choir...",
+      repertoire: ""
     };
   }
 
@@ -32,6 +39,37 @@ export default class Upload extends Component {
     this.props.history.goBack();
   };
 
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+    debugger;
+
+    axios({
+      url: `${process.env.REACT_APP_API_URL}/create_choir`,
+      data: {
+        name: this.state.name,
+        conductor: this.state.conductor,
+        singers: this.state.singers,
+        choir_type: this.state.choir_type,
+        about: this.state.about,
+        repertoire: this.state.repertoire
+      },
+      method: "post",
+      withCredentials: true
+    })
+      .then(response => {
+        this.props.history.push("/choirs");
+      })
+      .catch(err => {
+        this.setState({
+          err: err
+        });
+      });
+  };
+
   render() {
     return (
       <div className="columns is-centered">
@@ -39,55 +77,89 @@ export default class Upload extends Component {
           <div>
             <h1 className="header flex-ctd">Create choir</h1>
           </div>
-          <div className="columns">
+          <div className="columns overflow-form">
             <div className="column is-6 is-offset-3">
-              <form className="form" onSubmit={this.handleFormSubmit}>
+              <form
+                className="form"
+                onSubmit={this.handleFormSubmit}
+                noValidate
+              >
                 <div className="field">
-                  <label>Title</label>
+                  <label>Name</label>
                   <div className="control">
                     <input
                       className="input"
                       type="text"
-                      name="title"
+                      name="name"
                       onChange={this.handleInputChange}
+                      value={this.state.name}
                       required
                     />
                   </div>
                 </div>
                 <div className="field">
-                  <label>Composer</label>
+                  <label>Conductor</label>
                   <div className="control">
                     <div className="select">
                       <select
-                        name="composer"
+                        name="conductor"
                         onChange={this.handleInputChange}
+                        value={this.state.conductor}
                         required
                       />
                     </div>
                   </div>
                 </div>
                 <div className="field">
-                  <div className="file is-black">
-                    <label className="file-label">
-                      <input
-                        type="file"
-                        className="file-input"
-                        name="sheet_file"
+                  <label>Singers</label>
+                  <div className="control">
+                    <div className="select">
+                      <select
+                        name="singers"
                         onChange={this.handleInputChange}
+                        value={this.state.singers}
                         required
                       />
-                      <span className="file-cta">
-                        <span className="file-icon">
-                          <i className="fas fa-upload" />
-                        </span>
-                        <span className="file-label">Select sheet music</span>
-                      </span>
-                    </label>
+                    </div>
                   </div>
                 </div>
                 <div className="field">
-                  <label className="file-label">Selected file</label>
-                  <span className="file-name">Yoyo</span>
+                  <label>Choir type</label>
+                  <div className="control">
+                    <div className="select">
+                      <select
+                        name="choir_type"
+                        onChange={this.handleInputChange}
+                        value={this.state.choir_type}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="field">
+                  <label>About</label>
+                  <div className="control">
+                    <textarea
+                      name="about"
+                      className="textarea"
+                      onChange={this.handleInputChange}
+                      value={this.state.about}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label>Repertoire</label>
+                  <div className="control">
+                    <div className="select">
+                      <select
+                        name="repertoire"
+                        onChange={this.handleInputChange}
+                        value={this.state.repertoire}
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
@@ -110,3 +182,5 @@ export default class Upload extends Component {
     );
   }
 }
+
+//CONNECT STATE AND FORM INPUT VALUES

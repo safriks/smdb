@@ -94,6 +94,11 @@ nav {
   height: 100%;
 }
 
+.overflow-form {
+  overflow-y: scroll;
+  height: 65%;
+}
+
 .logo {
   width: 220px;
   height: 220px;

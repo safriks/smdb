@@ -93,7 +93,7 @@ export default class EditSheet extends Component {
       url: `${process.env.REACT_APP_API_URL}/${route}`,
       data: formData,
       method: "post",
-      // headers: { "Content-Type": "multipart/form-data" },
+      headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true
     })
       .then(response => {
