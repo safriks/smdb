@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 
 export default class MusicDetails extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = {
       currentUser: props.currentUser,
       searchQuery: "",
-      choirs: []
+      choirs: props.choirs
     };
   }
 

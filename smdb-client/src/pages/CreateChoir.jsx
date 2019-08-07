@@ -182,5 +182,3 @@ export default class Upload extends Component {
     );
   }
 }
-
-//CONNECT STATE AND FORM INPUT VALUES

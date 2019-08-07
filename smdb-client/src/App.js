@@ -22,6 +22,7 @@ class App extends Component {
       currentUser: {},
       navBarClassName: "navbar",
       sheets: [],
+      choirs: [],
       err: null
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
@@ -31,11 +32,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/all_music`)
-      .then(response => {
+    debugger;
+    Promise.all([
+      axios.get(`${process.env.REACT_APP_API_URL}/all_music`),
+      axios.get(`${process.env.REACT_APP_API_URL}/all_choirs`)
+    ])
+      .then(([sheets, choirs]) => {
+        debugger;
         this.setState({
-          sheets: response.data
+          sheets: sheets.data,
+          choirs: choirs.data
         });
       })
       .catch(err => {
@@ -179,6 +185,7 @@ class App extends Component {
                 {...props}
                 isNavBarBlurred={this.isNavBarBlurred}
                 currentUser={this.state.currentUser}
+                choirs={this.state.choirs}
               />
             )}
           />
