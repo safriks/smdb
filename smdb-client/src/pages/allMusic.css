@@ -32,3 +32,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.upload-button {
+  margin: 1vh;
+}

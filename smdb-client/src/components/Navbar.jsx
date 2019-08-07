@@ -65,8 +65,15 @@ export default class Navbar extends Component {
             <div className="navbar-item">
               <div className="buttons">
                 {isUserLoggedIn ? (
-                  <Link to="/upload" className="button is-light">
-                    <strong>Upload sheet music</strong>
+                  <Link to="/all_music" className="button is-light">
+                    <strong>Sheets</strong>
+                  </Link>
+                ) : (
+                  <></>
+                )}
+                {isUserLoggedIn ? (
+                  <Link to="/choirs" className="button is-light">
+                    <strong>Choirs</strong>
                   </Link>
                 ) : (
                   <></>
@@ -116,3 +123,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+//remove multiple isUserLoggedIn? -> only use one to change navbar on Login status
